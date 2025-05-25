@@ -89,7 +89,7 @@ We recommand a batchsize of 256 at first and adjust this by seeing speed and cud
 
 If you only cares about very **few modifications**, we recommend you further search pFind3 (with open mode disabled) use fasta file above and set modifications you care (considering ```project_name_mod.txt```) as variable modification. 
 
-### Web application
+### Web application (will be released very soon)
 If you do not have gpu. You can access our [Bohrium Web Interface](https://bohrium.example.com/punifind) to rent gpu and run pUniFind online directly.
 
 The gpu resource from bohrium can be unstable. If you can note get your job started, this is most likely result from lack of gpu resource. We recommend you try 4090 at first. If 4090 is not avilable, we recommend 3090.
