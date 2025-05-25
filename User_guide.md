@@ -18,6 +18,8 @@ This is the official repository for **pUniFind**, the most powerful zero-shot op
 
 ## 🚀 Quick Start <a name="-quick-start"></a>
 
+Demo data can be downloaded from [Google Drive](https://drive.google.com/drive/folders/1CQzNypmOscCpvyK3MnCj4AhEWGlx9mbn?usp=sharing).
+
 ### Local deployment for Windows
 Running our model on windows requires gpu. Dear reviewers, you can use ```xzhbez6w``` as your Bohrium ID, which can help you avoid registering a Bohrium account. Ordinary users are required to register a free Bohrium ID to add users.
 
@@ -125,7 +127,7 @@ project folder/
 
 
 ### Open De Novo Results
-Currently, in prder to speed up, we only predict score for peptide with precurosr mass error tolerance less than 20 ppm and length range from 6-40.
+Currently, to improve performance, we only predict scores for peptides with a precursor mass error tolerance within 20 ppm and peptide lengths ranging from 6 to 40 residues. Predicted peptides outside of these ranges will not be logged. In future releases, we plan to support more flexible settings.
 
 To better visualize result format we will show columns as rows with the same order.
 
