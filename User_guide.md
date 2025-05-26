@@ -23,7 +23,7 @@ Demo data can be downloaded from [Google Drive](https://drive.google.com/drive/f
 ### Local deployment for Windows
 Running our model on windows requires gpu. Dear reviewers, you can use ```xzhbez6w``` as your Bohrium ID, which can help you avoid registering a Bohrium account. Ordinary users are required to register a free Bohrium ID to add users.
 
-Download the ```.exe```[download link](https://github.com/pFindStudio/pUniFind/releases) install package first and then install by following the instructions.
+Download the ```.exe``` [download link](https://github.com/pFindStudio/pUniFind/releases) install package first and then install by following the instructions.
 
 For ```GPU Batch size```, you can set it to 128 if your GPU has more than 24GB memory. If your GPU only has around 4GB memory, consider setting it to 64. You can use the ```nvidia-smi``` command in your terminal to check your GPU's memory information.
 
