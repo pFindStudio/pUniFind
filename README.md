@@ -92,13 +92,13 @@ We provide **priority support** for user-reported issues through the following c
    - Uploaded folder description  
 
 1. **pFind Studio user support WeChat group**: 
-   - Please add my WeChat: ```JL_Zhao2000```, and I will invite you into our user support group. (Because WeChat invitation expire in one week.)
+   - Please add my WeChat: ```JL_Zhao2000```, and I will invite you into our user support group. (Because WeChat invitation expires in one week.)
 
 **For collaboration requests:**  
 📧 **Contact info**: Jiale Zhao.  Email: [zhaojiale22z@ict.ac.cn](mailto:zhaojiale22z@ict.ac.cn) or [marshmallowzjl@gmail.com](mailto:marshmallowzjl@gmail.com).
 
 ## 📅 Roadmap
-**Staring** and **watching** our repo will remind you our updates. We will keep optimizing our model.
+**Staring** and **watching** our repo will remind you of our updates. We will keep optimizing our model.
 | Milestone         | Status |
 |-------------------|--------|
 | Post arxiv preprint |  🚄 very soon |
@@ -111,6 +111,6 @@ We provide **priority support** for user-reported issues through the following c
 ## 🤝 Citation <a name="-citation"></a>
 If you find our software is useful and helped your research,  **please cite** us 🙏 through:
 ```bash
-Wating for bioxiv
+Waiting for bioxiv
 ```
-Every citation of yours will motivate the main author to make pUniFind more user-friendly and more powerful. Main author need your valuable citations and stars to find a job after graduation 😫.
+Your every citation will motivate the main author to make pUniFind more user-friendly and powerful. The main author needs your valuable citations and stars to find a job after graduation 😫.
