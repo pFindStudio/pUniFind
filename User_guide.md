@@ -192,6 +192,8 @@ pep1=0 LGLDVLVHGEAER 1
 
 ## 🧠 Take care <a name="-take-care"></a>
 Open de novo sequencing is a very challenging and complicated task, there are a few things you should take care.
+- Please make sure your install path and data/result path do not contain spaces.  
+- If you want to reinstall the Windows version of pUniFind, please use ```unins000.exe``` to uninstall; otherwise, you may not be able to change your install path. If you have already uninstalled using other methods, please reinstall and then uninstall using the method mentioned above.
 - There are a few "mass coincidences", some of them are :
 ```Q+Deamidated[Q]=E```, ```N+Deamidated[N]=D```, ```glycidamide[anything]=S```, ```Acetyl+K=AV/VA```,```K+Crotonyl=PV/VP```,```K+Formy=GV/VG```,```K+Ubiq=GG```,```G+Methyl=A```, etc. We do not recommend you to search these modifications in modification rich de novo workflow unless that kind modification is exactly what you want, in which case, you might want to postprocess searched result.
 - There are a few loss modifications you might want to ignore:
@@ -225,7 +227,7 @@ We provide **priority support** for user-reported issues through the following c
 ## 🤝 Citation <a name="-citation"></a>
 If you find our software is useful and helped your research,  **please cite** us 🙏 through:
 ```bash
-Wating
+Waiting
 ```
 Every citation of yours will motivate the main author to make pUniFind more user-friendly and more powerful. Main author need your valuable citations and stars to find a job after graduation 😫.
 

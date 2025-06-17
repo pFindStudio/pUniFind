@@ -81,9 +81,9 @@ python predict.py \
 ``` -->
 
 ## 🛠️ Technical Support  
-Should you encounter any technical issues, suggestions, observe suboptimal performance, or identify inconsistencies between pUniFind results and our evaluation metrics, we welcome your feedback 🙏. We are looking for bad cases to further refine our model. If you have any suggestions about our software, please do not hesitate to contact us. We are **actively** updating and refining our software, since the main author is **far** from graduation :(.
+Should you encounter any technical issues, suggestions, observe suboptimal performance, or identify inconsistencies between pUniFind results and our evaluation metrics, we welcome your feedback 🙏. We are looking for bad cases to further refine our model. We can improve performance in 50% of poor cases using our proprietary, complex methods, which is why we have not released them publicly. If you have any suggestions about our software, please do not hesitate to contact us. We are **actively** updating and refining our software, since the main author is **far** from graduation :(.
 
-We provide **priority support** for user-reported issues through the following channels:  
+If you encounter any issues running pUniFind, please first refer to the FAQ section in the [User Guide](User_guide.md). If your problem persists, priority support is available for user-reported issues through the following channels. We will respond to you as promptly as possible:
 
 **For technical inquiries:**  
 1. **GitHub Issues**: [Open a new issue](https://github.com/pFindStudio/pUniFind/issues) with:  
