@@ -192,8 +192,7 @@ pep1=0 LGLDVLVHGEAER 1
 
 ## 🧠 Take care <a name="-take-care"></a>
 Open de novo sequencing is a very challenging and complicated task, there are a few things you should take care.
-- Please make sure your install path and data/result path do not contain spaces.  
-- If you want to reinstall the Windows version of pUniFind, please use ```unins000.exe``` to uninstall; otherwise, you may not be able to change your install path. If you have already uninstalled using other methods, please reinstall and then uninstall using the method mentioned above.
+
 - There are a few "mass coincidences", some of them are :
 ```Q+Deamidated[Q]=E```, ```N+Deamidated[N]=D```, ```glycidamide[anything]=S```, ```Acetyl+K=AV/VA```,```K+Crotonyl=PV/VP```,```K+Formy=GV/VG```,```K+Ubiq=GG```,```G+Methyl=A```, etc. We do not recommend you to search these modifications in modification rich de novo workflow unless that kind modification is exactly what you want, in which case, you might want to postprocess searched result.
 - There are a few loss modifications you might want to ignore:
@@ -219,7 +218,8 @@ We provide **priority support** for user-reported issues through the following c
 📧 **Contact info**:  Jiale Zhao. Email: [zhaojiale22z@ict.ac.cn](mailto:zhaojiale22z@ict.ac.cn) or [marshmallowzjl@gmail.com](mailto:marshmallowzjl@gmail.com).
 
 ## ❓ FAQ <a name="-faq"></a>
-
+- Please make sure your install path and data/result path do not contain spaces.  
+- If you want to reinstall the Windows version of pUniFind, please use ```unins000.exe``` to uninstall; otherwise, you may not be able to change your install path. If you have already uninstalled using other methods, please reinstall and then uninstall using the method mentioned above.
 - If you met this ```libstdc++.so.6: version `GLIBCXX_3.4.29' not found``` problem, see [This Solution](https://github.com/pybind/pybind11/discussions/3453). In my case, I solved this by ```export LD_LIBRARY_PATH=/your_path/miniconda3/envs/pUniFind/lib:$LD_LIBRARY_PATH```.
 
 - If you can not get result file for rescoring. please see if you put ```.pac``` file at the right place.
