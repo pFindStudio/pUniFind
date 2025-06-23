@@ -27,9 +27,15 @@ Staring our repository will remind you our updates. -->
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0) -->
 [![Windows Executable](https://img.shields.io/badge/Windows-EXE-green)](https://github.com/pFindStudio/pUniFind/releases) [![Bohrium](https://img.shields.io/badge/Web%20server-Bohrium%20App-00BFFF)](https://bohrium.dp.tech/apps/punifind)
 <!-- [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/your-repo/pUniFind) -->
+<div style="text-align: center; line-height: 1.8; margin-bottom: 25px;">
+  <a href="User_guide_chinese.md" style="margin-right: 15px;">中文用户手册</a> | 
+  <a href="User_guide.md" style="margin-left: 15px;">User Manual</a>
+</div>
+
 
 
 This is the official repository for **pUniFind**, the most powerful zero-shot open peptide-spectrum scoring model surpassing other SOTA search engines and the first zero-shot open de novo sequencing deep learning model supporting over 1300 modifications. Developed by [pFind group](https://pfind.net/) and [DP Technology](https://www.dp.tech/en). We will release our arxiv preprint very soon.
+
 
 ## 🚀 Key Features
 🔥 **Powerful open scoring performance.** Surpassing all former SOTA search enegines including open-pFind and MSFragger with MSBooster supporting over 1300 modifications. 
@@ -45,24 +51,23 @@ This is the official repository for **pUniFind**, the most powerful zero-shot op
 
 
 
-<!-- ## 📊 Benchmark Performance
+## 📊 Benchmark
 Details can be seen in our paper.
 
-### 1. Scoring
+![](evaluation.png)
 
-<!-- ![](2.drawio.png) -->
+<!-- ### 1. Scoring -->
+
+
 <!-- ![](Vigna_trap_e2e.png) -->
 
 <!-- ### 2. De Novo Sequencing
 <!-- ![](5.drawio.png) -->
 
 <!-- ### 3. Challenging Cases
-<!-- ![](6.drawio.png) -->
+<!-- ![](6.drawio.png)
 
 
-## 🛠️ Getting Started
-
-Please see our [user guide](User_guide.md).
 
 
 
@@ -79,6 +84,11 @@ python predict.py \
   --modification_config ./configs/open_mods.yaml \
   --device cuda:0
 ``` -->
+
+## 🛠️ Getting Started
+
+Please see our [user guide](User_guide.md).
+
 
 ## 🛠️ Technical Support  
 Should you encounter any technical issues, suggestions, observe suboptimal performance, or identify inconsistencies between pUniFind results and our evaluation metrics, we welcome your feedback 🙏. We are looking for bad cases to further refine our model. We can improve performance in 50% of poor cases using our proprietary, complex methods, which is why we have not released them publicly. If you have any suggestions about our software, please do not hesitate to contact us. We are **actively** updating and refining our software, since the main author is **far** from graduation :(.
