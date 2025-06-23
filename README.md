@@ -25,7 +25,7 @@ Staring our repository will remind you our updates. -->
 
 <!-- [![arXiv](https://img.shields.io/badge/arXiv-2308.12345-B31B1B)](https://arxiv.org/abs/1234.56789)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0) -->
-[![Windows Executable](https://img.shields.io/badge/Windows-EXE-green)](https://github.com/pFindStudio/pUniFind/releases) [![Bohrium](https://img.shields.io/badge/Web%20server-Bohrium%20App-00BFFF)](https://bohrium.dp.tech/apps/punifind)
+[![Windows Executable](https://img.shields.io/badge/Windows-GUI-green)](https://github.com/pFindStudio/pUniFind/releases) [![Bohrium](https://img.shields.io/badge/Web%20server-Bohrium%20App-00BFFF)](https://bohrium.dp.tech/apps/punifind)
 <!-- [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/your-repo/pUniFind) -->
 <div style="text-align: center; line-height: 1.8; margin-bottom: 25px;">
   <a href="User_guide_chinese.md" style="margin-right: 15px;">中文用户手册</a> | 

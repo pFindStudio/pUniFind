@@ -1,41 +1,21 @@
-#!/usr/bin/env python3
-"""
-MGF File Processor - v1.2
-
-Modifies MGF files with the following changes:
-1. Adds SCANS value to TITLE line
-2. Truncates PEPMASS values at first space
-3. Removes specified metadata lines
-
-Usage:
-    python mgf_processor.py -i /input/dir -o /output/dir
-
-Author: Your Name <marshmallowzjl@gmail.com>
-"""
-
 import os
 import argparse
+from multiprocessing import Pool
+from functools import partial
 
-def process_mgf_files(input_dir, output_dir):
-    """Process MGF files with specified modifications"""
-    os.makedirs(output_dir, exist_ok=True)
-    
-    for filename in os.listdir(input_dir):
-        if not filename.lower().endswith('.mgf'):
-            continue
-            
-        input_path = os.path.join(input_dir, filename)
-        output_path = os.path.join(output_dir, filename)
-        
+def process_single_file(input_path, output_path):
+    """Process a single MGF file"""
+    try:
         with open(input_path, 'r', encoding='utf-8') as infile, \
              open(output_path, 'w', encoding='utf-8') as outfile:
-             
+
             current_spectrum = []
             scans_value = None
-            
+            charge = 0
+
             for line in infile:
                 line = line.strip()
-                
+
                 if line == "BEGIN IONS":
                     current_spectrum = [line]
                     scans_value = None
@@ -43,12 +23,20 @@ def process_mgf_files(input_dir, output_dir):
                     if current_spectrum:
                         current_spectrum.append(line)
                         processed = process_spectrum(current_spectrum, scans_value)
-                        outfile.write('\n'.join(processed) + '\n\n')
+                        if charge > 0:
+                            outfile.write('\n'.join(processed) + '\n\n')
                     current_spectrum = []
                 elif current_spectrum:
                     current_spectrum.append(line)
+                    if line.startswith("CHARGE="):
+                        charge = int(line.split('=')[1].strip().replace("+", ""))
                     if line.startswith("SCANS="):
                         scans_value = line.split('=')[1].strip()
+
+    except Exception as e:
+        print(f"Error processing {input_path}: {str(e)}")
+        return False
+    return True
 
 def process_spectrum(spectrum_lines, scans_value):
     """Apply processing rules to individual spectrum"""
@@ -73,7 +61,7 @@ def process_spectrum(spectrum_lines, scans_value):
     
     return processed
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(
         description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter
@@ -84,11 +72,47 @@ if __name__ == "__main__":
     parser.add_argument('-o', '--output',
                        required=True,
                        help='Output directory for processed files')
-    
+    parser.add_argument('-p', '--processes',
+                       type=int,
+                       default=8,
+                       help='Number of parallel processes (default: 8)')
+
     args = parser.parse_args()
     
     if not os.path.isdir(args.input):
         raise SystemExit(f"Error: Input directory '{args.input}' does not exist")
         
-    process_mgf_files(os.path.abspath(args.input), os.path.abspath(args.output))
-    print(f"Processing completed. Files saved to: {args.output}")
+    os.makedirs(args.output, exist_ok=True)
+    
+    # Collect all mgf files
+    files = [f for f in os.listdir(args.input) if f.lower().endswith('.mgf')]
+    if not files:
+        print("No MGF files found in input directory")
+        return
+
+    # Prepare arguments for multiprocessing
+    process_func = partial(
+        process_single_file,
+        input_dir=args.input,
+        output_dir=args.output
+    )
+    
+    with Pool(processes=args.processes) as pool:
+        results = []
+        for filename in files:
+            input_path = os.path.join(args.input, filename)
+            output_path = os.path.join(args.output, filename)
+            results.append(pool.apply_async(process_single_file, (input_path, output_path)))
+        
+        # Wait for all processes to complete
+        success = 0
+        total = len(results)
+        for result in results:
+            if result.get():
+                success += 1
+        
+        print(f"Processing completed: {success}/{total} files processed successfully")
+        print(f"Results saved to: {args.output}")
+
+if __name__ == "__main__":
+    main()

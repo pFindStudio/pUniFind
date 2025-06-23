@@ -176,9 +176,9 @@ pep1=0 LGLDVLVHGEAER 1
 **合作咨询：**  
 📧 **联系人**: 赵家乐 邮箱: [zhaojiale22z@ict.ac.cn](mailto:zhaojiale22z@ict.ac.cn) 或 [marshmallowzjl@gmail.com](mailto:marshmallowzjl@gmail.com)。
 ## ❓ 常见问题 <a name="-faq"></a>
-- **MGF格式**: 请确保使用pFind生成的MGF文件。不同软件生成的MGF格式差异较大。最新版pFind支持Thermo、timsTOF等仪器数据。重打分/从头测序时，可直接用pFind搜索.raw/.d文件生成MGF（需在MS Data的Data Extraction中点击`MGF`）。若坚持使用MSConvert生成的MGF，可通过脚本处理：  
+- **MGF格式**: 请确保使用pFind生成的MGF文件。不同软件生成的MGF格式差异较大。最新版pFind支持Thermo、timsTOF等仪器数据。重打分/从头测序时，可直接用pFind搜索.raw/.d文件生成MGF（需在MS Data的Data Extraction中点击`MGF`）。若坚持使用MSConvert生成的MGF，可把mgf一起放到某个文件夹下，通过脚本处理：  
   ```bash
-  python3 mgf_processor.py -i /mgf输入路径/ -o /处理后mgf输出路径/
+  python3 mgf_processor.py -i /mgf输入路径/ -o /处理后mgf输出路径/ -p 核数(默认8)
   ```
 - **安装路径**: 安装路径和数据/结果路径请勿包含空格/中文。  
 - **Windows卸载**: 如需重新安装Windows版，请使用```unins000.exe```卸载，否则可能无法更改安装路径。若已通过其他方式卸载，请重新安装后使用上述方法卸载。
