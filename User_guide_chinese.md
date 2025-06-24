@@ -1,7 +1,4 @@
 # pUniFind: 统一大规模预训练深度学习模型突破质谱解析极限
-<!-- [![PyPI Version](https://img.shields.io/pypi/v/modelname)](https://pypi.org/project/modelname/)
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Colab Demo](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/your-repo) -->
 这是**pUniFind**的官方仓库，目前最强大的零样本开放式肽段-谱图打分模型，性能超越现有SOTA搜索引擎，同时也是首个支持1300余种修饰的零样本开放式从头测序深度学习模型。由[pFind团队](https://pfind.net/)与[DP Technology](https://www.dp.tech/en)联合开发。我们即将发布arXiv预印本。
 ## 📚 目录
 - [🚀 快速开始](#-quick-start)
@@ -18,7 +15,7 @@
 请先下载```.exe```[安装包](https://github.com/pFindStudio/pUniFind/releases)，然后按照指引安装。在Windows上运行需要GPU支持。普通用户需注册免费Bohrium账号。
 
 关于```GPU batch size```设置：
-- 显存≥24GB时建议设为128
+- 显存≥8GB时建议设为128
 - 显存≈4GB时建议设为64
 
 可通过终端命令```nvidia-smi```查看显存信息。

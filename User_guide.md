@@ -1,9 +1,5 @@
 # pUniFind: Unified large pretrained deep learning model pushing the limit of mass spectra interpretation
 
-<!-- [![PyPI Version](https://img.shields.io/pypi/v/modelname)](https://pypi.org/project/modelname/)
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Colab Demo](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/your-repo) -->
-
 This is the official repository for **pUniFind**, the most powerful zero-shot open peptide-spectrum scoring model surpassing other SOTA search engines and the first zero-shot open de novo sequencing deep learning model supporting over 1300 modifications. Developed by [pFind group](https://pfind.net/) and [DP Technology](https://www.dp.tech/en). We will release our arxiv preprint very soon.
 
 ## 📚 Table of Contents
@@ -25,7 +21,7 @@ Running our model on windows requires gpu. Dear reviewers, you can use ```xzhbez
 
 Download the ```.exe``` [download link](https://github.com/pFindStudio/pUniFind/releases) install package first and then install by following the instructions.
 
-For ```GPU Batch size```, you can set it to 128 if your GPU has more than 24GB memory. If your GPU only has around 4GB memory, consider setting it to 64. You can use the ```nvidia-smi``` command in your terminal to check your GPU's memory information.
+For ```GPU Batch size```, you can set it to 128 if your GPU has more than 8GB memory. If your GPU only has around 4GB memory, consider setting it to 64. You can use the ```nvidia-smi``` command in your terminal to check your GPU's memory information.
 
 
 The rescoring results will be saved in the ```result``` folder. The de novo sequencing results will be stored in the ```pUniFind_result``` folder.

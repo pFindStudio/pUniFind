@@ -1,26 +1,3 @@
-<!-- # pUniFind
-This is the official repository for pUniFind, the most powerful zero-shot open peptide-spectrum scoring model and the first zero-shot open de novo sequencing deep learning model supporting over 1300 modifications.
-
-Scoring evaluation can be seen below:
-
-Zero-shot de novo sequencing evaluation can be seen below:
-
-Performace of our model on hard cases can be seen below:
-
-
-For now you may try our model on bohrium app here. Our arxiv preprint(including more details and more very careful evaluation on accuracy) will be released soon. Our source code will be released upon the acceptance of our paper.
-
-## TODO
-1. Update bohrium app to support TIMS and Astral data. (very soon)
-2. Update bohrium app to support multi-gpu process. (very soon)
-3. Specially finetune on some new modification (if needed)
-
-If you found some bugs or if you need some more function, please donot hesitate to pull an issue here.
-
-Staring our repository will remind you our updates. -->
-
-
-
 # pUniFind: Unified large pretrained deep learning model pushing the limit of mass spectra interpretation
 
 <!-- [![arXiv](https://img.shields.io/badge/arXiv-2308.12345-B31B1B)](https://arxiv.org/abs/1234.56789)
@@ -47,7 +24,7 @@ This is the official repository for **pUniFind**, the most powerful zero-shot op
 🔥 **De Novo reliable result filtering and user-friendly result file.** Based on various deep learning features, our model can effectively filter out unreliable results which is extremely useful for real world usage. Our user-friendly results file also contains end-to-end score, cos similarity, mass difference and missing fragment ion sites, which can better help user to evaluate its reliability. Result file also support visualization.
 
 ## &#x1F4E3; News
-- **2025/6/23** pUniFind supports timsTOF open de novo sequencing.
+- **2025/6/24** pUniFind supports timsTOF open de novo sequencing.
 - **2025/5/25** pUniFind repository Initial Release 🚀.
 
 
@@ -57,34 +34,6 @@ Details can be seen in our paper.
 
 ![](evaluation.png)
 
-<!-- ### 1. Scoring -->
-
-
-<!-- ![](Vigna_trap_e2e.png) -->
-
-<!-- ### 2. De Novo Sequencing
-<!-- ![](5.drawio.png) -->
-
-<!-- ### 3. Challenging Cases
-<!-- ![](6.drawio.png)
-
-
-
-
-
-<!-- ```bash
-# Requirements: Python 3.8+, CUDA 11.7+
-git clone https://github.com/your-repo/pUniFind.git
-cd pUniFind
-pip install -r requirements.txt
-
-# Inference Example
-python predict.py \
-  --input ./data/spectra.mzML \
-  --output ./results.csv \
-  --modification_config ./configs/open_mods.yaml \
-  --device cuda:0
-``` -->
 
 ## 🛠️ Getting Started
 
