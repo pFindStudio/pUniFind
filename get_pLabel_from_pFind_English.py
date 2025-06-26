@@ -1,8 +1,10 @@
+# Usage:
+# python get_pLabel_from_pFind.py [path to pFind project folder]
 # Notes:
-# 1. Place all mgf/raw/pf2 files in the same folder. pFind by default places mgf or pf2 files in the same directory.
-# 2. The raw file name should not contain any "." before the extension.
-# 3. To ensure pFind exports mgf files, check the "Data Extraction" section under the "MS Data" interface in pFind.
-
+# 1. Place all mgf/raw/pf2 files in the same folder. By default, pFind will place mgf or pf2 files in the same directory.
+# 2. The raw file name (before the extension) should not contain any "." characters.
+# 3. Make sure pFind exports mgf files. In most cases, this is enabled by default. You can check under "Data Extraction" in the "MS Data" interface of pFind.
+# 4. This script will generate .plabel files, which are saved in the 'plabel' folder under the pFind project directory. These files can be imported into the pLabel software for direct spectral visualization (https://pfind.net/software/pLabel/index.html ).
 # jiale 2025.6.14
 import argparse
 import csv

@@ -1,7 +1,10 @@
+# 使用方法：
+# python get_pLabel_from_pFind.py [pFind项目文件夹路径]
 # 注意事项：
 # 1.把所有mgf/raw/pf2文件都放到同一个文件夹，pFind默认会把mgf或者pf2放到同一个目录下。
 # 2.raw名字除了扩展名前面的不要有"."。
 # 3.要让pFind导出mgf，大多数情况下默认是导出的，在pFind “MS Data” 界面下的Data Extraction里。
+# 4.最终会产生.plabel文件，存到pFind项目下的plabel文件夹里，使用pLabel软件可以导入直接可视化谱图(https://pfind.net/software/pLabel/index.html)
 
 # jiale 2025.6.14
 import argparse
