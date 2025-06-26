@@ -188,7 +188,7 @@ pep1=0 LGLDVLVHGEAER 1
 
 ## 🧠 Please Read Me <a name="-take-care"></a>
 Data type:
-- Currently, pUniFind do not support ITMS(considered to be outdated with low resolution) or ETD/EThcD data. For Astral DDA de novo sequencing, we recommend users first try timsTOF mode.
+- Currently, pUniFind do not support ITMS(considered to be outdated with low resolution) or ETD/EThcD data. For Astral DDA de novo sequencing, we recommend users first try timsTOF mode. Since Astral DDA data is relatively scarce, if users can contribute Astral DDA data, we are willing to provide finetune services to make pUniFind perform better on Astral.
 
 Open de novo sequencing is a very challenging and complicated task, there are a few things you should take care.
 
