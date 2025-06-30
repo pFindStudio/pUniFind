@@ -152,7 +152,7 @@ pep1=0 LGLDVLVHGEAER 1
 - 修饰丰富型从头测序：依赖[pFind](https://pfind.net/software/pFind/index.html)（关闭开放模式）搜索pUniFind生成的数据库，结果可通过pBuild可视化（已集成在pFind中）。
 ## 🧠 注意事项 <a name="-take-care"></a>
 数据类型：
-- 目前不支持ITMS（分辨率较低的过时模式）或ETD/EThcD数据。对于Astral DDA从头测序，我们建议用户先使用timsTOF模式进行。Astral DDA数据比较稀少，如果用户可以贡献Astral DDA数据，我们愿意提供finetune服务让pUniFind在Astral上效果更优。
+- 目前不支持ITMS（分辨率较低的过时模式）或ETD/EThcD数据。对于Astral 窄窗口DIA从头测序，我们建议用户先使用timsTOF模式进行从头测序。Astral 窄窗口DIA数据比较稀少，如果用户可以贡献Astral 窄窗口DIA数据，我们愿意提供finetune服务让pUniFind在Astral上效果更优。
 
 开放从头测序极具挑战性，需注意：
 - 存在若干"质量巧合"修饰：
