@@ -1,5 +1,5 @@
 # pUniFind: 统一大规模预训练深度学习模型突破质谱解析极限
-这是**pUniFind**的官方仓库，目前最强大的零样本开放式肽段-谱图打分模型，性能超越现有SOTA搜索引擎，同时也是首个支持1300余种修饰的零样本开放式从头测序深度学习模型。由[pFind团队](https://pfind.net/)与[DP Technology](https://www.dp.tech/en)联合开发。我们即将发布arXiv预印本。
+这是**pUniFind**的官方仓库，目前最强大的零样本开放式肽段-谱图打分模型，性能超越现有SOTA搜索引擎，同时也是首个支持1300余种修饰的零样本开放式从头测序深度学习模型。由[pFind团队](https://pfind.net/)与[DP Technology](https://www.dp.tech/en)联合开发。
 ## 📚 目录
 - [🚀 快速开始](#-quick-start)
 - [📊 输出格式](#-output-formats)
@@ -185,6 +185,14 @@ pep1=0 LGLDVLVHGEAER 1
 ## 🤝 引用说明 <a name="-citation"></a>
 如本软件对您的研究有帮助，请**引用**我们🙏：
 ```bash
-即将发布
+@misc{zhao2025punifindunifiedlargepretrained,
+      title={pUniFind: a unified large pre-trained deep learning model pushing the limit of mass spectra interpretation}, 
+      author={Jiale Zhao and Pengzhi Mao and Kaifei Wang and Yiming Li and Yaping Peng and Ranfei Chen and Shuqi Lu and Xiaohong Ji and Jiaxiang Ding and Xin Zhang and Yucheng Liao and Weinan E and Weijie Zhang and Han Wen and Hao Chi},
+      year={2025},
+      eprint={2507.00087},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2507.00087}, 
+}
 ```
 您的每次引用都将激励开发者改进pUniFind的易用性和功能。毕业生需要您的引用和GitHub Star收藏来获得工作机会 😫。

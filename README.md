@@ -2,7 +2,8 @@
 
 <!-- [![arXiv](https://img.shields.io/badge/arXiv-2308.12345-B31B1B)](https://arxiv.org/abs/1234.56789)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0) -->
-[![Windows Executable](https://img.shields.io/badge/Windows-GUI-green)](https://github.com/pFindStudio/pUniFind/releases) [![Bohrium](https://img.shields.io/badge/Web%20server-Bohrium%20App-00BFFF)](https://bohrium.dp.tech/apps/punifind)
+
+[![arXiv](https://img.shields.io/badge/arXiv-2308.12345-B31B1B)](https://arxiv.org/abs/2507.00087) [![Windows Executable](https://img.shields.io/badge/Windows-GUI-green)](https://github.com/pFindStudio/pUniFind/releases) [![Bohrium](https://img.shields.io/badge/Web%20server-Bohrium%20App-00BFFF)](https://bohrium.dp.tech/apps/punifind)
 <!-- [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/your-repo/pUniFind) -->
 <div style="text-align: center; line-height: 1.8; margin-bottom: 25px;">
   <a href="User_guide_chinese.md" style="margin-right: 15px;">中文用户手册</a> | 
@@ -11,7 +12,7 @@
 
 
 
-This is the official repository for **pUniFind**, the most powerful zero-shot open peptide-spectrum scoring model surpassing other SOTA search engines and the first zero-shot open de novo sequencing deep learning model supporting over 1300 modifications. Developed by [pFind group](https://pfind.net/) and [DP Technology](https://www.dp.tech/en). We will release our arxiv preprint very soon.
+This is the official repository for **pUniFind**, the most powerful zero-shot open peptide-spectrum scoring model surpassing other SOTA search engines and the first zero-shot open de novo sequencing deep learning model supporting over 1300 modifications. Developed by [pFind group](https://pfind.net/) and [DP Technology](https://www.dp.tech/en).
 
 
 ## 🚀 Key Features
@@ -61,8 +62,6 @@ If you encounter any issues running pUniFind, please first refer to the FAQ sect
 **Staring** and **watching** our repo will remind you of our updates. We will keep optimizing our model.
 | Milestone         | Status |
 |-------------------|--------|
-| Post arxiv preprint |  🚄 very soon |
-| TIMS / Astral Support | 🚄 very soon |
 | nce option (currently use default 25 as input) | 🚄 very soon |
 | Integarating pUniFind into open-pFind | 🚧 Preparing |
 | User-defined new PTM Tuning | 📝 Planning |
@@ -71,6 +70,14 @@ If you encounter any issues running pUniFind, please first refer to the FAQ sect
 ## 🤝 Citation <a name="-citation"></a>
 If you find our software is useful and helped your research,  **please cite** us 🙏 through:
 ```bash
-Waiting for bioxiv
+@misc{zhao2025punifindunifiedlargepretrained,
+      title={pUniFind: a unified large pre-trained deep learning model pushing the limit of mass spectra interpretation}, 
+      author={Jiale Zhao and Pengzhi Mao and Kaifei Wang and Yiming Li and Yaping Peng and Ranfei Chen and Shuqi Lu and Xiaohong Ji and Jiaxiang Ding and Xin Zhang and Yucheng Liao and Weinan E and Weijie Zhang and Han Wen and Hao Chi},
+      year={2025},
+      eprint={2507.00087},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2507.00087}, 
+}
 ```
 Your every citation will motivate the main author to make pUniFind more user-friendly and powerful. The main author needs your valuable citations and stars to find a job after graduation 😫.

@@ -1,6 +1,6 @@
 # pUniFind: Unified large pretrained deep learning model pushing the limit of mass spectra interpretation
 
-This is the official repository for **pUniFind**, the most powerful zero-shot open peptide-spectrum scoring model surpassing other SOTA search engines and the first zero-shot open de novo sequencing deep learning model supporting over 1300 modifications. Developed by [pFind group](https://pfind.net/) and [DP Technology](https://www.dp.tech/en). We will release our arxiv preprint very soon.
+This is the official repository for **pUniFind**, the most powerful zero-shot open peptide-spectrum scoring model surpassing other SOTA search engines and the first zero-shot open de novo sequencing deep learning model supporting over 1300 modifications. Developed by [pFind group](https://pfind.net/) and [DP Technology](https://www.dp.tech/en). 
 
 ## 📚 Table of Contents
 - [🚀 Quick Start](#-quick-start)
@@ -230,7 +230,15 @@ We provide **priority support** for user-reported issues through the following c
 ## 🤝 Citation <a name="-citation"></a>
 If you find our software is useful and helped your research,  **please cite** us 🙏 through:
 ```bash
-Waiting
+@misc{zhao2025punifindunifiedlargepretrained,
+      title={pUniFind: a unified large pre-trained deep learning model pushing the limit of mass spectra interpretation}, 
+      author={Jiale Zhao and Pengzhi Mao and Kaifei Wang and Yiming Li and Yaping Peng and Ranfei Chen and Shuqi Lu and Xiaohong Ji and Jiaxiang Ding and Xin Zhang and Yucheng Liao and Weinan E and Weijie Zhang and Han Wen and Hao Chi},
+      year={2025},
+      eprint={2507.00087},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2507.00087}, 
+}
 ```
 Every citation of yours will motivate the main author to make pUniFind more user-friendly and more powerful. Main author need your valuable citations and stars to find a job after graduation 😫.
 
