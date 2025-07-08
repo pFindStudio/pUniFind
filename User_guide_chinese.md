@@ -133,6 +133,14 @@ pFind任务文件夹/ # 由pFind生成
 | instrument | 仪器类型（如QE, Lumos, TIMS, Astral，默认QE） |
 | nce file path | 碎裂能量文件路径（默认30） |
 ## 📈 结果可视化 <a name="-result-vis"></a>
+![alt text](image.png)
+### 重打分看谱
+使用本仓库中的脚本```get_pLabel_from_pUniFind_rescoring.py```可以导出.plabel格式进而由[pLabel](https://pfind.ict.ac.cn/se/plabel/)直接导入看谱。
+```bash
+python get_pLabel_from_pUniFind_rescoring.py [pFind项目文件夹路径] [pUniFind结果.spectra文件路径]
+```
+
+### 从头测序看谱
 我们为论文中提到的两种工作流提供可视化工具：
 - 常规从头测序：使用[pLabel](https://pfind.ict.ac.cn/se/plabel/)可视化谱图。需要.plabel文件和对应的.mgf文件。用户需修改.plabel文件中的mgf路径（由pUniFind生成）。pLabel使用指南见链接。**务必确保mgf文件名和路径正确！**
 ```bash
