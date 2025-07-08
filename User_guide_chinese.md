@@ -7,6 +7,7 @@
 - [🔧 高级配置选项](#-configuration-options)
 - [🧠 注意事项](#-take-care)
 - [🛠️ 技术支持](#-technical-support)
+- [💪 效果增强](#-boost-performance)
 - [❓ 常见问题](#-faq)
 - [🤝 引用说明](#-citation)
 ## 🚀 快速开始 <a name="-quick-start"></a>
@@ -149,7 +150,9 @@ total=1
 name=ECOLI-E1-F2-20151208.30360.30360.3.0.DTA
 pep1=0 LGLDVLVHGEAER 1 
 ```
-- 修饰丰富型从头测序：依赖[pFind](https://pfind.net/se/pFind/index.html)（关闭开放模式）搜索pUniFind生成的数据库，结果可通过pBuild可视化（已集成在pFind中）。
+- 修饰丰富型从头测序：依赖[pFind](https://pfind.net/se/pfind/index.html)（关闭开放模式）搜索pUniFind生成的数据库，结果可通过pBuild可视化（已集成在pFind中）。
+
+
 ## 🧠 注意事项 <a name="-take-care"></a>
 数据类型：
 - 目前不支持ITMS（分辨率较低的过时模式）或ETD/EThcD数据。对于Astral 窄窗口DIA从头测序，我们建议用户先使用timsTOF模式进行从头测序。Astral 窄窗口DIA数据比较稀少，如果用户可以贡献Astral 窄窗口DIA数据，我们愿意提供finetune服务让pUniFind在Astral上效果更优。
@@ -169,6 +172,12 @@ pep1=0 LGLDVLVHGEAER 1
    - 上传文件说明  
 1. **pFind Studio用户支持微信群**：  
    - 添加微信：```JL_Zhao2000```，将邀请入群（微信邀请链接有效期为一周）。  
+
+## 💪 效果增强 <a name="-boost-performance"></a>
+针对 HLA 或非特异酶切情景，为进一步提升数据库搜索和重打分效果，请按以下步骤操作：
+1. 在 pFind 项目的 task 文件夹中，找到 param 子文件夹，并将```pFind.cfg```文件里的参数 pepnum 从 10 修改为 20。（此修改可在 pFind 搜库前后均可执行）
+2. 使用 pFind 打开此 task 重新进行搜库。
+3. 最后，利用 pUniFind 对结果进行重打分。
 
 **合作咨询：**  
 📧 **联系人**: 赵家乐 邮箱: [zhaojiale22z@ict.ac.cn](mailto:zhaojiale22z@ict.ac.cn) 或 [marshmallowzjl@gmail.com](mailto:marshmallowzjl@gmail.com)。
