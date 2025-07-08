@@ -133,7 +133,7 @@ pFind任务文件夹/ # 由pFind生成
 | nce file path | 碎裂能量文件路径（默认30） |
 ## 📈 结果可视化 <a name="-result-vis"></a>
 我们为论文中提到的两种工作流提供可视化工具：
-- 常规从头测序：使用[pLabel](https://pfind.net/software/pLabel/index.html)可视化谱图。需要.plabel文件和对应的.mgf文件。用户需修改.plabel文件中的mgf路径（由pUniFind生成）。pLabel使用指南见链接。**务必确保mgf文件名和路径正确！**
+- 常规从头测序：使用[pLabel](https://pfind.ict.ac.cn/se/plabel/)可视化谱图。需要.plabel文件和对应的.mgf文件。用户需修改.plabel文件中的mgf路径（由pUniFind生成）。pLabel使用指南见链接。**务必确保mgf文件名和路径正确！**
 ```bash
 # pLabel格式示例
 [FilePath]
@@ -149,7 +149,7 @@ total=1
 name=ECOLI-E1-F2-20151208.30360.30360.3.0.DTA
 pep1=0 LGLDVLVHGEAER 1 
 ```
-- 修饰丰富型从头测序：依赖[pFind](https://pfind.net/software/pFind/index.html)（关闭开放模式）搜索pUniFind生成的数据库，结果可通过pBuild可视化（已集成在pFind中）。
+- 修饰丰富型从头测序：依赖[pFind](https://pfind.net/se/pFind/index.html)（关闭开放模式）搜索pUniFind生成的数据库，结果可通过pBuild可视化（已集成在pFind中）。
 ## 🧠 注意事项 <a name="-take-care"></a>
 数据类型：
 - 目前不支持ITMS（分辨率较低的过时模式）或ETD/EThcD数据。对于Astral 窄窗口DIA从头测序，我们建议用户先使用timsTOF模式进行从头测序。Astral 窄窗口DIA数据比较稀少，如果用户可以贡献Astral 窄窗口DIA数据，我们愿意提供finetune服务让pUniFind在Astral上效果更优。
