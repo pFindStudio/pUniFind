@@ -172,15 +172,15 @@ pep1=0 LGLDVLVHGEAER 1
    - 上传文件说明  
 1. **pFind Studio用户支持微信群**：  
    - 添加微信：```JL_Zhao2000```，将邀请入群（微信邀请链接有效期为一周）。  
+**合作咨询：**  
+📧 **联系人**: 赵家乐 邮箱: [zhaojiale22z@ict.ac.cn](mailto:zhaojiale22z@ict.ac.cn) 或 [marshmallowzjl@gmail.com](mailto:marshmallowzjl@gmail.com)。
 
 ## 💪 效果增强 <a name="-boost-performance"></a>
 针对 HLA 或非特异酶切情景，为进一步提升数据库搜索和重打分效果，请按以下步骤操作：
-1. 在 pFind 项目的 task 文件夹中，找到 param 子文件夹，并将```pFind.cfg```文件里的参数 pepnum 从 10 修改为 20。（此修改可在 pFind 搜库前后均可执行）
-2. 使用 pFind 打开此 task 重新进行搜库。
+1. 在 pFind 项目的 task 文件夹中，找到 param 子文件夹，并将```pFind.cfg```文件里的参数 pepnum 从 10 修改为 20。（此修改可在 pFind 搜库前后均可执行，该参数目前不支持界面修改）
+2. 使用 pFind 打开此 task 进行搜库。
 3. 最后，利用 pUniFind 对结果进行重打分。
 
-**合作咨询：**  
-📧 **联系人**: 赵家乐 邮箱: [zhaojiale22z@ict.ac.cn](mailto:zhaojiale22z@ict.ac.cn) 或 [marshmallowzjl@gmail.com](mailto:marshmallowzjl@gmail.com)。
 ## ❓ 常见问题 <a name="-faq"></a>
 - **MGF格式**: 请确保使用pFind生成的MGF文件。不同软件生成的MGF格式差异较大。最新版pFind支持Thermo、timsTOF等仪器数据。重打分/从头测序时，可直接用pFind搜索.raw/.d文件生成MGF（需在MS Data的Data Extraction中点击`MGF`）。若坚持使用MSConvert生成的MGF，可把mgf一起放到某个文件夹下，通过脚本处理：  
   ```bash

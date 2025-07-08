@@ -220,8 +220,8 @@ We provide **priority support** for user-reported issues through the following c
 
 To further enhance the database search and rescoring performance in HLA or non-specific enzyme digestion scenarios, please follow these steps:
 
-1. In the pFind project folder, navigate to the task directory and open the param subfolder. Then, modify the parameter pepnum in the file pFind.cfg from 10 to 20. (This change can be made either before or after the pFind search.)
-2. Open the corresponding task in pFind and rerun the database search.
+1. In the pFind project folder, navigate to the task directory and open the param subfolder. Then, modify the parameter pepnum in the file pFind.cfg from 10 to 20. (This change can be made either before or after the pFind search, which is currently not supported by GUI.)
+2. Open the corresponding task in pFind and run the database search.
 3. Finally, perform the rescoring using pUniFind.
 
 ## ❓ FAQ <a name="-faq"></a>
