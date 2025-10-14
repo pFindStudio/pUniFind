@@ -6,7 +6,7 @@
 # 3. Ensure pFind exports mgf files. This is usually enabled by default under the "Data Extraction" section in the pFind "MS Data" interface.
 # 4. This script will generate .plabel files stored in the plabel folder within the pFind project directory. These can be imported directly into the pLabel software for spectral visualization (https://pfind.net/software/pLabel/index.html).
 
-# jiale 2025.6.14
+# jiale 2025.7.8
 import argparse
 import csv
 import os

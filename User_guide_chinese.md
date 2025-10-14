@@ -199,6 +199,7 @@ pep1=0 LGLDVLVHGEAER 1
 - **Linux部署**: 如遇```libstdc++.so.6: version `GLIBCXX_3.4.29' not found```错误，参考[此方案](https://github.com/pybind/pybind11/discussions/3453)。我的解决方法是```export LD_LIBRARY_PATH=/your_path/miniconda3/envs/pUniFind/lib:$LD_LIBRARY_PATH```。
 - **结果缺失**: 若未获得重打分结果，请检查.pac文件位置，同时查看```pUniFind_result```和```result```文件夹。
 - **靶向方法**: 使用靶向采集方法（如AIMS、PRM、SRM）时性能不理想，请联系团队。我们可分析数据并推荐优化策略。
+- **软件内下载元件失败**: 如果下载checkpoint有报错，请尝试一个一个下载而不是同事下载多个，尽量使用网速比较快的网络下载，如果仍然失败请联系我们。
 ## 🤝 引用说明 <a name="-citation"></a>
 如本软件对您的研究有帮助，请**引用**我们🙏：
 ```bash

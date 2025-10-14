@@ -244,6 +244,7 @@ To further enhance the database search and rescoring performance in HLA or non-s
 - **Linux deployment**: If you met this ```libstdc++.so.6: version `GLIBCXX_3.4.29' not found``` problem, see [This Solution](https://github.com/pybind/pybind11/discussions/3453). In my case, I solved this by ```export LD_LIBRARY_PATH=/your_path/miniconda3/envs/pUniFind/lib:$LD_LIBRARY_PATH```.
 - **Result not found**: If you can not get result file for rescoring. please see if you put ```.pac``` file at the right place. Also, you can check both ```pUniFind_result``` folder and ```result``` folder.
 - **Targeted methods**: If you are using targeted acquisition methods (e.g., AIMS, PRM, SRM) and observe suboptimal performance, please contact our team. We can analyze your data and recommend the optimal analysis strategy.
+- **Component Download Failure in Software**: If an error occurs while downloading the checkpoint, please try downloading them one by one instead of multiple at the same time. If the issue persists, please contact us. Please try to use a network with a relatively fast speed for downloading.
 
 ## 🤝 Citation <a name="-citation"></a>
 If you find our software is useful and helped your research,  **please cite** us 🙏 through:

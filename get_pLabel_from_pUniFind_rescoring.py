@@ -6,7 +6,7 @@
 # 3.要让pFind导出mgf，大多数情况下默认是导出的，在pFind “MS Data” 界面下的Data Extraction里。
 # 4.最终会产生.plabel文件，存到pFind项目下的plabel文件夹里，使用pLabel软件可以导入直接可视化谱图(https://pfind.net/software/pLabel/index.html)
 
-# jiale 2025.6.14
+# jiale 2025.7.8
 import argparse
 import csv
 import os
