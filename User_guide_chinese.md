@@ -22,13 +22,17 @@
 可通过终端命令```nvidia-smi```查看显存信息。
 
 重打分结果将保存在```result```文件夹，从头测序结果将存储在```pUniFind_result```文件夹。
-### Linux本地部署（即将发布）
+### Linux本地部署（preview版本）
+我们会在后续优化用户使用体验，目前是尝鲜版本。
 #### 环境配置
 pUniFind支持多GPU加速处理。
 | 环境 | 版本 |
 | :---: | ---: |
 | cuda | >= 11.7 |
 | python | 3.8 |
+
+**环境配置执行脚本以及跑重打分和从头测序时都需要路径在pUniFind仓库下。**
+
 ```bash
 # 创建conda环境
 conda create -n pUniFind python=3.8 -y
@@ -37,8 +41,14 @@ conda activate pUniFind
 cd Contrast_MS_Pep
 bash env.sh
 ```
+
+#### checkpoint下载
+从[这里](https://drive.google.com/drive/folders/1CQzNypmOscCpvyK3MnCj4AhEWGlx9mbn?usp=sharing)下载checkpoint到ckpts文件夹下。
+
+Thermo仪器打分、从头测序用checkpoint_rank.pt，TIMS从头测序用checkpoint_tims.pt，默认使用checkpoint_rank.pt，可以在official_denovo_workflow.sh或者official_score_workflow.sh中设置
+
 #### 开放式重打分
-将以下文件夹放入```official_projects```：
+将以下文件夹放入```projects```：
 ```bash
 project_name/ # pFind任务文件夹
 ├── param/ # pFind搜索参数（由pFind生成）
@@ -53,7 +63,7 @@ bash official_score_workflow.sh project_name batchsize
 建议初始批量大小设为256，根据运行速度和显存调整。
 - 结果文件保存为```project_namefdr0.01_pUniFind.spectra```
 #### 开放式从头测序
-将以下文件夹放入```official_projects```：
+将以下文件夹放入```projects```文件夹：
 ```bash
 project_name/ 
 └── mgfs/ # mgf文件（由pFind生成后用户移动至此）   

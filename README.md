@@ -3,7 +3,7 @@
 <!-- [![arXiv](https://img.shields.io/badge/arXiv-2308.12345-B31B1B)](https://arxiv.org/abs/1234.56789)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0) -->
 
-[![arXiv](https://img.shields.io/badge/arXiv-2308.12345-B31B1B)](https://arxiv.org/abs/2507.00087) [![Windows Executable](https://img.shields.io/badge/Windows-GUI-green)](https://github.com/pFindStudio/pUniFind/releases) [![Bohrium](https://img.shields.io/badge/Web%20server-Bohrium%20App-00BFFF)](https://bohrium.dp.tech/apps/punifind)
+[![arXiv](https://img.shields.io/badge/arXiv-2507.00087-B31B1B)](https://arxiv.org/abs/2507.00087) [![Windows Executable](https://img.shields.io/badge/Windows-GUI-green)](https://github.com/pFindStudio/pUniFind/releases) [![Bohrium](https://img.shields.io/badge/Web%20server-Bohrium%20App-00BFFF)](https://bohrium.dp.tech/apps/punifind)
 <!-- [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/your-repo/pUniFind) -->
 <div style="text-align: center; line-height: 1.8; margin-bottom: 25px;">
   <a href="User_guide_chinese.md" style="margin-right: 15px;">中文用户手册</a> | 
@@ -25,6 +25,7 @@ This is the official repository for **pUniFind**, the most powerful zero-shot op
 🔥 **De Novo reliable result filtering and user-friendly result file.** Based on various deep learning features, our model can effectively filter out unreliable results which is extremely useful for real world usage. Our user-friendly results file also contains end-to-end score, cos similarity, mass difference and missing fragment ion sites, which can better help user to evaluate its reliability. Result file also support visualization.
 
 ## &#x1F4E3; News
+- **2025/11/29** pUniFind released linux source code preview!🚀. (We will optimize the user experience in the near future, This is just a preview version linux source code.)
 - **2025/6/24** pUniFind supports timsTOF open de novo sequencing.
 - **2025/5/25** pUniFind repository Initial Release 🚀.
 

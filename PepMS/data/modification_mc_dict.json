@@ -1,0 +1,5304 @@
+{
+  "42.01_C(2)H(2)O(1)": [
+    "Acetyl[AnyN-term]",
+    "Acetyl[K]",
+    "Acetyl[ProteinN-term]",
+    "Acetyl[C]",
+    "Acetyl[H]",
+    "Acetyl[R]",
+    "Acetyl[S](Ser->Glu[S])",
+    "Acetyl[T]",
+    "Acetyl[Y]"
+  ],
+  "-0.98_H(1)N(1)O(-1)": [
+    "Amidated[AnyC-term]",
+    "Amidated[ProteinC-term]",
+    "Asp->Asn[D]",
+    "Glu->Gln[E]"
+  ],
+  "-17.03_H(-3)N(-1)": [
+    "Ammonia-loss[AnyN-termC]",
+    "Gln->pyro-Glu[AnyN-termQ]",
+    "Ammonia-loss[N]",
+    "Ammonia-loss[ProteinN-termS]",
+    "Ammonia-loss[ProteinN-termT]"
+  ],
+  "12.00_C(1)": [
+    "C+12[AnyN-term]",
+    "Thiazolidine[C]",
+    "Thiazolidine[F]",
+    "Thiazolidine[H]",
+    "Thiazolidine[K]",
+    "Thiazolidine[R]",
+    "Thiazolidine[W]",
+    "Thiazolidine[Y]",
+    "Thiazolidine[ProteinN-term]"
+  ],
+  "57.02_C(2)H(3)N(1)O(1)": [
+    "Carbamidomethyl[AnyN-term]",
+    "Carbamidomethyl[C]",
+    "Ala->Gln[A]",
+    "Carbamidomethyl[D]",
+    "Carbamidomethyl[E]",
+    "Carbamidomethyl[H]",
+    "Carbamidomethyl[K](Gly[K])",
+    "Carbamidomethyl[M]",
+    "Carbamidomethyl[S](Gly[S])",
+    "Carbamidomethyl[T](Gly[T])",
+    "Carbamidomethyl[U]",
+    "Carbamidomethyl[Y]",
+    "Gly->Asn[G]"
+  ],
+  "43.01_C(1)H(1)N(1)O(1)": [
+    "Carbamyl[AnyN-term]",
+    "Carbamyl[K]",
+    "Ala->Asn[A]",
+    "Carbamyl[C]",
+    "Carbamyl[M]",
+    "Carbamyl[R]",
+    "Carbamyl[S]",
+    "Carbamyl[T]",
+    "Carbamyl[Y]",
+    "Carbamyl[ProteinN-term]"
+  ],
+  "58.01_C(2)H(2)O(2)": [
+    "Carboxymethyl[C]",
+    "Ala->Glu[A]",
+    "Carboxymethyl[AnyN-term]",
+    "Carboxymethyl[K]",
+    "Carboxymethyl[U]",
+    "Carboxymethyl[W]",
+    "Gly->Asp[G]"
+  ],
+  "21.98_H(-1)Na(1)": [
+    "Cation_Na[AnyC-term]",
+    "Cation_Na[D]",
+    "Cation_Na[E]"
+  ],
+  "0.98_H(-1)N(-1)O(1)": [
+    "Deamidated[N]",
+    "Deamidated[Q]",
+    "Deamidated[R]",
+    "Deamidated[ProteinN-termF]",
+    "Citrullination[R]"
+  ],
+  "-18.01_H(-2)O(-1)": [
+    "Dehydrated[AnyN-termC]",
+    "Glu->pyro-Glu[AnyN-termE]",
+    "Dehydrated[D]",
+    "Dehydrated[S]",
+    "Dehydrated[T]",
+    "Dehydrated[Y]",
+    "Dehydrated[ProteinC-termN]",
+    "Dehydrated[ProteinC-termQ]"
+  ],
+  "-1.01_H(-1)": [
+    "Dehydro[C]"
+  ],
+  "-2.02_H(-2)": [
+    "DiDehydro[C]",
+    "Didehydro[AnyC-termK]",
+    "Didehydro[S]",
+    "Didehydro[T]",
+    "Didehydro[Y]",
+    "Val->Pro[V]"
+  ],
+  "31.99_O(2)": [
+    "Dioxidation[M]",
+    "Dioxidation[C]",
+    "Dioxidation[E]",
+    "Dioxidation[F]",
+    "Dioxidation[I]",
+    "Dioxidation[K]",
+    "Dioxidation[L]",
+    "Dioxidation[P](Pro->Glu[P])",
+    "Dioxidation[R]",
+    "Dioxidation[U]",
+    "Dioxidation[V]",
+    "Dioxidation[W]",
+    "Dioxidation[Y]"
+  ],
+  "27.99_C(1)O(1)": [
+    "Formyl[AnyN-term]",
+    "Formyl[ProteinN-term]",
+    "Formyl[K]",
+    "Formyl[S](Ser->Asp[S])",
+    "Formyl[T](Thr->Glu[T])"
+  ],
+  "42.02_C(1)H(2)N(2)": [
+    "Guanidinyl[K]",
+    "Amidino[C]",
+    "Guanidinyl[AnyN-term]"
+  ],
+  "227.13_C(10)H(17)N(3)O(3)": [
+    "ICAT-C[C]"
+  ],
+  "236.16_C(9)H(17)N(3)O(3)": [
+    "ICAT-C_13C(9)[C]"
+  ],
+  "105.02_C(6)H(3)N(1)O(1)": [
+    "ICPL[K](NIC[K])",
+    "ICPL[ProteinN-term]",
+    "NIC[AnyN-term](ICPL[AnyN-term])"
+  ],
+  "111.04_C(6)H(3)N(1)O(1)": [
+    "ICPL_13C(6)[K]",
+    "ICPL_13C(6)[ProteinN-term]",
+    "ICPL_13C(6)[AnyN-term]"
+  ],
+  "115.07_C(6)H(4)N(1)O(1)": [
+    "ICPL_13C(6)2H(4)[AnyN-term]",
+    "ICPL_13C(6)2H(4)[K]",
+    "ICPL_13C(6)2H(4)[ProteinN-term]"
+  ],
+  "109.05_C(6)H(4)N(1)O(1)": [
+    "ICPL_2H(4)[K]",
+    "ICPL_2H(4)[ProteinN-term]",
+    "ICPL_2H(4)[AnyN-term]"
+  ],
+  "2.00_O(1)": [
+    "Label_18O(1)[AnyC-term]",
+    "Label_18O(1)[S]",
+    "Label_18O(1)[T]",
+    "Label_18O(1)[Y]"
+  ],
+  "4.01_O(2)": [
+    "Label_18O(2)[AnyC-term]"
+  ],
+  "-29.99_C(-1)H(-2)O(1)S(-1)": [
+    "Met->Hse[AnyC-termM]",
+    "Met->Thr[M]"
+  ],
+  "-48.00_C(-1)H(-4)S(-1)": [
+    "Met->Hsl[AnyC-termM]",
+    "Dethiomethyl[M]"
+  ],
+  "14.02_C(1)H(2)": [
+    "Methyl[AnyC-term]",
+    "Methyl[D](Asp->Glu[D])",
+    "Methyl[E]",
+    "Gly->Ala[G]",
+    "Methyl[AnyN-term]",
+    "Methyl[C]",
+    "Methyl[H]",
+    "Methyl[I]",
+    "Methyl[K]",
+    "Methyl[L]",
+    "Methyl[N](Asn->Gln[N])",
+    "Methyl[Q]",
+    "Methyl[R]",
+    "Methyl[S](Ser->Thr[S])",
+    "Methyl[T]",
+    "Methyl[ProteinN-term]",
+    "Val->Xle[V]"
+  ],
+  "45.99_C(1)H(2)S(1)": [
+    "Methylthio[C]",
+    "Gly->Cys[G]",
+    "Methylthio[AnyN-term]",
+    "Methylthio[D]",
+    "Methylthio[K]",
+    "Methylthio[N]"
+  ],
+  "99.07_C(5)H(9)N(1)O(1)": [
+    "NIPCAM[C]"
+  ],
+  "15.99_O(1)": [
+    "Oxidation[H]",
+    "Oxidation[M]",
+    "Oxidation[W]",
+    "Ala->Ser[A]",
+    "Oxidation[AnyC-termG]",
+    "Oxidation[C]",
+    "Oxidation[D]",
+    "Oxidation[E]",
+    "Oxidation[F](Phe->Tyr[F])",
+    "Oxidation[I]",
+    "Oxidation[K]",
+    "Oxidation[L]",
+    "Oxidation[N]",
+    "Oxidation[P]",
+    "Oxidation[Q]",
+    "Oxidation[R]",
+    "Oxidation[S]",
+    "Oxidation[T]",
+    "Oxidation[U]",
+    "Oxidation[V]",
+    "Oxidation[Y]",
+    "Hydroxyproline[P]"
+  ],
+  "79.97_H(1)O(3)P(1)": [
+    "Phospho[S]",
+    "Phospho[T]",
+    "Phospho[Y]",
+    "Phospho[C]",
+    "Phospho[D]",
+    "Phospho[E]",
+    "Phospho[H]",
+    "Phospho[K]",
+    "Phospho[R]"
+  ],
+  "71.04_C(3)H(5)N(1)O(1)": [
+    "Propionamide[C]",
+    "Gly->Gln[G]",
+    "Propionamide[AnyN-term]",
+    "Propionamide[K]"
+  ],
+  "105.06_C(7)H(7)N(1)": [
+    "Pyridylethyl[C]"
+  ],
+  "39.99_C(2)O(1)": [
+    "Pyro-carbamidomethyl[AnyN-termC]",
+    "G-H1[R]"
+  ],
+  "79.96_O(3)S(1)": [
+    "Sulfo[S]",
+    "Sulfo[T]",
+    "Sulfo[Y]",
+    "Sulfo[C]"
+  ],
+  "225.16_C(1)H(20)N(2)O(2)": [
+    "TMT2plex[AnyN-term]",
+    "TMT2plex[K]",
+    "TMT2plex[H]",
+    "TMT2plex[S]",
+    "TMT2plex[T]",
+    "TMT2plex[ProteinN-term]"
+  ],
+  "229.16_C(4)H(20)N(1)O(2)": [
+    "TMT6plex[AnyN-term]",
+    "TMT6plex[K]",
+    "TMT6plex[H]",
+    "TMT6plex[S]",
+    "TMT6plex[T]",
+    "TMT6plex[ProteinN-term]"
+  ],
+  "144.10_C(3)H(12)N(1)O(1)": [
+    "iTRAQ4plex[AnyN-term](mTRAQ_13C(3)15N(1)[AnyN-term])",
+    "iTRAQ4plex[K](mTRAQ_13C(3)15N(1)[K])",
+    "iTRAQ4plex[Y](mTRAQ_13C(3)15N(1)[Y])",
+    "iTRAQ4plex[C]",
+    "iTRAQ4plex[H](mTRAQ_13C(3)15N(1)[H])",
+    "iTRAQ4plex[S](mTRAQ_13C(3)15N(1)[S])",
+    "iTRAQ4plex[T](mTRAQ_13C(3)15N(1)[T])",
+    "iTRAQ4plex[ProteinN-term]"
+  ],
+  "304.21_C(7)H(24)N(1)O(3)": [
+    "iTRAQ8plex[AnyN-term]",
+    "iTRAQ8plex[K]",
+    "iTRAQ8plex[Y]",
+    "iTRAQ8plex[C]",
+    "iTRAQ8plex[H]",
+    "iTRAQ8plex[S]",
+    "iTRAQ8plex[T]",
+    "iTRAQ8plex[ProteinN-term]"
+  ],
+  "140.09_C(7)H(12)N(2)O(1)": [
+    "mTRAQ[AnyN-term]",
+    "mTRAQ[Y]",
+    "Xlink_DMP[140][K](mTRAQ[K])",
+    "Xlink_DMP[140][ProteinN-term]",
+    "mTRAQ[H]",
+    "mTRAQ[S]",
+    "mTRAQ[T]"
+  ],
+  "148.11_C(6)H(12)N(2)O(1)": [
+    "mTRAQ_13C(6)15N(2)[AnyN-term]",
+    "mTRAQ_13C(6)15N(2)[K]",
+    "mTRAQ_13C(6)15N(2)[Y]",
+    "mTRAQ_13C(6)15N(2)[H]",
+    "mTRAQ_13C(6)15N(2)[S]",
+    "mTRAQ_13C(6)15N(2)[T]"
+  ],
+  "-18.02_H(-3)N(-1)": [
+    "15N-oxobutanoic[AnyN-termC]",
+    "15N-oxobutanoic[ProteinN-termS]",
+    "15N-oxobutanoic[ProteinN-termT]"
+  ],
+  "144.04_C(6)H(8)O(4)": [
+    "2-dimethylsuccinyl[C]",
+    "3-deoxyglucosone[R]"
+  ],
+  "86.04_C(4)H(6)O(2)": [
+    "2-hydroxyisobutyrylation[K]",
+    "GEE[Q]",
+    "HMVK[C]",
+    "Hydroxyisobutyrylation[K]"
+  ],
+  "130.03_C(5)H(6)O(4)": [
+    "2-monomethylsuccinyl[C]"
+  ],
+  "135.03_C(7)H(5)N(1)O(2)": [
+    "2-nitrobenzyl[Y]"
+  ],
+  "116.01_C(4)H(4)O(4)": [
+    "2-succinyl[C]"
+  ],
+  "282.05_C(16)H(10)O(5)": [
+    "2HPG[R]"
+  ],
+  "167.98_C(3)H(5)O(6)P(1)": [
+    "3-phosphoglyceryl[K]"
+  ],
+  "183.98_C(7)H(4)O(4)S(1)": [
+    "3sulfo[AnyN-term]"
+  ],
+  "136.09_C(9)H(12)O(1)": [
+    "4-ONE+Delta_H(-2)O(-1)[C]",
+    "4-ONE+Delta_H(-2)O(-1)[H]",
+    "4-ONE+Delta_H(-2)O(-1)[K]"
+  ],
+  "154.10_C(9)H(14)O(2)": [
+    "4-ONE[C]",
+    "4-ONE[H]",
+    "4-ONE[K]"
+  ],
+  "372.14_C(17)H(24)O(9)": [
+    "4AcAllylGal[C]"
+  ],
+  "541.06_C(10)H(13)N(5)O(9)P(2)Pent(1)": [
+    "ADP-Ribosyl[C]",
+    "ADP-Ribosyl[D]",
+    "ADP-Ribosyl[E]",
+    "ADP-Ribosyl[K]",
+    "ADP-Ribosyl[N]",
+    "ADP-Ribosyl[R]",
+    "ADP-Ribosyl[S]",
+    "ADP-Ribosyl[T]"
+  ],
+  "183.04_C(8)H(9)N(1)O(2)S(1)": [
+    "AEBS[H]",
+    "AEBS[K]",
+    "AEBS[S]",
+    "AEBS[Y]",
+    "AEBS[ProteinN-term]"
+  ],
+  "59.02_C(2)H(5)N(1)O(-1)S(1)": [
+    "AEC-MAEC[S]",
+    "AEC-MAEC[T]"
+  ],
+  "63.04_C(2)H(4)N(1)O(-1)S(1)": [
+    "AEC-MAEC_2H(4)[S]",
+    "AEC-MAEC_2H(4)[T]"
+  ],
+  "310.05_C(17)H(10)O(6)": [
+    "AFB1_Dialdehyde[K]"
+  ],
+  "695.28_C(26)H(37)N(11)O(14)S(-1)": [
+    "AHA-Alkyne-KDDDD[M]"
+  ],
+  "107.08_C(4)H(5)N(5)O(1)S(-1)": [
+    "AHA-Alkyne[M]"
+  ],
+  "195.08_C(7)H(9)N(5)O(2)": [
+    "AHA-SS[M]"
+  ],
+  "252.10_C(9)H(12)N(6)O(3)": [
+    "AHA-SS_CAM[M]"
+  ],
+  "502.20_C(19)H(30)N(6)O(10)": [
+    "AMTzHexNAc2[N]",
+    "AMTzHexNAc2[S]",
+    "AMTzHexNAc2[T]"
+  ],
+  "820.34_C(35)H(52)N(10)O(9)S(2)": [
+    "AROD[C]"
+  ],
+  "170.05_C(10)H(6)N(2)O(1)": [
+    "AccQTag[AnyN-term]",
+    "AccQTag[K]"
+  ],
+  "44.02_C(2)H(2)O(1)": [
+    "Acetyl_13C(2)[K]",
+    "Acetyl_13C(2)[ProteinN-term]"
+  ],
+  "45.03_C(2)H(3)O(1)": [
+    "Acetyl_2H(3)[AnyN-term]",
+    "Acetyl_2H(3)[H]",
+    "Acetyl_2H(3)[K]",
+    "Acetyl_2H(3)[S]",
+    "Acetyl_2H(3)[T]",
+    "Acetyl_2H(3)[Y]",
+    "Acetyl_2H(3)[ProteinN-term]"
+  ],
+  "97.09_C(6)H(11)N(1)": [
+    "Acetyldeoxyhypusine[K]"
+  ],
+  "113.08_C(6)H(11)N(1)O(1)": [
+    "Acetylhypusine[K]"
+  ],
+  "309.21_C(16)H(27)N(3)O(3)": [
+    "Ahx2+Hsl[AnyC-term]"
+  ],
+  "85.06_C(3)H(7)N(3)": [
+    "Ala->Arg[A]"
+  ],
+  "43.99_C(1)O(2)": [
+    "Ala->Asp[A]",
+    "Carboxy[D]",
+    "Carboxy[E]",
+    "Carboxy[K]",
+    "Carboxy[W]",
+    "Carboxy[ProteinN-termM]"
+  ],
+  "31.97_S(1)": [
+    "Ala->Cys[A]",
+    "Sulfide[C]",
+    "Sulfide[D]",
+    "Sulfide[W]",
+    "Val->Met[V]"
+  ],
+  "-14.02_C(-1)H(-2)": [
+    "Ala->Gly[A]",
+    "Gln->Asn[Q]",
+    "Glu->Asp[E]",
+    "Thr->Ser[T]",
+    "Xle->Val[I]",
+    "Xle->Val[L]"
+  ],
+  "66.02_C(3)H(2)N(2)": [
+    "Ala->His[A]"
+  ],
+  "57.06_C(3)H(7)N(1)": [
+    "Ala->Lys[A]"
+  ],
+  "60.00_C(2)H(4)S(1)": [
+    "Ala->Met[A]",
+    "MercaptoEthanol[S]",
+    "MercaptoEthanol[T]"
+  ],
+  "76.03_C(6)H(4)": [
+    "Ala->Phe[A]",
+    "Delta_H(4)C(6)[K]",
+    "Ser->Tyr[S]"
+  ],
+  "26.02_C(2)H(2)": [
+    "Ala->Pro[A]",
+    "Delta_H(2)C(2)[AnyN-term]",
+    "Delta_H(2)C(2)[H]",
+    "Delta_H(2)C(2)[K]",
+    "Delta_H(2)C(2)[ProteinN-term]"
+  ],
+  "30.01_C(1)H(2)O(1)": [
+    "Ala->Thr[A]",
+    "Gly->Ser[G]",
+    "Hydroxymethyl[N]",
+    "methylol[K]",
+    "methylol[W]",
+    "methylol[Y]"
+  ],
+  "115.04_C(8)H(5)N(1)": [
+    "Ala->Trp[A]"
+  ],
+  "92.03_C(6)H(4)O(1)": [
+    "Ala->Tyr[A]"
+  ],
+  "28.03_C(2)H(4)": [
+    "Ala->Val[A]",
+    "Cys->Met[C]",
+    "Delta_H(4)C(2)[H]",
+    "Dimethyl[AnyN-term](Ethyl[AnyN-term])",
+    "Dimethyl[K](Ethyl[K]/Delta_H(4)C(2)[K])",
+    "Dimethyl[N]",
+    "Dimethyl[R]",
+    "Dimethyl[ProteinN-term](Ethyl[ProteinN-term])",
+    "Dimethyl[ProteinN-termP]",
+    "Ethyl[AnyC-term]",
+    "Ethyl[D]",
+    "Ethyl[E]"
+  ],
+  "42.05_C(3)H(6)": [
+    "Ala->Xle[A]",
+    "Gly->Val[G]",
+    "Propyl[AnyC-term]",
+    "Propyl[AnyN-term]",
+    "Propyl[D]",
+    "Propyl[E]",
+    "Propyl[ProteinC-term]",
+    "Trimethyl[K](Propyl[K])",
+    "Trimethyl[R]",
+    "Trimethyl[ProteinN-termA]"
+  ],
+  "41.03_C(2)H(3)N(1)": [
+    "Amidine[AnyN-term]",
+    "Amidine[K]",
+    "Ser->Gln[S]"
+  ],
+  "15.01_H(1)N(1)": [
+    "Amino[Y]",
+    "Hydroxamic_acid[D]",
+    "Hydroxamic_acid[E]",
+    "Xle->Lys[I]",
+    "Xle->Lys[L]"
+  ],
+  "17.03_H(3)N(1)": [
+    "Ammonium[AnyC-term]",
+    "Ammonium[D]",
+    "Ammonium[E]"
+  ],
+  "634.66_C(43)H(86)O(2)": [
+    "Archaeol[C]"
+  ],
+  "-85.06_C(-3)H(-7)N(-3)": [
+    "Arg->Ala[R]"
+  ],
+  "-42.06_C(-2)H(-6)N(-2)O(1)": [
+    "Arg->Asn[R]"
+  ],
+  "-41.07_C(-2)H(-7)N(-3)O(2)": [
+    "Arg->Asp[R]"
+  ],
+  "-53.09_C(-3)H(-7)N(-3)S(1)": [
+    "Arg->Cys[R]"
+  ],
+  "-28.04_C(-1)H(-4)N(-2)O(1)": [
+    "Arg->Gln[R]"
+  ],
+  "-27.06_C(-1)H(-5)N(-3)O(2)": [
+    "Arg->Glu[R]"
+  ],
+  "-43.05_C(-1)H(-5)N(-3)O(1)": [
+    "Arg->GluSA[R]"
+  ],
+  "-99.08_C(-4)H(-9)N(-3)": [
+    "Arg->Gly[R]"
+  ],
+  "-19.04_H(-5)N(-1)": [
+    "Arg->His[R]"
+  ],
+  "-28.01_N(-2)": [
+    "Arg->Lys[R]"
+  ],
+  "-25.06_C(-1)H(-3)N(-3)S(1)": [
+    "Arg->Met[R]"
+  ],
+  "80.99_C(3)H(-1)N(1)O(2)": [
+    "Arg->Npo[R]"
+  ],
+  "-42.02_C(-1)H(-2)N(-2)": [
+    "Arg->Orn[R]"
+  ],
+  "-9.03_C(3)H(-3)N(-3)": [
+    "Arg->Phe[R]"
+  ],
+  "-59.05_C(-1)H(-5)N(-3)": [
+    "Arg->Pro[R]"
+  ],
+  "-69.07_C(-3)H(-7)N(-3)O(1)": [
+    "Arg->Ser[R]"
+  ],
+  "-55.05_C(-2)H(-5)N(-3)O(1)": [
+    "Arg->Thr[R]"
+  ],
+  "29.98_C(5)H(-2)N(-2)": [
+    "Arg->Trp[R]"
+  ],
+  "6.96_C(3)H(-3)N(-3)O(1)": [
+    "Arg->Tyr[R]"
+  ],
+  "-57.03_C(-1)H(-3)N(-3)": [
+    "Arg->Val[R]"
+  ],
+  "-43.02_H(-1)N(-3)": [
+    "Arg->Xle[R]"
+  ],
+  "-156.10_C(-6)H(-12)N(-4)O(-1)": [
+    "Arg-loss[AnyC-termR]"
+  ],
+  "156.10_C(6)H(12)N(4)O(1)": [
+    "Arg[AnyN-term]"
+  ],
+  "266.06_C(16)H(10)O(4)": [
+    "Arg2PG[R]"
+  ],
+  "199.07_C(9)H(13)N(1)O(2)S(1)": [
+    "Argbiotinhydrazide[R]"
+  ],
+  "-43.01_C(-1)H(-1)N(-1)O(-1)": [
+    "Asn->Ala[N]"
+  ],
+  "42.06_C(2)H(6)N(2)O(-1)": [
+    "Asn->Arg[N]"
+  ],
+  "-11.03_C(-1)H(-1)N(-1)O(-1)S(1)": [
+    "Asn->Cys[N]"
+  ],
+  "-57.02_C(-2)H(-3)N(-1)O(-1)": [
+    "Asn->Gly[N]",
+    "Gln->Ala[Q]"
+  ],
+  "23.02_C(2)H(1)N(1)O(-1)": [
+    "Asn->His[N]",
+    "Tyr->Trp[Y]"
+  ],
+  "14.05_C(2)H(6)O(-1)": [
+    "Asn->Lys[N]"
+  ],
+  "17.00_C(1)H(3)N(-1)O(-1)S(1)": [
+    "Asn->Met[N]"
+  ],
+  "33.03_C(5)H(3)N(-1)O(-1)": [
+    "Asn->Phe[N]"
+  ],
+  "-16.99_C(1)H(1)N(-1)O(-1)": [
+    "Asn->Pro[N]"
+  ],
+  "-27.01_C(-1)H(-1)N(-1)": [
+    "Asn->Ser[N]",
+    "Gln->Thr[Q]"
+  ],
+  "-13.00_H(1)N(-1)": [
+    "Asn->Thr[N]"
+  ],
+  "72.04_C(7)H(4)O(-1)": [
+    "Asn->Trp[N]"
+  ],
+  "49.02_C(5)H(3)N(-1)": [
+    "Asn->Tyr[N]",
+    "His->Trp[H]"
+  ],
+  "-14.97_C(1)H(3)N(-1)O(-1)": [
+    "Asn->Val[N]",
+    "Gln->Xle[Q]"
+  ],
+  "-0.96_C(2)H(5)N(-1)O(-1)": [
+    "Asn->Xle[N]"
+  ],
+  "-43.99_C(-1)O(-2)": [
+    "Asp->Ala[D]"
+  ],
+  "41.07_C(2)H(7)N(3)O(-2)": [
+    "Asp->Arg[D]"
+  ],
+  "-12.02_C(-1)O(-2)S(1)": [
+    "Asp->Cys[D]"
+  ],
+  "13.03_C(1)H(3)N(1)O(-1)": [
+    "Asp->Gln[D]",
+    "Methylamine[S]",
+    "Methylamine[T]"
+  ],
+  "-58.01_C(-2)H(-2)O(-2)": [
+    "Asp->Gly[D]",
+    "Glu->Ala[E]",
+    "Gly-loss+Amide[AnyC-termG]"
+  ],
+  "22.03_C(2)H(2)N(2)O(-2)": [
+    "Asp->His[D]"
+  ],
+  "13.07_C(2)H(7)N(1)O(-2)": [
+    "Asp->Lys[D]"
+  ],
+  "16.01_C(1)H(4)O(-2)S(1)": [
+    "Asp->Met[D]"
+  ],
+  "32.04_C(5)H(4)O(-2)": [
+    "Asp->Phe[D]"
+  ],
+  "-17.97_C(1)H(2)O(-2)": [
+    "Asp->Pro[D]"
+  ],
+  "-27.99_C(-1)O(-1)": [
+    "Asp->Ser[D]",
+    "Glu->Thr[E]",
+    "Pro->Pyrrolidone[P]"
+  ],
+  "-13.98_H(2)O(-1)": [
+    "Asp->Thr[D]"
+  ],
+  "71.05_C(7)H(5)N(1)O(-2)": [
+    "Asp->Trp[D]"
+  ],
+  "48.04_C(5)H(4)O(-1)": [
+    "Asp->Tyr[D]"
+  ],
+  "-15.96_C(1)H(4)O(-2)": [
+    "Asp->Val[D]",
+    "Glu->Xle[E]"
+  ],
+  "-1.94_C(2)H(6)O(-2)": [
+    "Asp->Xle[D]"
+  ],
+  "-10.03_C(-1)H(-2)N(-2)O(2)": [
+    "Aspartylurea[H]"
+  ],
+  "474.25_C(27)H(32)N(5)O(3)": [
+    "Atto495Maleimide[C]"
+  ],
+  "41.00_H(-1)N(3)": [
+    "AzidoF[F]"
+  ],
+  "340.17_C(21)H(24)O(4)": [
+    "BADGE[C]"
+  ],
+  "253.01_Br(1)C(11)H(12)N(1)O(1)": [
+    "BDMAPP[H]",
+    "BDMAPP[K]",
+    "BDMAPP[W]",
+    "BDMAPP[Y]",
+    "BDMAPP[ProteinN-term]"
+  ],
+  "126.06_C(4)H(6)O(2)S(1)": [
+    "BEMAD_C_2H(6)[C]"
+  ],
+  "136.00_C(4)H(8)O(1)S(2)": [
+    "BEMAD_ST[S]",
+    "BEMAD_ST[T]"
+  ],
+  "142.04_C(4)H(6)O(1)S(2)": [
+    "BEMAD_ST_2H(6)[S]",
+    "BEMAD_ST_2H(6)[T]"
+  ],
+  "218.17_C(15)H(22)O(1)": [
+    "BHT[C]",
+    "BHT[H]",
+    "BHT[K]"
+  ],
+  "234.16_C(15)H(22)O(2)": [
+    "BHTOH[C]",
+    "BHTOH[H]",
+    "BHTOH[K]"
+  ],
+  "149.03_C(8)H(7)N(1)S(1)": [
+    "BITC[AnyN-term]",
+    "BITC[C]",
+    "BITC[K]"
+  ],
+  "263.13_C(18)H(17)N(1)O(1)": [
+    "BMP-piperidinol[C]",
+    "BMP-piperidinol[M]"
+  ],
+  "228.11_C(4)H(6)Hex(1)N(2)": [
+    "Bacillosamine[N]"
+  ],
+  "104.03_C(7)H(4)O(1)": [
+    "Benzoyl[AnyN-term]",
+    "Benzoyl[K]"
+  ],
+  "428.19_C(19)H(32)N(4)O(3)S(2)": [
+    "Biotin-HPDP[C]"
+  ],
+  "578.32_C(26)H(42)N(8)O(7)": [
+    "Biotin-PEG-PRA[M]"
+  ],
+  "356.19_C(16)H(28)N(4)O(3)S(1)": [
+    "Biotin-PEO-Amine[D]",
+    "Biotin-PEO-Amine[E]",
+    "Biotin-PEO-Amine[ProteinC-term]"
+  ],
+  "626.26_C(29)H(38)N(8)O(6)S(1)": [
+    "Biotin-phenacyl[C]",
+    "Biotin-phenacyl[H]",
+    "Biotin-phenacyl[S]"
+  ],
+  "361.15_C(18)H(23)N(3)O(3)S(1)": [
+    "Biotin-tyramide[Y]"
+  ],
+  "226.08_C(10)H(14)N(2)O(2)S(1)": [
+    "Biotin[AnyN-term]",
+    "Biotin[K]"
+  ],
+  "660.43_C(36)H(60)N(4)O(5)S(1)": [
+    "Biotin_Cayman-10013[C]"
+  ],
+  "626.39_C(35)H(54)N(4)O(4)S(1)": [
+    "Biotin_Cayman-10141[C]"
+  ],
+  "523.21_C(23)H(33)N(5)O(7)S(1)": [
+    "Biotin_Invitrogen-M1602[C]"
+  ],
+  "449.17_C(20)H(27)N(5)O(5)S(1)": [
+    "Biotin_Sigma-B1267[C]"
+  ],
+  "695.31_C(34)H(45)N(7)O(7)S(1)": [
+    "Biotin_Thermo-21325[K]"
+  ],
+  "389.09_C(15)H(23)N(3)O(3)S(3)": [
+    "Biotin_Thermo-21328[AnyN-term]",
+    "Biotin_Thermo-21328[K]"
+  ],
+  "473.22_C(21)H(35)N(3)O(7)S(1)": [
+    "Biotin_Thermo-21330[AnyN-term]",
+    "Biotin_Thermo-21330[K]"
+  ],
+  "311.17_C(15)H(25)N(3)O(2)S(1)": [
+    "Biotin_Thermo-21345[Q]"
+  ],
+  "487.25_C(21)H(37)N(5)O(6)S(1)": [
+    "Biotin_Thermo-21360[AnyC-term]"
+  ],
+  "561.25_C(23)H(39)N(5)O(9)S(1)": [
+    "Biotin_Thermo-21901+2H2O[C]"
+  ],
+  "543.24_C(23)H(37)N(5)O(8)S(1)": [
+    "Biotin_Thermo-21901+H2O[C]"
+  ],
+  "921.46_C(41)H(71)N(5)O(16)S(1)": [
+    "Biotin_Thermo-21911[C]"
+  ],
+  "546.21_C(25)H(34)N(6)O(4)S(2)": [
+    "Biotin_Thermo-33033-H[AnyN-term]"
+  ],
+  "548.22_C(25)H(36)N(6)O(4)S(2)": [
+    "Biotin_Thermo-33033[AnyN-term]"
+  ],
+  "196.12_C(10)H(16)N(2)O(2)": [
+    "Biotin_Thermo-88310[K]"
+  ],
+  "443.29_C(22)H(42)N(3)O(4)P(1)": [
+    "Biotin_Thermo-88317[S]",
+    "Biotin_Thermo-88317[Y]"
+  ],
+  "594.09_C(32)H(22)N(2)O(6)S(2)": [
+    "BisANS[K]"
+  ],
+  "414.17_B(1)C(20)F(2)H(21)N(4)O(3)": [
+    "Bodipy[C]"
+  ],
+  "168.19_C(12)H(24)": [
+    "Brij35[AnyN-term]"
+  ],
+  "224.25_C(16)H(32)": [
+    "Brij58[AnyN-term]"
+  ],
+  "77.91_Br(1)H(-1)": [
+    "Bromo[F]",
+    "Bromo[H]",
+    "Bromo[W]",
+    "Bromo[Y]"
+  ],
+  "190.07_C(10)H(10)N(2)O(2)": [
+    "Bromobimane[C]"
+  ],
+  "70.04_C(4)H(6)O(1)": [
+    "Butyryl[K](Crotonaldehyde[K])",
+    "Crotonaldehyde[C]",
+    "Crotonaldehyde[H]"
+  ],
+  "227.22_C(14)H(29)N(1)O(1)": [
+    "C8-QAT[AnyN-term]",
+    "C8-QAT[K]"
+  ],
+  "135.98_C(3)H(4)O(4)S(1)": [
+    "CAF[AnyN-term]"
+  ],
+  "145.02_C(5)H(7)N(1)O(2)S(1)": [
+    "CAMthiopropanoyl[K]",
+    "CAMthiopropanoyl[ProteinN-term]"
+  ],
+  "294.18_C(17)H(26)O(4)": [
+    "CHDH[D]"
+  ],
+  "330.14_C(13)H(22)N(4)O(4)S(1)": [
+    "CIGG[K]"
+  ],
+  "141.10_C(1)H(12)N(2)O(1)": [
+    "CLIP_TRAQ_2[AnyN-term]",
+    "CLIP_TRAQ_2[K]",
+    "CLIP_TRAQ_2[Y]"
+  ],
+  "271.15_C(1)H(20)N(3)O(4)": [
+    "CLIP_TRAQ_3[AnyN-term]",
+    "CLIP_TRAQ_3[K]",
+    "CLIP_TRAQ_3[Y]"
+  ],
+  "244.10_C(1)H(15)N(2)O(5)": [
+    "CLIP_TRAQ_4[AnyN-term]",
+    "CLIP_TRAQ_4[K]",
+    "CLIP_TRAQ_4[Y]"
+  ],
+  "447.20_C(19)H(34)N(3)O(5)P(1)S(1)": [
+    "Can-FP-biotin[S]",
+    "Can-FP-biotin[T]",
+    "Can-FP-biotin[Y]"
+  ],
+  "209.02_C(6)H(11)N(1)O(3)S(2)": [
+    "CarbamidomethylDTT[C]"
+  ],
+  "58.03_C(2)H(4)N(1)O(1)": [
+    "Carbofuran[S]"
+  ],
+  "13.98_H(-2)O(1)": [
+    "Carbonyl[A]",
+    "Carbonyl[E]",
+    "Carbonyl[I]",
+    "Carbonyl[L]",
+    "Carbonyl[Q]",
+    "Carbonyl[R]",
+    "Carbonyl[S]",
+    "Carbonyl[V]",
+    "Pro->pyro-Glu[P]",
+    "Thr->Asp[T]",
+    "Trp->Oxolactone[W]"
+  ],
+  "15.98_O(-1)S(1)": [
+    "Carboxy->Thiocarboxy[ProteinC-termG]",
+    "Ser->Cys[S]"
+  ],
+  "72.02_C(3)H(4)O(2)": [
+    "Carboxyethyl[H](Ethoxyformyl[H])",
+    "Carboxyethyl[K]",
+    "Dihydroxyimidazolidine[R]",
+    "Gly->Glu[G]"
+  ],
+  "122.04_C(7)H(6)O(2)": [
+    "Carboxyethylpyrrole[K]"
+  ],
+  "162.08_C(9)H(10)N(2)O(1)": [
+    "CarboxymethylDMAP[AnyN-term]"
+  ],
+  "210.00_C(6)H(10)O(4)S(2)": [
+    "CarboxymethylDTT[C]"
+  ],
+  "60.01_C(2)H(2)O(2)": [
+    "Carboxymethyl_13C(2)[C]"
+  ],
+  "105.90_Ag(1)H(-1)": [
+    "Cation_Ag[AnyC-term]",
+    "Cation_Ag[D]",
+    "Cation_Ag[E]"
+  ],
+  "23.96_Al(1)H(-3)": [
+    "Cation_Al[III][AnyC-term]",
+    "Cation_Al[III][D]",
+    "Cation_Al[III][E]"
+  ],
+  "37.95_Ca(1)H(-2)": [
+    "Cation_Ca[II][AnyC-term]",
+    "Cation_Ca[II][D]",
+    "Cation_Ca[II][E]"
+  ],
+  "61.92_Cu(1)H(-1)": [
+    "Cation_Cu[I][AnyC-term]",
+    "Cation_Cu[I][D]",
+    "Cation_Cu[I][E]",
+    "Cation_Cu[I][H]"
+  ],
+  "52.91_Fe(1)H(-3)": [
+    "Cation_Fe[III][AnyC-term]",
+    "Cation_Fe[III][D]",
+    "Cation_Fe[III][E]"
+  ],
+  "53.92_Fe(1)H(-2)": [
+    "Cation_Fe[II][AnyC-term]",
+    "Cation_Fe[II][D]",
+    "Cation_Fe[II][E]"
+  ],
+  "37.96_H(-1)K(1)": [
+    "Cation_K[AnyC-term]",
+    "Cation_K[D]",
+    "Cation_K[E]"
+  ],
+  "6.01_H(-1)Li(1)": [
+    "Cation_Li[AnyC-term]",
+    "Cation_Li[D]",
+    "Cation_Li[E]"
+  ],
+  "21.97_H(-2)Mg(1)": [
+    "Cation_Mg[II][AnyC-term]",
+    "Cation_Mg[II][D]",
+    "Cation_Mg[II][E]"
+  ],
+  "55.92_H(-2)Ni(1)": [
+    "Cation_Ni[II][AnyC-term]",
+    "Cation_Ni[II][D]",
+    "Cation_Ni[II][E]"
+  ],
+  "61.91_H(-2)Zn(1)": [
+    "Cation_Zn[II][AnyC-term]",
+    "Cation_Zn[II][D]",
+    "Cation_Zn[II][E]",
+    "Cation_Zn[II][H]"
+  ],
+  "33.96_Cl(1)H(-1)": [
+    "Chlorination[W]",
+    "Chlorination[Y]"
+  ],
+  "368.34_C(27)H(44)": [
+    "Cholesterol[ProteinC-term]"
+  ],
+  "765.10_C(21)H(34)N(7)O(16)P(3)S(1)": [
+    "CoenzymeA[C]"
+  ],
+  "276.06_C(14)H(13)O(4)P(1)": [
+    "CresylSaligeninPhosphate[H]",
+    "CresylSaligeninPhosphate[K]",
+    "CresylSaligeninPhosphate[R]",
+    "CresylSaligeninPhosphate[S]",
+    "CresylSaligeninPhosphate[T]",
+    "CresylSaligeninPhosphate[Y]"
+  ],
+  "170.01_C(7)H(7)O(3)P(1)": [
+    "Cresylphosphate[H]",
+    "Cresylphosphate[K]",
+    "Cresylphosphate[R]",
+    "Cresylphosphate[S]",
+    "Cresylphosphate[T]",
+    "Cresylphosphate[Y]"
+  ],
+  "68.03_C(4)H(4)O(1)": [
+    "Crotonyl[K]",
+    "Crotonylation[K]"
+  ],
+  "922.83_C(19)Cu(1)H(24)Mo(1)N(8)O(15)P(2)S(3)": [
+    "CuSMo[C]"
+  ],
+  "753.26_C(37)H(45)N(4)O(9)S(2)": [
+    "Cy3-maleimide[C]"
+  ],
+  "682.25_C(37)H(38)N(4)O(7)S(1)": [
+    "Cy3b-maleimide[C]"
+  ],
+  "672.30_C(37)H(44)N(4)O(6)S(1)": [
+    "CyDye-Cy3[C]"
+  ],
+  "684.30_C(38)H(44)N(4)O(6)S(1)": [
+    "CyDye-Cy5[C]"
+  ],
+  "25.00_C(1)H(-1)N(1)": [
+    "Cyano[C]"
+  ],
+  "-31.97_S(-1)": [
+    "Cys->Ala[C]",
+    "Met->Val[M]"
+  ],
+  "53.09_C(3)H(7)N(3)S(-1)": [
+    "Cys->Arg[C]"
+  ],
+  "11.03_C(1)H(1)N(1)O(1)S(-1)": [
+    "Cys->Asn[C]"
+  ],
+  "12.02_C(1)O(2)S(-1)": [
+    "Cys->Asp[C]"
+  ],
+  "104.97_C(2)H(3)N(1)O(1)S(-1)Se(1)": [
+    "Cys->CamSec[C]"
+  ],
+  "-33.99_H(-2)S(-1)": [
+    "Cys->Dha[C]",
+    "Met->Pro[M]"
+  ],
+  "25.05_C(2)H(3)N(1)O(1)S(-1)": [
+    "Cys->Gln[C]"
+  ],
+  "26.03_C(2)H(2)O(2)S(-1)": [
+    "Cys->Glu[C]"
+  ],
+  "-45.99_C(-1)H(-2)S(-1)": [
+    "Cys->Gly[C]"
+  ],
+  "34.05_C(3)H(2)N(2)S(-1)": [
+    "Cys->His[C]"
+  ],
+  "25.09_C(3)H(7)N(1)S(-1)": [
+    "Cys->Lys[C]"
+  ],
+  "-17.99_H(-2)O(1)S(-1)": [
+    "Cys->Oxoalanine[C]"
+  ],
+  "44.06_C(6)H(4)S(-1)": [
+    "Cys->Phe[C]"
+  ],
+  "-5.96_C(2)H(2)S(-1)": [
+    "Cys->Pro[C]"
+  ],
+  "-33.00_H(-3)N(-1)O(1)S(-1)": [
+    "Cys->PyruvicAcid[ProteinN-termC]"
+  ],
+  "172.99_C(6)H(7)N(1)O(2)S(-1)Se(1)": [
+    "Cys->SecNEM[C]"
+  ],
+  "178.02_C(6)H(5)N(1)O(2)S(-1)Se(1)": [
+    "Cys->SecNEM_2H(5)[C]"
+  ],
+  "-15.98_O(1)S(-1)": [
+    "Cys->Ser[C]"
+  ],
+  "-1.96_C(1)H(2)O(1)S(-1)": [
+    "Cys->Thr[C]"
+  ],
+  "83.07_C(8)H(5)N(1)S(-1)": [
+    "Cys->Trp[C]"
+  ],
+  "60.05_C(6)H(4)O(1)S(-1)": [
+    "Cys->Tyr[C]"
+  ],
+  "-3.94_C(2)H(4)S(-1)": [
+    "Cys->Val[C]"
+  ],
+  "10.07_C(3)H(6)S(-1)": [
+    "Cys->Xle[C]"
+  ],
+  "11.07_C(2)H(5)N(1)S(-1)": [
+    "Cys->ethylaminoAla[C]"
+  ],
+  "-2.95_C(1)H(3)N(1)S(-1)": [
+    "Cys->methylaminoAla[C]",
+    "Met->Lys[M]"
+  ],
+  "119.00_C(3)H(5)N(1)O(2)S(1)": [
+    "Cysteinyl[C]"
+  ],
+  "380.15_C(19)H(24)O(8)": [
+    "Cytopiloyne+water[AnyN-term]",
+    "Cytopiloyne+water[C]",
+    "Cytopiloyne+water[K]",
+    "Cytopiloyne+water[R]",
+    "Cytopiloyne+water[S]",
+    "Cytopiloyne+water[T]",
+    "Cytopiloyne+water[Y]"
+  ],
+  "362.14_C(19)H(22)O(7)": [
+    "Cytopiloyne[AnyN-term]",
+    "Cytopiloyne[C]",
+    "Cytopiloyne[K]",
+    "Cytopiloyne[P]",
+    "Cytopiloyne[R]",
+    "Cytopiloyne[S]",
+    "Cytopiloyne[Y]"
+  ],
+  "87.05_C(4)H(9)N(1)O(-1)S(1)": [
+    "DAET[S]",
+    "DAET[T]"
+  ],
+  "1970.82_C(89)H(122)N(18)O(31)S(1)": [
+    "DEDGFLYMVYASQETFG[K]"
+  ],
+  "118.07_C(8)H(8)N(1)": [
+    "DHP[C]"
+  ],
+  "111.07_C(6)H(9)N(1)O(1)": [
+    "DMPO[C]",
+    "DMPO[H]",
+    "DMPO[Y]"
+  ],
+  "166.00_C(6)H(2)N(2)O(4)": [
+    "DNCB_hapten[C]",
+    "DNCB_hapten[H]",
+    "DNCB_hapten[K]",
+    "DNCB_hapten[Y]"
+  ],
+  "198.98_C(6)H(3)N(2)O(4)S(1)": [
+    "DNPS[C]",
+    "DNPS[W]"
+  ],
+  "152.00_C(4)H(8)O(2)S(2)": [
+    "DTT[C]"
+  ],
+  "161.10_C(11)H(13)O(1)": [
+    "DYn-2[C]"
+  ],
+  "233.05_C(12)H(11)N(1)O(2)S(1)": [
+    "Dansyl[AnyN-term]",
+    "Dansyl[K]"
+  ],
+  "364.08_C(13)H(20)N(2)O(6)S(2)": [
+    "Dap-DSP[A]",
+    "Dap-DSP[E]",
+    "Dap-DSP[K]"
+  ],
+  "76.00_C(2)H(4)O(1)S(1)": [
+    "DeStreak[C]"
+  ],
+  "2.99_H(-1)N(-1)O(1)": [
+    "Deamidated_18O(1)[N](Delta_H(1)N(-1)18O(1)[N])",
+    "Deamidated_18O(1)[Q]"
+  ],
+  "154.14_C(10)H(18)O(1)": [
+    "Decanoyl[S]",
+    "Decanoyl[T]"
+  ],
+  "-30.01_C(-1)H(-2)O(-1)": [
+    "Decarboxylation[D]",
+    "Decarboxylation[E]",
+    "Pro->Pyrrolidinone[P]",
+    "Ser->Gly[S]",
+    "Thr->Ala[T]"
+  ],
+  "27.96_H(-4)O(2)": [
+    "Delta_H(-4)O(2)[W]"
+  ],
+  "43.95_H(-4)O(3)": [
+    "Delta_H(-4)O(3)[W]"
+  ],
+  "122.07_C(8)H(10)O(1)": [
+    "Delta_H(10)C(8)O(1)[K]"
+  ],
+  "38.02_C(3)H(2)": [
+    "Delta_H(2)C(3)[K]"
+  ],
+  "62.02_C(5)H(2)": [
+    "Delta_H(2)C(5)[K]",
+    "Thr->Tyr[T]"
+  ],
+  "71.01_C(3)H(3)O(2)": [
+    "Delta_H(3)C(3)O(2)[K]"
+  ],
+  "44.01_C(2)H(4)O(-1)S(1)": [
+    "Delta_H(4)C(2)O(-1)S(1)[S](Ser->Met[S])"
+  ],
+  "40.03_C(3)H(4)": [
+    "Delta_H(4)C(3)[H]",
+    "Delta_H(4)C(3)[K]",
+    "Delta_H(4)C(3)[ProteinN-term]",
+    "Gly->Pro[G]"
+  ],
+  "56.03_C(3)H(4)O(1)": [
+    "Delta_H(4)C(3)O(1)[C]",
+    "Delta_H(4)C(3)O(1)[H]",
+    "Delta_H(4)C(3)O(1)[R]",
+    "Propionyl[AnyN-term]",
+    "Propionyl[K](Delta_H(4)C(3)O(1)[K])",
+    "Propionyl[S]",
+    "Propionyl[T]",
+    "Propionyl[ProteinN-term]",
+    "Propionyl[K]"
+  ],
+  "80.03_C(5)H(4)O(1)": [
+    "Delta_H(4)C(5)O(1)[R]"
+  ],
+  "29.04_C(2)H(5)": [
+    "Delta_H(5)C(2)[P]"
+  ],
+  "58.04_C(3)H(6)O(1)": [
+    "Delta_H(6)C(3)O(1)[C]",
+    "Delta_H(6)C(3)O(1)[H]",
+    "Delta_H(6)C(3)O(1)[K]",
+    "Delta_H(6)C(3)O(1)[ProteinN-term]"
+  ],
+  "94.04_C(6)H(6)O(1)": [
+    "Delta_H(6)C(6)O(1)[K]"
+  ],
+  "154.03_C(7)H(6)O(4)": [
+    "Delta_H(6)C(7)O(4)[R]"
+  ],
+  "96.06_C(6)H(8)O(1)": [
+    "Delta_H(8)C(6)O(1)[K]",
+    "Delta_H(8)C(6)O(1)[ProteinN-term]"
+  ],
+  "112.05_C(6)H(8)O(2)": [
+    "Delta_H(8)C(6)O(2)[K]"
+  ],
+  "201.97_Hg(1)": [
+    "Delta_Hg(1)[C]"
+  ],
+  "63.98_O(4)": [
+    "Delta_O(4)[W]"
+  ],
+  "47.94_S(-1)Se(1)": [
+    "Delta_S(-1)Se(1)[C]",
+    "Delta_S(-1)Se(1)[M]"
+  ],
+  "79.92_Se(1)": [
+    "Delta_Se(1)[C]"
+  ],
+  "-15.99_O(-1)": [
+    "Deoxy[D]",
+    "Deoxy[S](Ser->Ala[S])",
+    "Deoxy[T]",
+    "Tyr->Phe[Y]"
+  ],
+  "71.07_C(4)H(9)N(1)": [
+    "Deoxyhypusine[K]",
+    "Deoxyhypusine[Q]",
+    "Dimethylaminoethyl[C]",
+    "Gly->Lys[G]"
+  ],
+  "217.16_C(4)H(20)N(1)O(2)": [
+    "DiART6plex[AnyN-term]",
+    "DiART6plex[K]",
+    "DiART6plex[Y]",
+    "DiART6plex[ProteinN-term]"
+  ],
+  "217.16_C(3)H(20)N(2)O(2)": [
+    "DiART6plex115[AnyN-term]",
+    "DiART6plex115[K]",
+    "DiART6plex115[Y]",
+    "DiART6plex115[ProteinN-term]"
+  ],
+  "217.17_C(2)H(2)N(1)O(2)": [
+    "DiART6plex116/119[AnyN-term]",
+    "DiART6plex116/119[K]",
+    "DiART6plex116/119[Y]",
+    "DiART6plex116/119[ProteinN-term]"
+  ],
+  "217.16_C(1)H(2)N(2)O(2)": [
+    "DiART6plex117[AnyN-term]",
+    "DiART6plex117[K]",
+    "DiART6plex117[Y]",
+    "DiART6plex117[ProteinN-term]"
+  ],
+  "217.18_C(3)H(2)N(2)O(2)": [
+    "DiART6plex118[AnyN-term]",
+    "DiART6plex118[K]",
+    "DiART6plex118[Y]",
+    "DiART6plex118[ProteinN-term]"
+  ],
+  "145.13_C(8)H(2)N(1)O(1)": [
+    "DiLeu4plex[AnyN-term]",
+    "DiLeu4plex[K]",
+    "DiLeu4plex[Y]"
+  ],
+  "145.12_C(1)H(15)N(1)O(1)": [
+    "DiLeu4plex115[AnyN-term]",
+    "DiLeu4plex115[K]",
+    "DiLeu4plex115[Y]"
+  ],
+  "145.13_C(1)H(2)N(1)O(1)": [
+    "DiLeu4plex117[AnyN-term]",
+    "DiLeu4plex117[K]",
+    "DiLeu4plex117[Y]"
+  ],
+  "145.14_C(8)H(4)N(1)O(1)": [
+    "DiLeu4plex118[AnyN-term]",
+    "DiLeu4plex118[K]",
+    "DiLeu4plex118[Y]"
+  ],
+  "576.51_C(37)H(68)O(4)": [
+    "Diacylglycerol[C]"
+  ],
+  "155.82_Br(2)H(-2)": [
+    "Dibromo[Y]"
+  ],
+  "114.04_C(4)H(6)N(2)O(2)": [
+    "Dicarbamidomethyl[AnyN-term]",
+    "Dicarbamidomethyl[H]",
+    "Dicarbamidomethyl[R]",
+    "GG[C](Dicarbamidomethyl[C])",
+    "GG[K](Dicarbamidomethyl[K])",
+    "GG[S]",
+    "GG[T]",
+    "GG[ProteinN-term]",
+    "Ubiquitination[K]"
+  ],
+  "264.19_C(20)H(24)": [
+    "Didehydroretinylidene[K]"
+  ],
+  "56.06_C(4)H(8)": [
+    "Diethyl[AnyN-term]",
+    "Diethyl[K]",
+    "Gly->Xle[G]"
+  ],
+  "136.03_C(4)H(9)O(3)P(1)": [
+    "Diethylphosphate[AnyN-term]",
+    "Diethylphosphate[C]",
+    "Diethylphosphate[H]",
+    "Diethylphosphate[K]",
+    "Diethylphosphate[S]",
+    "Diethylphosphate[T]",
+    "Diethylphosphate[Y]"
+  ],
+  "152.01_C(4)H(9)O(2)P(1)S(1)": [
+    "Diethylphosphothione[C]",
+    "Diethylphosphothione[H]",
+    "Diethylphosphothione[K]",
+    "Diethylphosphothione[S]",
+    "Diethylphosphothione[T]",
+    "Diethylphosphothione[Y]"
+  ],
+  "132.02_C(8)H(4)O(2)": [
+    "Difuran[Y]",
+    "HPG[R]"
+  ],
+  "251.79_H(-2)I(2)": [
+    "Diiodo[H]",
+    "Diiodo[Y]"
+  ],
+  "342.79_C(5)Fe(2)H(-1)N(2)O(5)S(2)": [
+    "Diironsubcluster[C]"
+  ],
+  "164.06_C(6)H(13)O(3)P(1)": [
+    "Diisopropylphosphate[AnyN-term]",
+    "Diisopropylphosphate[K]",
+    "Diisopropylphosphate[S]",
+    "Diisopropylphosphate[T]",
+    "Diisopropylphosphate[Y]"
+  ],
+  "103.96_As(1)C(2)H(5)": [
+    "DimethylArsino[C]"
+  ],
+  "32.06_C(2)H(4)": [
+    "Dimethyl_2H(4)[AnyN-term]",
+    "Dimethyl_2H(4)[K]",
+    "Dimethyl_2H(4)[R]",
+    "Dimethyl_2H(4)[ProteinN-term]"
+  ],
+  "34.06_C(2)H(4)": [
+    "Dimethyl_2H(4)13C(2)[AnyN-term]",
+    "Dimethyl_2H(4)13C(2)[K]",
+    "Dimethyl_2H(4)13C(2)[R]",
+    "Dimethyl_2H(4)13C(2)[ProteinN-term]"
+  ],
+  "34.07_C(2)H(6)": [
+    "Dimethyl_2H(6)[AnyN-term]",
+    "Dimethyl_2H(6)[K]",
+    "Dimethyl_2H(6)[R]"
+  ],
+  "36.08_C(2)H(6)": [
+    "Dimethyl_2H(6)13C(2)[AnyN-term]",
+    "Dimethyl_2H(6)13C(2)[K]",
+    "Dimethyl_2H(6)13C(2)[R]",
+    "Dimethyl_2H(6)13C(2)[ProteinN-term]"
+  ],
+  "267.16_C(13)H(21)N(3)O(3)": [
+    "DimethylamineGMBS[C]"
+  ],
+  "123.97_C(2)H(5)O(2)P(1)S(1)": [
+    "Dimethylphosphothione[C]",
+    "Dimethylphosphothione[H]",
+    "Dimethylphosphothione[K]",
+    "Dimethylphosphothione[S]",
+    "Dimethylphosphothione[T]",
+    "Dimethylphosphothione[Y]"
+  ],
+  "78.05_C(6)H(6)": [
+    "DimethylpyrroleAdduct[K]"
+  ],
+  "142.11_C(7)H(14)N(2)O(1)": [
+    "Diphthamide[H]"
+  ],
+  "225.09_C(13)H(11)N(3)O(1)": [
+    "Dipyridyl[C]"
+  ],
+  "418.14_C(20)H(22)N(2)O(8)": [
+    "Dipyrrolylmethanemethyl[C]"
+  ],
+  "940.20_C(39)H(48)N(4)O(15)S(4)": [
+    "DyLight-maleimide[C]"
+  ],
+  "1662.70_C(69)H(102)N(18)O(30)": [
+    "EDEDTIDVFQQQTGG[K]"
+  ],
+  "490.17_C(20)H(34)N(4)O(4)S(3)": [
+    "EDT-iodoacetyl-PEO-biotin[S]",
+    "EDT-iodoacetyl-PEO-biotin[T]"
+  ],
+  "601.21_C(25)H(39)N(5)O(6)S(3)": [
+    "EDT-maleimide-PEO-biotin[S]",
+    "EDT-maleimide-PEO-biotin[T]"
+  ],
+  "1705.73_C(72)H(107)N(17)O(31)": [
+    "EEEDVIEVYQEQTGG[K]"
+  ],
+  "456.07_C(22)H(16)O(11)": [
+    "EGCG1[C]"
+  ],
+  "287.06_C(15)H(11)O(6)": [
+    "EGCG2[C]"
+  ],
+  "266.13_C(18)H(18)O(2)": [
+    "EHD-diphenylpentanone[C]",
+    "EHD-diphenylpentanone[M]"
+  ],
+  "184.16_C(10)H(20)N(2)O(1)": [
+    "EQAT[C]"
+  ],
+  "189.19_C(10)H(5)N(2)O(1)": [
+    "EQAT_2H(5)[C]"
+  ],
+  "484.23_C(20)H(32)N(6)O(8)": [
+    "EQIGG[K]"
+  ],
+  "338.18_C(16)H(26)N(4)O(2)S(1)": [
+    "ESP[AnyN-term]",
+    "ESP[K]"
+  ],
+  "348.24_C(16)H(10)N(4)O(2)S(1)": [
+    "ESP_2H(10)[AnyN-term]",
+    "ESP_2H(10)[K]"
+  ],
+  "75.98_C(2)H(4)O(-1)S(2)": [
+    "Ethanedithiol[S]",
+    "Ethanedithiol[T]"
+  ],
+  "43.04_C(2)H(5)N(1)": [
+    "Ethanolamine[AnyC-term]",
+    "Ethanolamine[C]",
+    "Ethanolamine[D]",
+    "Ethanolamine[E]"
+  ],
+  "44.03_C(2)H(4)O(1)": [
+    "Ethanolyl[C]",
+    "Ethanolyl[K]",
+    "Ethanolyl[R]",
+    "Gly->Thr[G]"
+  ],
+  "29.02_C(2)H(3)N(-1)O(1)": [
+    "Ethyl+Deamidated[N]",
+    "Ethyl+Deamidated[Q]"
+  ],
+  "108.00_C(2)H(5)O(3)P(1)": [
+    "Ethylphosphate[AnyN-term]",
+    "Ethylphosphate[K]",
+    "O-Dimethylphosphate[S](Ethylphosphate[S])",
+    "O-Dimethylphosphate[T](Ethylphosphate[T])",
+    "O-Dimethylphosphate[Y](Ethylphosphate[Y])"
+  ],
+  "1046.35_C(12)H(52)N(6)O(19)S(1)": [
+    "ExacTagAmine[K]"
+  ],
+  "972.37_C(12)H(50)N(6)O(18)": [
+    "ExacTagThiol[C]"
+  ],
+  "783.14_C(27)H(31)N(9)O(15)P(2)": [
+    "FAD[C]",
+    "FAD[H]",
+    "FAD[Y]"
+  ],
+  "438.09_C(17)H(19)N(4)O(8)P(1)": [
+    "FMN[S]",
+    "FMN[T]"
+  ],
+  "456.10_C(17)H(21)N(4)O(9)P(1)": [
+    "FMNC[C]"
+  ],
+  "454.09_C(17)H(19)N(4)O(9)P(1)": [
+    "FMNH[C]",
+    "FMNH[H]"
+  ],
+  "427.07_C(24)H(13)N(1)O(7)": [
+    "FNEM[C]"
+  ],
+  "572.32_C(27)H(49)N(4)O(5)P(1)S(1)": [
+    "FP-Biotin[K]",
+    "FP-Biotin[S]",
+    "FP-Biotin[T]",
+    "FP-Biotin[Y]"
+  ],
+  "421.07_C(21)H(15)N(3)O(5)S(1)": [
+    "FTC[C]",
+    "FTC[K]",
+    "FTC[P]",
+    "FTC[R]",
+    "FTC[S]"
+  ],
+  "204.19_C(15)H(24)": [
+    "Farnesyl[C]"
+  ],
+  "493.12_C(29)H(19)N(1)O(7)": [
+    "Fluorescein-tyramine[Y]"
+  ],
+  "387.07_C(22)H(13)N(1)O(6)": [
+    "Fluorescein[C]"
+  ],
+  "17.99_F(1)H(-1)": [
+    "Fluoro[A]",
+    "Fluoro[F]",
+    "Fluoro[W]",
+    "Fluoro[Y]"
+  ],
+  "159.04_C(6)H(9)N(1)O(2)S(1)": [
+    "FormylMet[ProteinN-term]",
+    "thioacylPA[K]"
+  ],
+  "4.98_C(-1)H(-1)N(-1)O(2)": [
+    "Formylasparagine[H]"
+  ],
+  "66.01_C(4)H(2)O(1)": [
+    "Furan[Y]",
+    "Pro->Tyr[P]"
+  ],
+  "242.10_C(9)H(14)N(4)O(4)": [
+    "GGQ[K]"
+  ],
+  "127.10_C(7)H(13)N(1)O(1)": [
+    "GIST-Quat[AnyN-term]",
+    "GIST-Quat[K]"
+  ],
+  "130.12_C(7)H(3)N(1)O(1)": [
+    "GIST-Quat_2H(3)[AnyN-term]",
+    "GIST-Quat_2H(3)[K]"
+  ],
+  "133.14_C(7)H(6)N(1)O(1)": [
+    "GIST-Quat_2H(6)[AnyN-term]",
+    "GIST-Quat_2H(6)[K]"
+  ],
+  "136.16_C(7)H(9)N(1)O(1)": [
+    "GIST-Quat_2H(9)[AnyN-term]",
+    "GIST-Quat_2H(9)[K]"
+  ],
+  "1324.63_C(61)H(92)N(14)O(15)S(2)": [
+    "GNLLFLACYCIGG[K]"
+  ],
+  "123.01_C(2)H(6)N(1)O(3)P(1)": [
+    "GPIanchor[ProteinC-term]"
+  ],
+  "178.05_Hex(1)O(1)": [
+    "Galactosyl[AnyN-term]",
+    "Galactosyl[K]"
+  ],
+  "272.25_C(20)H(32)": [
+    "GeranylGeranyl[C]"
+  ],
+  "28.04_C(1)H(4)N(2)O(-1)": [
+    "Gln->Arg[Q]"
+  ],
+  "-13.03_C(-1)H(-3)N(-1)O(1)": [
+    "Gln->Asp[Q]"
+  ],
+  "-25.05_C(-2)H(-3)N(-1)O(-1)S(1)": [
+    "Gln->Cys[Q]"
+  ],
+  "-71.04_C(-3)H(-5)N(-1)O(-1)": [
+    "Gln->Gly[Q]"
+  ],
+  "9.00_C(1)H(-1)N(1)O(-1)": [
+    "Gln->His[Q]"
+  ],
+  "0.04_C(1)H(4)O(-1)": [
+    "Gln->Lys[Q]"
+  ],
+  "2.98_H(1)N(-1)O(-1)S(1)": [
+    "Gln->Met[Q]"
+  ],
+  "19.01_C(4)H(1)N(-1)O(-1)": [
+    "Gln->Phe[Q]"
+  ],
+  "-31.01_H(-1)N(-1)O(-1)": [
+    "Gln->Pro[Q]"
+  ],
+  "-41.03_C(-2)H(-3)N(-1)": [
+    "Gln->Ser[Q]"
+  ],
+  "58.02_C(6)H(2)O(-1)": [
+    "Gln->Trp[Q]"
+  ],
+  "35.00_C(4)H(1)N(-1)": [
+    "Gln->Tyr[Q]"
+  ],
+  "-28.99_H(1)N(-1)O(-1)": [
+    "Gln->Val[Q]"
+  ],
+  "27.06_C(1)H(5)N(3)O(-2)": [
+    "Glu->Arg[E]"
+  ],
+  "-15.00_C(-1)H(-1)N(1)O(-1)": [
+    "Glu->Asn[E]"
+  ],
+  "-26.03_C(-2)H(-2)O(-2)S(1)": [
+    "Glu->Cys[E]"
+  ],
+  "-72.02_C(-3)H(-4)O(-2)": [
+    "Glu->Gly[E]"
+  ],
+  "8.02_C(1)N(2)O(-2)": [
+    "Glu->His[E]"
+  ],
+  "-0.95_C(1)H(5)N(1)O(-2)": [
+    "Glu->Lys[E]"
+  ],
+  "2.00_H(2)O(-2)S(1)": [
+    "Glu->Met[E]"
+  ],
+  "18.03_C(4)H(2)O(-2)": [
+    "Glu->Phe[E]"
+  ],
+  "-31.99_O(-2)": [
+    "Glu->Pro[E]"
+  ],
+  "-42.01_C(-2)H(-2)O(-1)": [
+    "Glu->Ser[E]"
+  ],
+  "57.04_C(6)H(3)N(1)O(-2)": [
+    "Glu->Trp[E]"
+  ],
+  "34.02_C(4)H(2)O(-1)": [
+    "Glu->Tyr[E]"
+  ],
+  "-29.97_H(2)O(-2)": [
+    "Glu->Val[E]"
+  ],
+  "-3.99_C(1)O(-1)": [
+    "Glu->pyro-Glu+Methyl[AnyN-termE]",
+    "Thr->Pro[T]"
+  ],
+  "-0.98_C(1)H(2)O(-1)": [
+    "Glu->pyro-Glu+Methyl_2H(2)13C(1)[AnyN-termE]"
+  ],
+  "129.04_C(5)H(7)N(1)O(3)": [
+    "Glu[E]",
+    "Glu[ProteinC-term]",
+    "Nmethylmaleimide+water[C]"
+  ],
+  "258.09_C(10)H(14)N(2)O(6)": [
+    "GluGlu[E]",
+    "GluGlu[ProteinC-term]"
+  ],
+  "387.13_C(15)H(21)N(3)O(9)": [
+    "GluGluGlu[E]",
+    "GluGluGlu[ProteinC-term]"
+  ],
+  "516.17_C(20)H(28)N(4)O(12)": [
+    "GluGluGluGlu[E]",
+    "GluGluGluGlu[ProteinC-term]"
+  ],
+  "340.10_Hex(2)O(1)": [
+    "Glucosylgalactosyl[K]"
+  ],
+  "176.03_A(1)": [
+    "Glucuronyl[S]",
+    "Glucuronyl[T]",
+    "Glucuronyl[ProteinN-term]"
+  ],
+  "305.07_C(10)H(15)N(3)O(6)S(1)": [
+    "Glutathione[C]"
+  ],
+  "99.08_C(4)H(9)N(3)": [
+    "Gly->Arg[G]"
+  ],
+  "80.04_C(4)H(4)N(2)": [
+    "Gly->His[G]"
+  ],
+  "74.02_C(3)H(6)S(1)": [
+    "Gly->Met[G]"
+  ],
+  "90.05_C(7)H(6)": [
+    "Gly->Phe[G]"
+  ],
+  "129.06_C(9)H(7)N(1)": [
+    "Gly->Trp[G]"
+  ],
+  "106.04_C(7)H(6)O(1)": [
+    "Gly->Tyr[G]",
+    "Saligenin[H]",
+    "Saligenin[K]"
+  ],
+  "154.00_C(3)H(7)O(5)P(1)": [
+    "Glycerophospho[S]"
+  ],
+  "197.05_C(5)H(12)N(1)O(5)P(1)": [
+    "GlycerylPE[E]"
+  ],
+  "148.04_C(-1)H(-2)Hex(1)": [
+    "Glycosyl[P]"
+  ],
+  "117.02_C(4)H(7)N(1)O(1)S(1)": [
+    "HCysThiolactone[K]"
+  ],
+  "133.02_C(4)H(7)N(1)O(2)S(1)": [
+    "HCysteinyl[C]"
+  ],
+  "101.08_C(5)H(11)N(1)O(1)": [
+    "HN2_mustard[C]",
+    "HN2_mustard[H]",
+    "HN2_mustard[K]"
+  ],
+  "131.09_C(6)H(13)N(1)O(2)": [
+    "HN3_mustard[C]",
+    "HN3_mustard[H]",
+    "HN3_mustard[K]"
+  ],
+  "158.13_C(9)H(18)O(2)": [
+    "HNE+Delta_H(2)[C]",
+    "HNE+Delta_H(2)[H]",
+    "HNE+Delta_H(2)[K]"
+  ],
+  "511.32_C(25)H(45)N(5)O(4)S(1)": [
+    "HNE-BAHAH[C]",
+    "HNE-BAHAH[H]",
+    "HNE-BAHAH[K]"
+  ],
+  "138.10_C(9)H(14)O(1)": [
+    "HNE-Delta_H(2)O[C]",
+    "HNE-Delta_H(2)O[H]",
+    "HNE-Delta_H(2)O[K]"
+  ],
+  "156.12_C(9)H(16)O(2)": [
+    "HNE[A]",
+    "HNE[C]",
+    "HNE[H]",
+    "HNE[K]",
+    "HNE[L]"
+  ],
+  "616.18_C(34)Fe(1)H(32)N(4)O(4)": [
+    "Heme[C]",
+    "Heme[H]"
+  ],
+  "192.06_Hep(1)": [
+    "Hep[K]",
+    "Hep[N]",
+    "Hep[Q]",
+    "Hep[R]",
+    "Hep[S]",
+    "Hep[T]"
+  ],
+  "338.08_A(1)Hex(1)": [
+    "Hex(1)HexA(1)[S]",
+    "Hex(1)HexA(1)[T]"
+  ],
+  "541.16_A(1)Ac(1)Hex(1)": [
+    "Hex(1)HexA(1)HexNAc(1)[S]",
+    "Hex(1)HexA(1)HexNAc(1)[T]"
+  ],
+  "744.24_A(1)Ac(2)Hex(1)": [
+    "Hex(1)HexA(1)HexNAc(2)[S]",
+    "Hex(1)HexA(1)HexNAc(2)[T]"
+  ],
+  "365.13_Ac(1)Hex(1)": [
+    "Hex(1)HexNAc(1)[N]",
+    "Hex(1)HexNAc(1)[S]",
+    "Hex(1)HexNAc(1)[T]"
+  ],
+  "695.16_Ac(1)Hex(1)Kdn(1)O(3)S(1)": [
+    "Hex(1)HexNAc(1)Kdn(1)Sulf(1)[S]",
+    "Hex(1)HexNAc(1)Kdn(1)Sulf(1)[T]"
+  ],
+  "656.23_Ac(1)Hex(1)": [
+    "Hex(1)HexNAc(1)NeuAc(1)[N]",
+    "Hex(1)HexNAc(1)NeuAc(1)[S]",
+    "Hex(1)HexNAc(1)NeuAc(1)[T]"
+  ],
+  "698.24_Ac(1)Hex(1)": [
+    "Hex(1)HexNAc(1)NeuAc(1)Ac(1)[S]",
+    "Hex(1)HexNAc(1)NeuAc(1)Ac(1)[T]"
+  ],
+  "963.32_Ac(1)Gc(1)Hex(1)": [
+    "Hex(1)HexNAc(1)NeuAc(1)NeuGc(1)[S]",
+    "Hex(1)HexNAc(1)NeuAc(1)NeuGc(1)[T]"
+  ],
+  "736.18_Ac(1)Hex(1)O(3)S(1)": [
+    "Hex(1)HexNAc(1)NeuAc(1)Sulf(1)[S]",
+    "Hex(1)HexNAc(1)NeuAc(1)Sulf(1)[T]"
+  ],
+  "947.32_Ac(2)Hex(1)": [
+    "Hex(1)HexNAc(1)NeuAc(2)[N]",
+    "Hex(1)HexNAc(1)NeuAc(2)[S]",
+    "Hex(1)HexNAc(1)NeuAc(2)[T]"
+  ],
+  "989.33_Ac(2)Hex(1)": [
+    "Hex(1)HexNAc(1)NeuAc(2)Ac(1)[S]",
+    "Hex(1)HexNAc(1)NeuAc(2)Ac(1)[T]"
+  ],
+  "1031.34_Ac(2)Hex(1)": [
+    "Hex(1)HexNAc(1)NeuAc(2)Ac(2)[S]",
+    "Hex(1)HexNAc(1)NeuAc(2)Ac(2)[T]"
+  ],
+  "1238.42_Ac(3)Hex(1)": [
+    "Hex(1)HexNAc(1)NeuAc(3)[S]",
+    "Hex(1)HexNAc(1)NeuAc(3)[T]"
+  ],
+  "672.22_Ac(1)Gc(1)Hex(1)": [
+    "Hex(1)HexNAc(1)NeuGc(1)[S]",
+    "Hex(1)HexNAc(1)NeuGc(1)[T]"
+  ],
+  "979.31_Ac(1)Gc(2)Hex(1)": [
+    "Hex(1)HexNAc(1)NeuGc(2)[S]",
+    "Hex(1)HexNAc(1)NeuGc(2)[T]"
+  ],
+  "1286.40_Ac(1)Gc(3)Hex(1)": [
+    "Hex(1)HexNAc(1)NeuGc(3)[S]",
+    "Hex(1)HexNAc(1)NeuGc(3)[T]"
+  ],
+  "1593.49_Ac(1)Gc(4)Hex(1)": [
+    "Hex(1)HexNAc(1)NeuGc(4)[S]",
+    "Hex(1)HexNAc(1)NeuGc(4)[T]"
+  ],
+  "1900.58_Ac(1)Gc(5)Hex(1)": [
+    "Hex(1)HexNAc(1)NeuGc(5)[S]",
+    "Hex(1)HexNAc(1)NeuGc(5)[T]"
+  ],
+  "445.10_Ac(1)H(1)Hex(1)O(3)P(1)": [
+    "Hex(1)HexNAc(1)Phos(1)[S]",
+    "Hex(1)HexNAc(1)Phos(1)[T]"
+  ],
+  "445.09_Ac(1)Hex(1)O(3)S(1)": [
+    "Hex(1)HexNAc(1)Sulf(1)[S]",
+    "Hex(1)HexNAc(1)Sulf(1)[T]"
+  ],
+  "511.19_Ac(1)Hex(1)": [
+    "Hex(1)HexNAc(1)dHex(1)[N]",
+    "Hex(1)HexNAc(1)dHex(1)[S]",
+    "Hex(1)HexNAc(1)dHex(1)[T]"
+  ],
+  "525.21_Ac(1)Hex(1)Me(1)": [
+    "Hex(1)HexNAc(1)dHex(1)Me(1)[S]",
+    "Hex(1)HexNAc(1)dHex(1)Me(1)[T]"
+  ],
+  "539.22_Ac(1)Hex(1)Me(2)": [
+    "Hex(1)HexNAc(1)dHex(1)Me(2)[S]",
+    "Hex(1)HexNAc(1)dHex(1)Me(2)[T]"
+  ],
+  "568.21_Ac(2)Hex(1)": [
+    "Hex(1)HexNAc(2)[N]",
+    "Hex(1)HexNAc(2)[S]",
+    "Hex(1)HexNAc(2)[T]"
+  ],
+  "859.31_Ac(1)Hex(1)": [
+    "Hex(1)HexNAc(2)NeuAc(1)[S]",
+    "Hex(1)HexNAc(2)NeuAc(1)[T]"
+  ],
+  "939.26_Ac(1)Hex(1)O(3)S(1)": [
+    "Hex(1)HexNAc(2)NeuAc(1)Sulf(1)[S]",
+    "Hex(1)HexNAc(2)NeuAc(1)Sulf(1)[T]"
+  ],
+  "1150.40_Ac(2)Hex(1)": [
+    "Hex(1)HexNAc(2)NeuAc(2)[S]",
+    "Hex(1)HexNAc(2)NeuAc(2)[T]"
+  ],
+  "1230.36_Ac(2)Hex(1)O(3)S(1)": [
+    "Hex(1)HexNAc(2)NeuAc(2)Sulf(1)[S]",
+    "Hex(1)HexNAc(2)NeuAc(2)Sulf(1)[T]"
+  ],
+  "875.30_Ac(2)Gc(1)Hex(1)": [
+    "Hex(1)HexNAc(2)NeuGc(1)[S]",
+    "Hex(1)HexNAc(2)NeuGc(1)[T]"
+  ],
+  "700.25_Ac(2)Hex(1)Pent(1)": [
+    "Hex(1)HexNAc(2)Pent(1)[N]"
+  ],
+  "648.17_Ac(2)Hex(1)O(3)S(1)": [
+    "Hex(1)HexNAc(2)Sulf(1)[S]",
+    "Hex(1)HexNAc(2)Sulf(1)[T]"
+  ],
+  "714.27_Ac(2)Hex(1)": [
+    "Hex(1)HexNAc(2)dHex(1)[N]",
+    "Hex(1)HexNAc(2)dHex(1)[S]",
+    "Hex(1)HexNAc(2)dHex(1)[T]"
+  ],
+  "846.31_Ac(2)Hex(1)Pent(1)": [
+    "Hex(1)HexNAc(2)dHex(1)Pent(1)[N]"
+  ],
+  "860.33_Ac(2)Hex(1)": [
+    "Hex(1)HexNAc(2)dHex(2)[N]",
+    "Hex(1)HexNAc(2)dHex(2)[S]",
+    "Hex(1)HexNAc(2)dHex(2)[T]"
+  ],
+  "940.28_Ac(2)Hex(1)O(3)S(1)": [
+    "Hex(1)HexNAc(2)dHex(2)Sulf(1)[S]",
+    "Hex(1)HexNAc(2)dHex(2)Sulf(1)[T]"
+  ],
+  "771.29_Ac(3)Hex(1)": [
+    "Hex(1)HexNAc(3)[S]",
+    "Hex(1)HexNAc(3)[T]"
+  ],
+  "1062.39_Ac(1)Hex(1)": [
+    "Hex(1)HexNAc(3)NeuAc(1)[S]",
+    "Hex(1)HexNAc(3)NeuAc(1)[T]"
+  ],
+  "1353.48_Ac(2)Hex(1)": [
+    "Hex(1)HexNAc(3)NeuAc(2)[S]",
+    "Hex(1)HexNAc(3)NeuAc(2)[T]"
+  ],
+  "1078.38_Ac(3)Gc(1)Hex(1)": [
+    "Hex(1)HexNAc(3)NeuGc(1)[S]",
+    "Hex(1)HexNAc(3)NeuGc(1)[T]"
+  ],
+  "851.25_Ac(3)Hex(1)O(3)S(1)": [
+    "Hex(1)HexNAc(3)Sulf(1)[S]",
+    "Hex(1)HexNAc(3)Sulf(1)[T]"
+  ],
+  "1200.39_Ac(4)Hex(1)Sulf(1)": [
+    "Hex(1)HexNAc(4)dHex(1)Sulf(1)[S]",
+    "Hex(1)HexNAc(4)dHex(1)Sulf(1)[T]"
+  ],
+  "453.15_Ac(1)Hex(1)": [
+    "Hex(1)NeuAc(1)[S]",
+    "Hex(1)NeuAc(1)[T]"
+  ],
+  "585.19_Ac(1)Hex(1)Pent(1)": [
+    "Hex(1)NeuAc(1)Pent(1)[S]",
+    "Hex(1)NeuAc(1)Pent(1)[T]"
+  ],
+  "469.14_Gc(1)Hex(1)": [
+    "Hex(1)NeuGc(1)[S]",
+    "Hex(1)NeuGc(1)[T]"
+  ],
+  "294.10_Hex(1)Pent(1)": [
+    "Hex(1)Pent(1)[S]",
+    "Hex(1)Pent(1)[T]"
+  ],
+  "426.14_Hex(1)Pent(2)": [
+    "Hex(1)Pent(2)[S]",
+    "Hex(1)Pent(2)[T]"
+  ],
+  "440.15_Hex(1)Me(1)Pent(2)": [
+    "Hex(1)Pent(2)Me(1)[S]",
+    "Hex(1)Pent(2)Me(1)[T]"
+  ],
+  "558.18_Hex(1)Pent(3)": [
+    "Hex(1)Pent(3)[S]",
+    "Hex(1)Pent(3)[T]"
+  ],
+  "572.20_Hex(1)Me(1)Pent(3)": [
+    "Hex(1)Pent(3)Me(1)[S]",
+    "Hex(1)Pent(3)Me(1)[T]"
+  ],
+  "1823.61_Ac(1)Hex(10)": [
+    "Hex(10)HexNAc(1)[N]"
+  ],
+  "1860.43_H(3)Hex(10)O(9)P(3)": [
+    "Hex(10)Phos(3)[S]",
+    "Hex(10)Phos(3)[T]"
+  ],
+  "324.11_Hex(2)": [
+    "Hex(2)[K]",
+    "Hex(2)[R]",
+    "Hex(2)[S]",
+    "Hex(2)[T]"
+  ],
+  "783.17_A(1)Ac(1)Hex(2)O(3)S(1)": [
+    "Hex(2)HexA(1)HexNAc(1)Sulf(1)[S]",
+    "Hex(2)HexA(1)HexNAc(1)Sulf(1)[T]"
+  ],
+  "1003.23_A(1)Ac(1)Hex(2)O(3)Pent(1)S(1)": [
+    "Hex(2)HexA(1)NeuAc(1)Pent(1)Sulf(1)[S]",
+    "Hex(2)HexA(1)NeuAc(1)Pent(1)Sulf(1)[T]"
+  ],
+  "712.14_A(1)Hex(2)O(3)Pent(1)S(1)": [
+    "Hex(2)HexA(1)Pent(1)Sulf(1)[S]",
+    "Hex(2)HexA(1)Pent(1)Sulf(1)[T]"
+  ],
+  "527.19_Ac(1)Hex(2)": [
+    "Hex(2)HexNAc(1)[N]",
+    "Hex(2)HexNAc(1)[S]",
+    "Hex(2)HexNAc(1)[T]"
+  ],
+  "541.20_Ac(1)Hex(2)Me(1)": [
+    "Hex(2)HexNAc(1)Me(1)[S]",
+    "Hex(2)HexNAc(1)Me(1)[T]"
+  ],
+  "834.28_Ac(1)Gc(1)Hex(2)": [
+    "Hex(2)HexNAc(1)NeuGc(1)[S]",
+    "Hex(2)HexNAc(1)NeuGc(1)[T]"
+  ],
+  "1141.37_Ac(1)Gc(2)Hex(2)": [
+    "Hex(2)HexNAc(1)NeuGc(2)[S]",
+    "Hex(2)HexNAc(1)NeuGc(2)[T]"
+  ],
+  "1448.46_Ac(1)Gc(3)Hex(2)": [
+    "Hex(2)HexNAc(1)NeuGc(3)[S]",
+    "Hex(2)HexNAc(1)NeuGc(3)[T]"
+  ],
+  "1755.55_Ac(1)Gc(4)Hex(2)": [
+    "Hex(2)HexNAc(1)NeuGc(4)[S]",
+    "Hex(2)HexNAc(1)NeuGc(4)[T]"
+  ],
+  "835.26_A(1)Ac(1)Hex(2)Pent(1)": [
+    "Hex(2)HexNAc(1)Pent(1)HexA(1)[S]",
+    "Hex(2)HexNAc(1)Pent(1)HexA(1)[T]"
+  ],
+  "607.14_Ac(1)Hex(2)O(3)S(1)": [
+    "Hex(2)HexNAc(1)Sulf(1)[S]",
+    "Hex(2)HexNAc(1)Sulf(1)[T]"
+  ],
+  "730.26_Ac(2)Hex(2)": [
+    "Hex(2)HexNAc(2)[N]",
+    "Hex(2)HexNAc(2)[S]",
+    "Hex(2)HexNAc(2)[T]"
+  ],
+  "1021.36_Ac(1)Hex(2)": [
+    "Hex(2)HexNAc(2)NeuAc(1)[N]",
+    "Hex(2)HexNAc(2)NeuAc(1)[S]",
+    "Hex(2)HexNAc(2)NeuAc(1)[T]"
+  ],
+  "1101.32_Ac(1)Hex(2)O(3)S(1)": [
+    "Hex(2)HexNAc(2)NeuAc(1)Sulf(1)[S]",
+    "Hex(2)HexNAc(2)NeuAc(1)Sulf(1)[T]"
+  ],
+  "1312.46_Ac(2)Hex(2)": [
+    "Hex(2)HexNAc(2)NeuAc(2)[S]",
+    "Hex(2)HexNAc(2)NeuAc(2)[T]"
+  ],
+  "1392.41_Ac(2)Hex(2)O(3)S(1)": [
+    "Hex(2)HexNAc(2)NeuAc(2)Sulf(1)[S]",
+    "Hex(2)HexNAc(2)NeuAc(2)Sulf(1)[T]"
+  ],
+  "1037.35_Ac(2)Gc(1)Hex(2)": [
+    "Hex(2)HexNAc(2)NeuGc(1)[S]",
+    "Hex(2)HexNAc(2)NeuGc(1)[T]"
+  ],
+  "862.31_Ac(2)Hex(2)Pent(1)": [
+    "Hex(2)HexNAc(2)Pent(1)[N]"
+  ],
+  "810.22_Ac(2)Hex(2)O(3)S(1)": [
+    "Hex(2)HexNAc(2)Sulf(1)[S]",
+    "Hex(2)HexNAc(2)Sulf(1)[T]"
+  ],
+  "876.32_Ac(2)Hex(2)": [
+    "Hex(2)HexNAc(2)dHex(1)[N]",
+    "Hex(2)HexNAc(2)dHex(1)[S]",
+    "Hex(2)HexNAc(2)dHex(1)[T]"
+  ],
+  "933.34_Ac(3)Hex(2)": [
+    "Hex(2)HexNAc(3)[N]",
+    "Hex(2)HexNAc(3)[S]",
+    "Hex(2)HexNAc(3)[T]"
+  ],
+  "1531.53_Ac(1)Gc(1)Hex(2)": [
+    "Hex(2)HexNAc(3)NeuAc(1)NeuGc(1)[S]",
+    "Hex(2)HexNAc(3)NeuAc(1)NeuGc(1)[T]"
+  ],
+  "1304.40_Ac(1)Hex(2)O(3)S(1)": [
+    "Hex(2)HexNAc(3)NeuAc(1)Sulf(1)[S]",
+    "Hex(2)HexNAc(3)NeuAc(1)Sulf(1)[T]"
+  ],
+  "1515.53_Ac(2)Hex(2)": [
+    "Hex(2)HexNAc(3)NeuAc(2)[S]",
+    "Hex(2)HexNAc(3)NeuAc(2)[T]"
+  ],
+  "1806.63_Ac(3)Hex(2)": [
+    "Hex(2)HexNAc(3)NeuAc(3)[S]",
+    "Hex(2)HexNAc(3)NeuAc(3)[T]"
+  ],
+  "1240.43_Ac(3)Gc(1)Hex(2)": [
+    "Hex(2)HexNAc(3)NeuGc(1)[S]",
+    "Hex(2)HexNAc(3)NeuGc(1)[T]"
+  ],
+  "1547.52_Ac(3)Gc(2)Hex(2)": [
+    "Hex(2)HexNAc(3)NeuGc(2)[S]",
+    "Hex(2)HexNAc(3)NeuGc(2)[T]"
+  ],
+  "1854.61_Ac(3)Gc(3)Hex(2)": [
+    "Hex(2)HexNAc(3)NeuGc(3)[S]",
+    "Hex(2)HexNAc(3)NeuGc(3)[T]"
+  ],
+  "1013.30_Ac(3)Hex(2)O(3)S(1)": [
+    "Hex(2)HexNAc(3)Sulf(1)[S]",
+    "Hex(2)HexNAc(3)Sulf(1)[T]"
+  ],
+  "1136.42_Ac(4)Hex(2)": [
+    "Hex(2)HexNAc(4)[N]",
+    "Hex(2)HexNAc(4)[S]",
+    "Hex(2)HexNAc(4)[T]"
+  ],
+  "1427.52_Ac(1)Hex(2)": [
+    "Hex(2)HexNAc(4)NeuAc(1)[S]",
+    "Hex(2)HexNAc(4)NeuAc(1)[T]"
+  ],
+  "1339.50_Ac(5)Hex(2)": [
+    "Hex(2)HexNAc(5)[S]",
+    "Hex(2)HexNAc(5)[T]"
+  ],
+  "615.20_Ac(1)Hex(2)": [
+    "Hex(2)NeuAc(1)[S]",
+    "Hex(2)NeuAc(1)[T]"
+  ],
+  "588.19_Hex(2)Pent(2)": [
+    "Hex(2)Pent(2)[S]",
+    "Hex(2)Pent(2)[T]"
+  ],
+  "602.21_Hex(2)Me(1)Pent(2)": [
+    "Hex(2)Pent(2)Me(1)[S]",
+    "Hex(2)Pent(2)Me(1)[T]"
+  ],
+  "404.06_Hex(2)O(3)S(1)": [
+    "Hex(2)Sulf(1)[S]",
+    "Hex(2)Sulf(1)[T]"
+  ],
+  "486.16_Hex(3)": [
+    "Hex(3)[N]",
+    "Hex(3)[S]",
+    "Hex(3)[T]"
+  ],
+  "689.24_Ac(1)Hex(3)": [
+    "Hex(3)HexNAc(1)[N]",
+    "Hex(3)HexNAc(1)[S]",
+    "Hex(3)HexNAc(1)[T]"
+  ],
+  "865.27_A(1)Ac(1)Hex(3)": [
+    "Hex(3)HexNAc(1)HexA(1)[S]",
+    "Hex(3)HexNAc(1)HexA(1)[T]"
+  ],
+  "703.25_Ac(1)Hex(3)Me(1)": [
+    "Hex(3)HexNAc(1)Me(1)[S]",
+    "Hex(3)HexNAc(1)Me(1)[T]"
+  ],
+  "821.28_Ac(1)Hex(3)Pent(1)": [
+    "Hex(3)HexNAc(1)Pent(1)[N]"
+  ],
+  "892.32_Ac(2)Hex(3)": [
+    "Hex(3)HexNAc(2)[N]",
+    "Hex(3)HexNAc(2)[S]",
+    "Hex(3)HexNAc(2)[T]"
+  ],
+  "1474.51_Ac(2)Hex(3)": [
+    "Hex(3)HexNAc(2)NeuAc(2)[S]",
+    "Hex(3)HexNAc(2)NeuAc(2)[T]"
+  ],
+  "1024.36_Ac(2)Hex(3)Pent(1)": [
+    "Hex(3)HexNAc(2)Pent(1)[N]"
+  ],
+  "972.28_Ac(2)H(1)Hex(3)O(3)P(1)": [
+    "Hex(3)HexNAc(2)Phos(1)[N]"
+  ],
+  "1095.40_Ac(3)Hex(3)": [
+    "Hex(3)HexNAc(3)[N]",
+    "Hex(3)HexNAc(3)[S]",
+    "Hex(3)HexNAc(3)[T]"
+  ],
+  "1386.49_Ac(1)Hex(3)": [
+    "Hex(3)HexNAc(3)NeuAc(1)[S]",
+    "Hex(3)HexNAc(3)NeuAc(1)[T]"
+  ],
+  "1466.45_Ac(1)Hex(3)O(3)S(1)": [
+    "Hex(3)HexNAc(3)NeuAc(1)Sulf(1)[S]",
+    "Hex(3)HexNAc(3)NeuAc(1)Sulf(1)[T]"
+  ],
+  "1677.59_Ac(2)Hex(3)": [
+    "Hex(3)HexNAc(3)NeuAc(2)[S]",
+    "Hex(3)HexNAc(3)NeuAc(2)[T]"
+  ],
+  "1757.54_Ac(2)Hex(3)O(3)S(1)": [
+    "Hex(3)HexNAc(3)NeuAc(2)Sulf(1)[S]",
+    "Hex(3)HexNAc(3)NeuAc(2)Sulf(1)[T]"
+  ],
+  "1968.68_Ac(3)Hex(3)": [
+    "Hex(3)HexNAc(3)NeuAc(3)[S]",
+    "Hex(3)HexNAc(3)NeuAc(3)[T]"
+  ],
+  "1402.49_Ac(3)Gc(1)Hex(3)": [
+    "Hex(3)HexNAc(3)NeuGc(1)[S]",
+    "Hex(3)HexNAc(3)NeuGc(1)[T]"
+  ],
+  "1482.44_Ac(3)Gc(1)Hex(3)O(3)S(1)": [
+    "Hex(3)HexNAc(3)NeuGc(1)Sulf(1)[S]",
+    "Hex(3)HexNAc(3)NeuGc(1)Sulf(1)[T]"
+  ],
+  "1227.44_Ac(3)Hex(3)Pent(1)": [
+    "Hex(3)HexNAc(3)Pent(1)[N]"
+  ],
+  "1175.35_Ac(3)Hex(3)O(3)S(1)": [
+    "Hex(3)HexNAc(3)Sulf(1)[N]",
+    "Hex(3)HexNAc(3)Sulf(1)[S]",
+    "Hex(3)HexNAc(3)Sulf(1)[T]"
+  ],
+  "1298.48_Ac(4)Hex(3)": [
+    "Hex(3)HexNAc(4)[N]",
+    "Hex(3)HexNAc(4)[S]",
+    "Hex(3)HexNAc(4)[T]"
+  ],
+  "1589.57_Ac(1)Hex(3)": [
+    "Hex(3)HexNAc(4)NeuAc(1)[N]"
+  ],
+  "1880.67_Ac(2)Hex(3)": [
+    "Hex(3)HexNAc(4)NeuAc(2)[N]"
+  ],
+  "1430.52_Ac(4)Hex(3)Pent(1)": [
+    "Hex(3)HexNAc(4)Pent(1)[N]"
+  ],
+  "1378.43_Ac(4)Hex(3)O(3)S(1)": [
+    "Hex(3)HexNAc(4)Sulf(1)[N]"
+  ],
+  "1501.56_Ac(5)Hex(3)": [
+    "Hex(3)HexNAc(5)[N]",
+    "Hex(3)HexNAc(5)[S]",
+    "Hex(3)HexNAc(5)[T]"
+  ],
+  "1792.65_Ac(1)Hex(3)": [
+    "Hex(3)HexNAc(5)NeuAc(1)[N]"
+  ],
+  "1581.51_Ac(5)Hex(3)O(3)S(1)": [
+    "Hex(3)HexNAc(5)Sulf(1)[N]"
+  ],
+  "1704.63_Ac(6)Hex(3)": [
+    "Hex(3)HexNAc(6)[N]",
+    "Hex(3)HexNAc(6)[S]",
+    "Hex(3)HexNAc(6)[T]"
+  ],
+  "1995.73_Ac(1)Hex(3)": [
+    "Hex(3)HexNAc(6)NeuAc(1)[N]"
+  ],
+  "1784.59_Ac(6)Hex(3)O(3)S(1)": [
+    "Hex(3)HexNAc(6)Sulf(1)[N]"
+  ],
+  "1864.55_Ac(6)Hex(3)O(6)S(2)": [
+    "Hex(3)HexNAc(6)Sulf(2)[N]"
+  ],
+  "1907.71_Ac(7)Hex(3)": [
+    "Hex(3)HexNAc(7)[N]"
+  ],
+  "1987.67_Ac(7)Hex(3)O(3)S(1)": [
+    "Hex(3)HexNAc(7)Sulf(1)[N]"
+  ],
+  "648.21_Hex(4)": [
+    "Hex(4)[S]",
+    "Hex(4)[T]"
+  ],
+  "824.24_A(1)Hex(4)": [
+    "Hex(4)HexA(1)[S]",
+    "Hex(4)HexA(1)[T]"
+  ],
+  "1027.32_A(1)Ac(1)Hex(4)": [
+    "Hex(4)HexA(1)HexNAc(1)[S]",
+    "Hex(4)HexA(1)HexNAc(1)[T]"
+  ],
+  "851.29_Ac(1)Hex(4)": [
+    "Hex(4)HexNAc(1)[N]",
+    "Hex(4)HexNAc(1)[S]",
+    "Hex(4)HexNAc(1)[T]"
+  ],
+  "1054.37_Ac(2)Hex(4)": [
+    "Hex(4)HexNAc(2)[N]"
+  ],
+  "1345.47_Ac(1)Hex(4)": [
+    "Hex(4)HexNAc(2)NeuAc(1)[N]",
+    "Hex(4)HexNAc(2)NeuAc(1)[S](dHex(1)Hex(3)HexNAc(2)NeuGc(1)[S])",
+    "Hex(4)HexNAc(2)NeuAc(1)[T](dHex(1)Hex(3)HexNAc(2)NeuGc(1)[T])"
+  ],
+  "1186.41_Ac(2)Hex(4)Pent(1)": [
+    "Hex(4)HexNAc(2)Pent(1)[N]"
+  ],
+  "1257.45_Ac(3)Hex(4)": [
+    "Hex(4)HexNAc(3)[N]",
+    "Hex(4)HexNAc(3)[S]",
+    "Hex(4)HexNAc(3)[T]"
+  ],
+  "1548.54_Ac(1)Hex(4)": [
+    "Hex(4)HexNAc(3)NeuAc(1)[N]",
+    "Hex(4)HexNAc(3)NeuAc(1)[S]",
+    "Hex(4)HexNAc(3)NeuAc(1)[T]"
+  ],
+  "1839.64_Ac(2)Hex(4)": [
+    "Hex(4)HexNAc(3)NeuAc(2)[N]"
+  ],
+  "1564.54_Ac(3)Gc(1)Hex(4)": [
+    "Hex(4)HexNAc(3)NeuGc(1)[N]"
+  ],
+  "1389.49_Ac(3)Hex(4)Pent(1)": [
+    "Hex(4)HexNAc(3)Pent(1)[N]"
+  ],
+  "1460.53_Ac(4)Hex(4)": [
+    "Hex(4)HexNAc(4)[N]",
+    "Hex(4)HexNAc(4)[S]",
+    "Hex(4)HexNAc(4)[T]"
+  ],
+  "1620.60_Ac(4)Hex(4)Me(2)Pent(1)": [
+    "Hex(4)HexNAc(4)Me(2)Pent(1)[N]"
+  ],
+  "1751.62_Ac(1)Hex(4)": [
+    "Hex(4)HexNAc(4)NeuAc(1)[N]",
+    "Hex(4)HexNAc(4)NeuAc(1)[S]",
+    "Hex(4)HexNAc(4)NeuAc(1)[T]"
+  ],
+  "1911.54_Ac(1)Hex(4)O(6)S(2)": [
+    "Hex(4)HexNAc(4)NeuAc(1)Sulf(2)[S]",
+    "Hex(4)HexNAc(4)NeuAc(1)Sulf(2)[T]"
+  ],
+  "1991.49_Ac(1)Hex(4)O(9)S(3)": [
+    "Hex(4)HexNAc(4)NeuAc(1)Sulf(3)[S]",
+    "Hex(4)HexNAc(4)NeuAc(1)Sulf(3)[T]"
+  ],
+  "1767.62_Ac(4)Gc(1)Hex(4)": [
+    "Hex(4)HexNAc(4)NeuGc(1)[N]",
+    "Hex(4)HexNAc(4)NeuGc(1)[S]",
+    "Hex(4)HexNAc(4)NeuGc(1)[T]"
+  ],
+  "1927.53_Ac(4)Gc(1)Hex(4)O(6)S(2)": [
+    "Hex(4)HexNAc(4)NeuGc(1)Sulf(2)[S]",
+    "Hex(4)HexNAc(4)NeuGc(1)Sulf(2)[T]"
+  ],
+  "1592.57_Ac(4)Hex(4)Pent(1)": [
+    "Hex(4)HexNAc(4)Pent(1)[N]"
+  ],
+  "1540.49_Ac(4)Hex(4)O(3)S(1)": [
+    "Hex(4)HexNAc(4)Sulf(1)[N]"
+  ],
+  "1620.44_Ac(4)Hex(4)O(6)S(2)": [
+    "Hex(4)HexNAc(4)Sulf(2)[S]",
+    "Hex(4)HexNAc(4)Sulf(2)[T]"
+  ],
+  "1663.61_Ac(5)Hex(4)": [
+    "Hex(4)HexNAc(5)[N]"
+  ],
+  "1954.70_Ac(1)Hex(4)": [
+    "Hex(4)HexNAc(5)NeuAc(1)[N]"
+  ],
+  "1743.56_Ac(5)Hex(4)O(3)S(1)": [
+    "Hex(4)HexNAc(5)Sulf(1)[N]"
+  ],
+  "1866.69_Ac(6)Hex(4)": [
+    "Hex(4)HexNAc(6)[N]"
+  ],
+  "728.18_H(1)Hex(4)O(3)P(1)": [
+    "Hex(4)Phos(1)[S]",
+    "Hex(4)Phos(1)[T]"
+  ],
+  "810.26_Hex(5)": [
+    "Hex(5)[S]",
+    "Hex(5)[T]"
+  ],
+  "986.30_A(1)Hex(5)": [
+    "Hex(5)HexA(1)[S]",
+    "Hex(5)HexA(1)[T]"
+  ],
+  "1013.34_Ac(1)Hex(5)": [
+    "Hex(5)HexNAc(1)[N]",
+    "Hex(5)HexNAc(1)[S]",
+    "Hex(5)HexNAc(1)[T]"
+  ],
+  "1216.42_Ac(2)Hex(5)": [
+    "Hex(5)HexNAc(2)[N]"
+  ],
+  "1296.39_Ac(2)H(1)Hex(5)O(3)P(1)": [
+    "Hex(5)HexNAc(2)Phos(1)[N]"
+  ],
+  "1419.50_Ac(3)Hex(5)": [
+    "Hex(5)HexNAc(3)[N]"
+  ],
+  "1551.54_Ac(3)Hex(5)Pent(1)": [
+    "Hex(5)HexNAc(3)Pent(1)[N]"
+  ],
+  "1622.58_Ac(4)Hex(5)": [
+    "Hex(5)HexNAc(4)[N]",
+    "Hex(5)HexNAc(4)[S]",
+    "Hex(5)HexNAc(4)[T]"
+  ],
+  "1782.66_Ac(4)Hex(5)Me(2)Pent(1)": [
+    "Hex(5)HexNAc(4)Me(2)Pent(1)[N]"
+  ],
+  "1913.68_Ac(1)Hex(5)": [
+    "Hex(5)HexNAc(4)NeuAc(1)[N]"
+  ],
+  "1955.69_Ac(1)Hex(5)": [
+    "Hex(5)HexNAc(4)NeuAc(1)Ac(1)[N]"
+  ],
+  "1997.70_Ac(1)Hex(5)": [
+    "Hex(5)HexNAc(4)NeuAc(1)Ac(2)[N]"
+  ],
+  "1993.63_Ac(1)Hex(5)O(3)S(1)": [
+    "Hex(5)HexNAc(4)NeuAc(1)Sulf(1)[N]"
+  ],
+  "2204.77_Ac(2)Hex(5)": [
+    "Hex(5)HexNAc(4)NeuAc(2)[N]"
+  ],
+  "1929.67_Ac(4)Gc(1)Hex(5)": [
+    "Hex(5)HexNAc(4)NeuGc(1)[N]"
+  ],
+  "1702.54_Ac(4)Hex(5)O(3)S(1)": [
+    "Hex(5)HexNAc(4)Sulf(1)[N]"
+  ],
+  "1825.66_Ac(5)Hex(5)": [
+    "Hex(5)HexNAc(5)[N]",
+    "Hex(5)HexNAc(5)[S]",
+    "Hex(5)HexNAc(5)[T]"
+  ],
+  "890.23_H(1)Hex(5)O(3)P(1)": [
+    "Hex(5)Phos(1)[S]",
+    "Hex(5)Phos(1)[T]"
+  ],
+  "1050.16_H(3)Hex(5)O(9)P(3)": [
+    "Hex(5)Phos(3)[S]",
+    "Hex(5)Phos(3)[T]"
+  ],
+  "1175.40_Ac(1)Hex(6)": [
+    "Hex(6)HexNAc(1)[N]"
+  ],
+  "1378.48_Ac(2)Hex(6)": [
+    "Hex(6)HexNAc(2)[N]"
+  ],
+  "1458.44_Ac(2)H(1)Hex(6)O(3)P(1)": [
+    "Hex(6)HexNAc(2)Phos(1)[N]"
+  ],
+  "1581.56_Ac(3)Hex(6)": [
+    "Hex(6)HexNAc(3)[N]"
+  ],
+  "1661.52_Ac(3)H(1)Hex(6)O(3)P(1)": [
+    "Hex(6)HexNAc(3)Phos(1)[N]"
+  ],
+  "1784.63_Ac(4)Hex(6)": [
+    "Hex(6)HexNAc(4)[N]",
+    "Hex(6)HexNAc(4)[S]",
+    "Hex(6)HexNAc(4)[T]"
+  ],
+  "1826.68_Ac(4)Hex(6)Me(3)": [
+    "Hex(6)HexNAc(4)Me(3)[N]"
+  ],
+  "1958.72_Ac(4)Hex(6)Me(3)Pent(1)": [
+    "Hex(6)HexNAc(4)Me(3)Pent(1)[N]"
+  ],
+  "1987.71_Ac(5)Hex(6)": [
+    "Hex(6)HexNAc(5)[N]"
+  ],
+  "1052.28_H(1)Hex(6)O(3)P(1)": [
+    "Hex(6)Phos(1)[S]",
+    "Hex(6)Phos(1)[T]"
+  ],
+  "1212.22_H(3)Hex(6)O(9)P(3)": [
+    "Hex(6)Phos(3)[S]",
+    "Hex(6)Phos(3)[T]"
+  ],
+  "1337.45_Ac(1)Hex(7)": [
+    "Hex(7)HexNAc(1)[N]"
+  ],
+  "1540.53_Ac(2)Hex(7)": [
+    "Hex(7)HexNAc(2)[N]"
+  ],
+  "1620.49_Ac(2)H(1)Hex(7)O(3)P(1)": [
+    "Hex(7)HexNAc(2)Phos(1)[N]"
+  ],
+  "1700.46_Ac(2)H(2)Hex(7)O(6)P(2)": [
+    "Hex(7)HexNAc(2)Phos(2)[N]"
+  ],
+  "1743.61_Ac(3)Hex(7)": [
+    "Hex(7)HexNAc(3)[N]"
+  ],
+  "1823.57_Ac(3)H(1)Hex(7)O(3)P(1)": [
+    "Hex(7)HexNAc(3)Phos(1)[N]"
+  ],
+  "1946.69_Ac(4)Hex(7)": [
+    "Hex(7)HexNAc(4)[N]"
+  ],
+  "1374.27_H(3)Hex(7)O(9)P(3)": [
+    "Hex(7)Phos(3)[S]",
+    "Hex(7)Phos(3)[T]"
+  ],
+  "1499.50_Ac(1)Hex(8)": [
+    "Hex(8)HexNAc(1)[N]"
+  ],
+  "1702.58_Ac(2)Hex(8)": [
+    "Hex(8)HexNAc(2)[N]"
+  ],
+  "1536.32_H(3)Hex(8)O(9)P(3)": [
+    "Hex(8)Phos(3)[S]",
+    "Hex(8)Phos(3)[T]"
+  ],
+  "1458.48_Hex(9)": [
+    "Hex(9)[N]"
+  ],
+  "1661.55_Ac(1)Hex(9)": [
+    "Hex(9)HexNAc(1)[N]"
+  ],
+  "1864.63_Ac(2)Hex(9)": [
+    "Hex(9)HexNAc(2)[N]"
+  ],
+  "1698.37_H(3)Hex(9)O(9)P(3)": [
+    "Hex(9)Phos(3)[S]",
+    "Hex(9)Phos(3)[T]"
+  ],
+  "162.05_Hex(1)": [
+    "Hex[AnyN-term]",
+    "Hex[C]",
+    "Hex[K]",
+    "Hex[N]",
+    "Hex[R]",
+    "Hex[S]",
+    "Hex[T]",
+    "Hex[W]",
+    "Hex[Y]"
+  ],
+  "961.30_A(2)Ac(3)": [
+    "HexA(2)HexNAc(3)[S]",
+    "HexA(2)HexNAc(3)[T]"
+  ],
+  "161.07_N(1)": [
+    "HexN[K]",
+    "HexN[N]",
+    "HexN[S]",
+    "HexN[T]",
+    "HexN[W]"
+  ],
+  "703.22_Ac(1)Kdn(2)": [
+    "HexNAc(1)Kdn(2)[S]",
+    "HexNAc(1)Kdn(2)[T]"
+  ],
+  "494.17_Ac(1)": [
+    "HexNAc(1)NeuAc(1)[S]",
+    "HexNAc(1)NeuAc(1)[T]"
+  ],
+  "510.17_Ac(1)Gc(1)": [
+    "HexNAc(1)NeuGc(1)[S]",
+    "HexNAc(1)NeuGc(1)[T]"
+  ],
+  "817.26_Ac(1)Gc(2)": [
+    "HexNAc(1)NeuGc(2)[S]",
+    "HexNAc(1)NeuGc(2)[T]"
+  ],
+  "349.14_Ac(1)Hex(1)": [
+    "HexNAc(1)dHex(1)[N]",
+    "HexNAc(1)dHex(1)[S]",
+    "HexNAc(1)dHex(1)[T]"
+  ],
+  "495.20_Ac(1)Hex(2)": [
+    "HexNAc(1)dHex(2)[N]"
+  ],
+  "406.16_Ac(2)": [
+    "HexNAc(2)[N]",
+    "HexNAc(2)[S]",
+    "HexNAc(2)[T]"
+  ],
+  "697.25_Ac(1)": [
+    "HexNAc(2)NeuAc(1)[S]",
+    "HexNAc(2)NeuAc(1)[T]"
+  ],
+  "777.21_Ac(1)O(3)S(1)": [
+    "HexNAc(2)NeuAc(1)Sulf(1)[S]",
+    "HexNAc(2)NeuAc(1)Sulf(1)[T]"
+  ],
+  "713.25_Ac(2)Gc(1)": [
+    "HexNAc(2)NeuGc(1)[S]",
+    "HexNAc(2)NeuGc(1)[T]"
+  ],
+  "486.12_Ac(2)O(3)S(1)": [
+    "HexNAc(2)Sulf(1)[S]",
+    "HexNAc(2)Sulf(1)[T]"
+  ],
+  "552.22_Ac(2)Hex(1)": [
+    "HexNAc(2)dHex(1)[N]"
+  ],
+  "698.27_Ac(2)Hex(2)": [
+    "HexNAc(2)dHex(2)[N]"
+  ],
+  "609.24_Ac(3)": [
+    "HexNAc(3)[S]",
+    "HexNAc(3)[T]"
+  ],
+  "689.19_Ac(3)O(3)S(1)": [
+    "HexNAc(3)Sulf(1)[S]",
+    "HexNAc(3)Sulf(1)[T]"
+  ],
+  "812.32_Ac(4)": [
+    "HexNAc(4)[S]",
+    "HexNAc(4)[T]"
+  ],
+  "1015.40_Ac(5)": [
+    "HexNAc(5)[S]",
+    "HexNAc(5)[T]"
+  ],
+  "203.08_Ac(1)": [
+    "HexNAc[C]",
+    "HexNAc[N]",
+    "HexNAc[S]",
+    "HexNAc[T]"
+  ],
+  "-66.02_C(-3)H(-2)N(-2)": [
+    "His->Ala[H]"
+  ],
+  "19.04_H(5)N(1)": [
+    "His->Arg[H]"
+  ],
+  "-23.02_C(-2)H(-1)N(-1)O(1)": [
+    "His->Asn[H]",
+    "Trp->Tyr[W]"
+  ],
+  "-22.03_C(-2)H(-2)N(-2)O(2)": [
+    "His->Asp[H]"
+  ],
+  "-34.05_C(-3)H(-2)N(-2)S(1)": [
+    "His->Cys[H]"
+  ],
+  "-9.00_C(-1)H(1)N(-1)O(1)": [
+    "His->Gln[H]"
+  ],
+  "-8.02_C(-1)N(-2)O(2)": [
+    "His->Glu[H]"
+  ],
+  "-80.04_C(-4)H(-4)N(-2)": [
+    "His->Gly[H]"
+  ],
+  "-8.96_H(5)N(-1)": [
+    "His->Lys[H]"
+  ],
+  "-6.02_C(-1)H(2)N(-2)S(1)": [
+    "His->Met[H]"
+  ],
+  "10.01_C(3)H(2)N(-2)": [
+    "His->Phe[H]"
+  ],
+  "-40.01_C(-1)N(-2)": [
+    "His->Pro[H]"
+  ],
+  "-50.03_C(-3)H(-2)N(-2)O(1)": [
+    "His->Ser[H]"
+  ],
+  "-36.01_C(-2)N(-2)O(1)": [
+    "His->Thr[H]"
+  ],
+  "26.00_C(3)H(2)N(-2)O(1)": [
+    "His->Tyr[H]"
+  ],
+  "-37.99_C(-1)H(2)N(-2)": [
+    "His->Val[H]"
+  ],
+  "-23.97_H(4)N(-2)": [
+    "His->Xle[H]"
+  ],
+  "33.97_C(-1)H(-2)O(3)": [
+    "Homocysteic_acid[M]"
+  ],
+  "146.04_C(9)H(6)O(2)": [
+    "Hydroxycinnamyl[C]"
+  ],
+  "220.18_C(15)H(24)O(1)": [
+    "Hydroxyfarnesyl[C]",
+    "NP40[AnyN-term]"
+  ],
+  "614.16_C(34)Fe(1)H(30)N(4)O(4)": [
+    "Hydroxyheme[E]"
+  ],
+  "108.02_C(6)H(4)O(2)": [
+    "HydroxymethylOP[K]"
+  ],
+  "59.05_C(3)H(7)O(1)": [
+    "Hydroxytrimethyl[K]"
+  ],
+  "87.07_C(4)H(9)N(1)O(1)": [
+    "Hypusine[K]"
+  ],
+  "452.03_C(18)H(16)N(2)O(8)S(2)": [
+    "IASD[C]"
+  ],
+  "316.14_C(22)H(21)P(1)": [
+    "IBTP[C]"
+  ],
+  "442.22_C(20)H(34)N(4)O(5)S(1)": [
+    "ICAT-D[C]"
+  ],
+  "450.28_C(20)H(8)N(4)O(5)S(1)": [
+    "ICAT-D_2H(8)[C]"
+  ],
+  "486.25_C(22)H(38)N(4)O(6)S(1)": [
+    "ICAT-G[C]"
+  ],
+  "494.30_C(22)H(8)N(4)O(6)S(1)": [
+    "ICAT-G_2H(8)[C]"
+  ],
+  "345.10_C(15)Cl(1)H(20)N(1)O(6)": [
+    "ICAT-H[C]"
+  ],
+  "351.12_C(6)Cl(1)H(20)N(1)O(6)": [
+    "ICAT-H_13C(6)[C]"
+  ],
+  "138.07_C(8)H(10)O(2)": [
+    "ICDID[C]",
+    "Xlink_DSS[138][K]",
+    "Xlink_DSS[138][ProteinN-term]"
+  ],
+  "144.11_C(8)H(6)O(2)": [
+    "ICDID_2H(6)[C]"
+  ],
+  "214.99_C(9)Cl(2)H(7)N(1)O(1)": [
+    "IDEnT[C]"
+  ],
+  "326.14_C(14)H(22)N(4)O(3)S(1)": [
+    "IED-Biotin[C]"
+  ],
+  "296.02_Br(1)C(12)H(13)N(2)O(2)": [
+    "IGBP[C]"
+  ],
+  "298.02_Br(1)C(2)H(13)N(2)O(2)": [
+    "IGBP_13C(2)[C]"
+  ],
+  "688.20_Ac(1)C(2)H(3)Hex(2)N(1)S(1)": [
+    "IMEHex(2)NeuAc(1)[K]"
+  ],
+  "68.04_C(3)H(4)N(2)": [
+    "IMID[K]"
+  ],
+  "72.06_C(3)H(4)N(2)": [
+    "IMID_2H(4)[K]"
+  ],
+  "-15.01_H(-1)N(-1)": [
+    "ISD_z+2_ion[AnyN-term]",
+    "Lys->Xle[K]",
+    "Ser->LacticAcid[ProteinN-termS]"
+  ],
+  "225.09_C(10)H(15)N(3)O(1)S(1)": [
+    "Iminobiotin[AnyN-term]",
+    "Iminobiotin[K]"
+  ],
+  "125.90_H(-1)I(1)": [
+    "Iodo[H]",
+    "Iodo[Y]"
+  ],
+  "322.02_C(9)H(11)N(2)O(9)P(1)": [
+    "IodoU-AMP[F]",
+    "IodoU-AMP[W]",
+    "IodoU-AMP[Y]"
+  ],
+  "133.05_C(8)H(7)N(1)O(1)": [
+    "Iodoacetanilide[AnyN-term]",
+    "Iodoacetanilide[C]",
+    "Iodoacetanilide[K]"
+  ],
+  "139.07_C(6)H(7)N(1)O(1)": [
+    "Iodoacetanilide_13C(6)[AnyN-term]",
+    "Iodoacetanilide_13C(6)[C]",
+    "Iodoacetanilide_13C(6)[K]"
+  ],
+  "122.01_C(3)H(7)O(3)P(1)": [
+    "Isopropylphospho[S]",
+    "Isopropylphospho[T]",
+    "Isopropylphospho[Y]"
+  ],
+  "348.19_C(20)H(28)O(5)": [
+    "LG-Hlactam-K[K]",
+    "LG-Hlactam-K[ProteinN-term]"
+  ],
+  "306.17_C(19)H(26)N(-2)O(5)": [
+    "LG-Hlactam-R[R]"
+  ],
+  "314.19_C(20)H(26)O(3)": [
+    "LG-anhydrolactam[AnyN-term]",
+    "LG-anhydrolactam[K]"
+  ],
+  "298.19_C(20)H(26)O(2)": [
+    "LG-anhyropyrrole[AnyN-term]",
+    "LG-anhyropyrrole[K]"
+  ],
+  "332.20_C(20)H(28)O(4)": [
+    "LG-lactam-K[K]",
+    "LG-lactam-K[ProteinN-term]"
+  ],
+  "290.18_C(19)H(26)N(-2)O(4)": [
+    "LG-lactam-R[R]"
+  ],
+  "316.20_C(20)H(28)O(3)": [
+    "LG-pyrrole[AnyN-term]",
+    "LG-pyrrole[K]"
+  ],
+  "411.26_C(18)H(33)N(7)O(4)": [
+    "LRGG+dimethyl[K]"
+  ],
+  "397.24_C(17)H(31)N(7)O(4)": [
+    "LRGG+methyl[K]"
+  ],
+  "383.23_C(16)H(29)N(7)O(4)": [
+    "LRGG[K]"
+  ],
+  "20.02_C(1)H(3)O(1)": [
+    "Label_13C(1)2H(3)+Oxidation[M]"
+  ],
+  "4.02_C(1)H(3)": [
+    "Label_13C(1)2H(3)[M]"
+  ],
+  "4.00_C(2)N(2)": [
+    "Label_13C(2)15N(2)[K]"
+  ],
+  "3.01_C(3)": [
+    "Label_13C(3)[A]"
+  ],
+  "4.01_C(3)N(1)": [
+    "Label_13C(3)15N(1)[A]"
+  ],
+  "20.01_C(4)O(1)": [
+    "Label_13C(4)+Oxidation[M]"
+  ],
+  "4.01_C(4)": [
+    "Label_13C(4)[M]"
+  ],
+  "5.01_C(4)N(1)": [
+    "Label_13C(4)15N(1)[D]"
+  ],
+  "120.05_C(4)H(6)N(2)O(2)": [
+    "Label_13C(4)15N(2)+GG[K]"
+  ],
+  "5.02_C(5)": [
+    "Label_13C(5)[P]"
+  ],
+  "6.01_C(5)N(1)": [
+    "Label_13C(5)15N(1)[E]",
+    "Label_13C(5)15N(1)[M]",
+    "Label_13C(5)15N(1)[P]",
+    "Label_13C(5)15N(1)[V]"
+  ],
+  "48.03_C(6)H(2)O(1)": [
+    "Label_13C(6)+Acetyl[K]"
+  ],
+  "34.05_C(6)H(4)": [
+    "Label_13C(6)+Dimethyl[K]"
+  ],
+  "120.06_C(6)H(6)N(2)O(2)": [
+    "Label_13C(6)+GG[K]"
+  ],
+  "6.02_C(6)": [
+    "Label_13C(6)[I]",
+    "Label_13C(6)[K]",
+    "Label_13C(6)[L]",
+    "Label_13C(6)[R]"
+  ],
+  "7.02_C(6)N(1)": [
+    "Label_13C(6)15N(1)[I]",
+    "Label_13C(6)15N(1)[L]"
+  ],
+  "50.02_C(6)H(2)N(2)O(1)": [
+    "Label_13C(6)15N(2)+Acetyl[K]"
+  ],
+  "36.05_C(6)H(4)N(2)": [
+    "Label_13C(6)15N(2)+Dimethyl[K]"
+  ],
+  "122.06_C(6)H(6)N(2)O(2)": [
+    "Label_13C(6)15N(2)+GG[K]"
+  ],
+  "8.01_C(6)N(2)": [
+    "Label_13C(6)15N(2)[K]"
+  ],
+  "38.04_C(6)H(4)N(4)": [
+    "Label_13C(6)15N(4)+Dimethyl[R]"
+  ],
+  "46.08_C(8)H(6)N(4)": [
+    "Label_13C(6)15N(4)+Dimethyl_2H(6)13C(2)[R]"
+  ],
+  "24.02_C(6)H(2)N(4)": [
+    "Label_13C(6)15N(4)+Methyl[R]"
+  ],
+  "28.05_C(7)H(3)N(4)": [
+    "Label_13C(6)15N(4)+Methyl_2H(3)13C(1)[R]"
+  ],
+  "10.01_C(6)N(4)": [
+    "Label_13C(6)15N(4)[R]"
+  ],
+  "89.00_C(9)H(1)O(3)P(1)": [
+    "Label_13C(9)+Phospho[Y]"
+  ],
+  "9.03_C(9)": [
+    "Label_13C(9)[F]",
+    "Label_13C(9)[Y]"
+  ],
+  "10.03_C(9)N(1)": [
+    "Label_13C(9)15N(1)[F]"
+  ],
+  "1.00_N(1)": [
+    "Label_15N(1)[A]",
+    "Label_15N(1)[C]",
+    "Label_15N(1)[D]",
+    "Label_15N(1)[E]",
+    "Label_15N(1)[F]",
+    "Label_15N(1)[G]",
+    "Label_15N(1)[I]",
+    "Label_15N(1)[L]",
+    "Label_15N(1)[M]",
+    "Label_15N(1)[P]",
+    "Label_15N(1)[S]",
+    "Label_15N(1)[T]",
+    "Label_15N(1)[V]",
+    "Label_15N(1)[Y]"
+  ],
+  "1.99_N(2)": [
+    "Label_15N(2)[K]",
+    "Label_15N(2)[N]",
+    "Label_15N(2)[Q]",
+    "Label_15N(2)[W]"
+  ],
+  "11.05_H(9)N(2)": [
+    "Label_15N(2)2H(9)[K]"
+  ],
+  "2.99_N(3)": [
+    "Label_15N(3)[H]"
+  ],
+  "3.99_N(4)": [
+    "Label_15N(4)[R]"
+  ],
+  "10.06_H(10)": [
+    "Label_2H(10)[L]"
+  ],
+  "19.01_H(3)O(1)": [
+    "Label_2H(3)+Oxidation[M]"
+  ],
+  "3.02_H(3)": [
+    "Label_2H(3)[L]",
+    "Label_2H(3)[M]"
+  ],
+  "46.04_C(2)H(4)O(1)": [
+    "Label_2H(4)+Acetyl[K]"
+  ],
+  "118.07_C(4)H(4)N(2)O(2)": [
+    "Label_2H(4)+GG[K]"
+  ],
+  "4.03_H(4)": [
+    "Label_2H(4)[F]",
+    "Label_2H(4)[K]",
+    "Label_2H(4)[Y]"
+  ],
+  "5.03_C(1)H(4)": [
+    "Label_2H(4)13C(1)[R]"
+  ],
+  "7.03_H(6)N(1)": [
+    "Label_2H(6)15N(1)[P]"
+  ],
+  "11.03_H(7)N(4)": [
+    "Label_2H(7)15N(4)[R]"
+  ],
+  "17.07_C(6)H(9)N(2)": [
+    "Label_2H(9)13C(6)15N(2)[K]"
+  ],
+  "33.95_C(-1)H(-2)O(1)S(1)": [
+    "Leu->MetOx[L]"
+  ],
+  "188.03_C(8)H(12)O(1)S(2)": [
+    "Lipoyl[K]"
+  ],
+  "-57.06_C(-3)H(-7)N(-1)": [
+    "Lys->Ala[K]"
+  ],
+  "-1.03_H(-3)N(-1)O(1)": [
+    "Lys->Allysine[K]"
+  ],
+  "14.96_H(-3)N(-1)O(2)": [
+    "Lys->AminoadipicAcid[K]"
+  ],
+  "28.01_N(2)": [
+    "Lys->Arg[K]"
+  ],
+  "-14.05_C(-2)H(-6)O(1)": [
+    "Lys->Asn[K]"
+  ],
+  "-13.07_C(-2)H(-7)N(-1)O(2)": [
+    "Lys->Asp[K]"
+  ],
+  "31.94_C(-1)H(-4)O(1)S(1)": [
+    "Lys->CamCys[K]"
+  ],
+  "-25.09_C(-3)H(-7)N(-1)S(1)": [
+    "Lys->Cys[K]"
+  ],
+  "-0.04_C(-1)H(-4)O(1)": [
+    "Lys->Gln[K]"
+  ],
+  "0.95_C(-1)H(-5)N(-1)O(2)": [
+    "Lys->Glu[K]"
+  ],
+  "-71.07_C(-4)H(-9)N(-1)": [
+    "Lys->Gly[K]"
+  ],
+  "8.96_H(-5)N(1)": [
+    "Lys->His[K]"
+  ],
+  "2.95_C(-1)H(-3)N(-1)S(1)": [
+    "Lys->Met[K]"
+  ],
+  "18.94_C(-1)H(-3)N(-1)O(1)S(1)": [
+    "Lys->MetOx[K]"
+  ],
+  "18.97_C(3)H(-3)N(-1)": [
+    "Lys->Phe[K]"
+  ],
+  "-31.04_C(-1)H(-5)N(-1)": [
+    "Lys->Pro[K]"
+  ],
+  "-41.06_C(-3)H(-7)N(-1)O(1)": [
+    "Lys->Ser[K]"
+  ],
+  "-27.05_C(-2)H(-5)N(-1)O(1)": [
+    "Lys->Thr[K]"
+  ],
+  "57.98_C(5)H(-2)": [
+    "Lys->Trp[K]"
+  ],
+  "34.97_C(3)H(-3)N(-1)O(1)": [
+    "Lys->Tyr[K]"
+  ],
+  "-29.03_C(-1)H(-3)N(-1)": [
+    "Lys->Val[K]"
+  ],
+  "-128.09_C(-6)H(-12)N(-2)O(-1)": [
+    "Lys-loss[ProteinC-termK]"
+  ],
+  "128.09_C(6)H(12)N(2)O(1)": [
+    "Lys[AnyN-term]"
+  ],
+  "241.09_C(10)H(15)N(3)O(2)S(1)": [
+    "Lysbiotinhydrazide[K]"
+  ],
+  "383.15_C(20)H(21)N(3)O(5)": [
+    "MDCC[C]"
+  ],
+  "54.01_C(3)H(2)O(1)": [
+    "MG-H1[R](Delta_H(2)C(3)O(1)[R])",
+    "Xlink_DSSO[54][K](Delta_H(2)C(3)O(1)[K])",
+    "Xlink_DSSO[54][ProteinN-term]"
+  ],
+  "265.15_C(18)H(19)N(1)O(1)": [
+    "MM-diphenylpentanone[C]"
+  ],
+  "184.08_C(9)H(14)N(1)O(1)S(1)": [
+    "MTSL[C]"
+  ],
+  "525.23_C(23)H(35)N(5)O(7)S(1)": [
+    "Maleimide-PEO2-Biotin[C]"
+  ],
+  "86.00_C(3)H(2)O(3)": [
+    "Malonyl[C]",
+    "Malonyl[K]",
+    "Malonyl[S]"
+  ],
+  "107.98_C(2)H(5)O(1)P(1)S(1)": [
+    "MeMePhosphorothioate[S]"
+  ],
+  "172.05_C(11)H(8)O(2)": [
+    "Menadione-HQ[C]",
+    "Menadione-HQ[K]"
+  ],
+  "170.04_C(11)H(6)O(2)": [
+    "Menadione[C]",
+    "Menadione[K]"
+  ],
+  "98.07_C(6)H(10)O(1)": [
+    "MesitylOxide[H]",
+    "MesitylOxide[K]",
+    "MesitylOxide[ProteinN-term]"
+  ],
+  "-4.99_C(-1)H(-3)N(3)S(-1)": [
+    "Met->Aha[M]"
+  ],
+  "-60.00_C(-2)H(-4)S(-1)": [
+    "Met->Ala[M]"
+  ],
+  "25.06_C(1)H(3)N(3)S(-1)": [
+    "Met->Arg[M]"
+  ],
+  "-17.00_C(-1)H(-3)N(1)O(1)S(-1)": [
+    "Met->Asn[M]"
+  ],
+  "-16.01_C(-1)H(-4)O(2)S(-1)": [
+    "Met->Asp[M]"
+  ],
+  "-32.01_C(-1)H(-4)O(1)S(-1)": [
+    "Met->AspSA[M]"
+  ],
+  "-28.03_C(-2)H(-4)": [
+    "Met->Cys[M]",
+    "Val->Ala[V]"
+  ],
+  "-2.98_H(-1)N(1)O(1)S(-1)": [
+    "Met->Gln[M]"
+  ],
+  "-2.00_H(-2)O(2)S(-1)": [
+    "Met->Glu[M]"
+  ],
+  "-74.02_C(-3)H(-6)S(-1)": [
+    "Met->Gly[M]"
+  ],
+  "6.02_C(1)H(-2)N(2)S(-1)": [
+    "Met->His[M]"
+  ],
+  "-21.99_C(1)H(-2)S(-1)": [
+    "Met->Hpg[M]"
+  ],
+  "16.03_C(4)S(-1)": [
+    "Met->Phe[M]"
+  ],
+  "-44.01_C(-2)H(-4)O(1)S(-1)": [
+    "Met->Ser[M]"
+  ],
+  "55.04_C(6)H(1)N(1)S(-1)": [
+    "Met->Trp[M]"
+  ],
+  "32.02_C(4)O(1)S(-1)": [
+    "Met->Tyr[M]"
+  ],
+  "-17.96_C(1)H(2)S(-1)": [
+    "Met->Xle[M]"
+  ],
+  "-89.03_C(-3)H(-7)N(-1)S(-1)": [
+    "Met-loss+Acetyl[ProteinN-termM]"
+  ],
+  "-131.04_C(-5)H(-9)N(-1)O(-1)S(-1)": [
+    "Met-loss[ProteinN-termM]"
+  ],
+  "59.05_C(3)H(3)O(1)": [
+    "Methyl+Acetyl_2H(3)[K]"
+  ],
+  "15.00_C(1)H(1)N(-1)O(1)": [
+    "Methyl+Deamidated[N](Asn->Glu[N])",
+    "Methyl+Deamidated[Q]"
+  ],
+  "710.38_C(32)H(58)N(2)O(15)": [
+    "Methyl-PEO12-Maleimide[C]"
+  ],
+  "16.03_C(1)H(2)": [
+    "Methyl_2H(2)[AnyN-term]",
+    "Methyl_2H(2)[K]"
+  ],
+  "62.06_C(3)H(6)O(1)": [
+    "Methyl_2H(3)+Acetyl_2H(3)[K]"
+  ],
+  "17.03_C(1)H(3)": [
+    "Methyl_2H(3)[AnyC-term]",
+    "Methyl_2H(3)[D]",
+    "Methyl_2H(3)[E]",
+    "Methyl_2H(3)[K]",
+    "Methyl_2H(3)[R]"
+  ],
+  "18.04_C(1)H(3)": [
+    "Methyl_2H(3)13C(1)[AnyN-term]",
+    "Methyl_2H(3)13C(1)[K]",
+    "Methyl_2H(3)13C(1)[R]"
+  ],
+  "100.02_C(4)H(4)O(3)": [
+    "Methylmalonylation[S]",
+    "Succinyl[AnyN-term]",
+    "Succinyl[K]",
+    "Succinyl[ProteinN-term]"
+  ],
+  "77.99_C(1)H(3)O(2)P(1)": [
+    "Methylphosphonate[S]",
+    "Methylphosphonate[T]",
+    "Methylphosphonate[Y]"
+  ],
+  "109.05_C(6)H(7)N(1)O(1)": [
+    "Methylpyrroline[K]"
+  ],
+  "831.20_C(36)H(37)N(3)O(20)": [
+    "Microcin[ProteinC-term]"
+  ],
+  "386.11_C(13)H(19)N(6)O(6)P(1)": [
+    "MicrocinC7[ProteinC-term]"
+  ],
+  "521.88_C(10)H(11)Mo(1)N(5)O(8)P(1)S(2)": [
+    "Molybdopterin[C]"
+  ],
+  "1620.93_C(40)H(47)Mo(1)N(20)O(26)P(4)S(3)Se(1)": [
+    "MolybdopterinGD+Delta_S(-1)Se(1)[C]"
+  ],
+  "1572.99_C(40)H(47)Mo(1)N(20)O(26)P(4)S(4)": [
+    "MolybdopterinGD[C]",
+    "MolybdopterinGD[D]",
+    "MolybdopterinGD[U]"
+  ],
+  "275.10_Ac(1)O(-1)": [
+    "MurNAc[A]"
+  ],
+  "208.18_C(14)H(24)O(1)": [
+    "Myristoleyl[ProteinN-termG]"
+  ],
+  "206.17_C(14)H(22)O(1)": [
+    "Myristoyl+Delta_H(-4)[ProteinN-termG]"
+  ],
+  "210.20_C(14)H(26)O(1)": [
+    "Myristoyl[AnyN-termG]",
+    "Myristoyl[C]",
+    "Myristoyl[K]"
+  ],
+  "107.01_C(2)H(6)N(1)O(2)P(1)": [
+    "N-dimethylphosphate[S]"
+  ],
+  "325.23_C(18)H(31)N(1)O(4)": [
+    "NA-LNO2[C]",
+    "NA-LNO2[H]"
+  ],
+  "327.24_C(18)H(33)N(1)O(4)": [
+    "NA-OA-NO2[C]",
+    "NA-OA-NO2[H]"
+  ],
+  "152.99_C(6)H(3)N(1)O(2)S(1)": [
+    "NBS[W]"
+  ],
+  "159.01_C(6)H(3)N(1)O(2)S(1)": [
+    "NBS_13C(6)[W]"
+  ],
+  "175.04_C(13)H(5)N(1)": [
+    "NDA[AnyN-term]",
+    "NDA[K]"
+  ],
+  "85.05_C(4)H(7)N(1)O(1)": [
+    "NEIAA[C]",
+    "NEIAA[Y]",
+    "Xlink_BuUrBu[85][K]",
+    "Xlink_BuUrBu[85][ProteinN-term]"
+  ],
+  "90.08_C(4)H(5)N(1)O(1)": [
+    "NEIAA_2H(5)[C]",
+    "NEIAA_2H(5)[Y]"
+  ],
+  "148.09_C(6)H(5)N(1)O(3)": [
+    "NEM_2H(5)+H2O[C]"
+  ],
+  "130.08_C(6)H(5)N(1)O(2)": [
+    "NEM_2H(5)[C]"
+  ],
+  "157.02_C(6)H(7)N(1)O(2)S(1)": [
+    "NEMsulfur[C]"
+  ],
+  "175.03_C(6)H(9)N(1)O(3)S(1)": [
+    "NEMsulfurWater[C]",
+    "Xlink_DSSO[175][K]",
+    "Xlink_DSSO[175][ProteinN-term]"
+  ],
+  "339.16_C(16)H(25)N(3)O(3)S(1)": [
+    "NHS-LC-Biotin[AnyN-term]",
+    "NHS-LC-Biotin[K]"
+  ],
+  "471.13_C(27)H(21)N(1)O(7)": [
+    "NHS-fluorescein[K]"
+  ],
+  "252.04_C(10)H(10)N(3)O(3)S(1)": [
+    "NO_SMX_SEMD[C]"
+  ],
+  "267.03_C(10)H(9)N(3)O(4)S(1)": [
+    "NO_SMX_SIMD[C]"
+  ],
+  "268.04_C(10)H(10)N(3)O(4)S(1)": [
+    "NO_SMX_SMCT[C]"
+  ],
+  "469.23_C(19)H(31)N(7)O(7)": [
+    "NQIGG[K]"
+  ],
+  "143.06_C(6)H(9)N(1)O(3)": [
+    "Nethylmaleimide+water[C]",
+    "Nethylmaleimide+water[K]"
+  ],
+  "125.05_C(6)H(7)N(1)O(2)": [
+    "Nethylmaleimide[C]"
+  ],
+  "291.10_Ac(1)": [
+    "NeuAc[N]",
+    "NeuAc[S]",
+    "NeuAc[T]"
+  ],
+  "307.09_Gc(1)": [
+    "NeuGc[N]",
+    "NeuGc[S]",
+    "NeuGc[T]"
+  ],
+  "44.99_H(-1)N(1)O(2)": [
+    "Nitro[F]",
+    "Nitro[W]",
+    "Nitro[Y]"
+  ],
+  "28.99_H(-1)N(1)O(1)": [
+    "Nitrosyl[C]",
+    "Val->Gln[V]"
+  ],
+  "111.03_C(5)H(5)N(1)O(2)": [
+    "Nmethylmaleimide[C]",
+    "Xlink_BuUrBu[111][K](Nmethylmaleimide[K])",
+    "Xlink_BuUrBu[111][ProteinN-term]"
+  ],
+  "135.04_C(4)H(10)N(1)O(2)P(1)": [
+    "O-Et-N-diMePhospho[S]"
+  ],
+  "120.03_C(4)H(9)O(2)P(1)": [
+    "O-Isopropylmethylphosphonate[S]",
+    "O-Isopropylmethylphosphonate[T]",
+    "O-Isopropylmethylphosphonate[Y]"
+  ],
+  "93.98_C(1)H(3)O(3)P(1)": [
+    "O-Methylphosphate[S]",
+    "O-Methylphosphate[T]",
+    "O-Methylphosphate[Y]"
+  ],
+  "162.08_C(7)H(15)O(2)P(1)": [
+    "O-pinacolylmethylphosphonate[H]",
+    "O-pinacolylmethylphosphonate[K]",
+    "O-pinacolylmethylphosphonate[S]",
+    "O-pinacolylmethylphosphonate[T]",
+    "O-pinacolylmethylphosphonate[Y]"
+  ],
+  "126.10_C(8)H(14)O(1)": [
+    "Octanoyl[C]",
+    "Octanoyl[S]",
+    "Octanoyl[T]"
+  ],
+  "310.14_C(15)H(22)N(2)O(3)S(1)": [
+    "OxArgBiotin[R]"
+  ],
+  "312.15_C(15)H(24)N(2)O(3)S(1)": [
+    "OxArgBiotinRed[R]"
+  ],
+  "352.16_C(16)H(24)N(4)O(3)S(1)": [
+    "OxLysBiotin[K]"
+  ],
+  "354.17_C(16)H(26)N(4)O(3)S(1)": [
+    "OxLysBiotinRed[K]"
+  ],
+  "369.18_C(16)H(27)N(5)O(3)S(1)": [
+    "OxProBiotin[P]"
+  ],
+  "371.20_C(16)H(29)N(5)O(3)S(1)": [
+    "OxProBiotinRed[P]"
+  ],
+  "141.04_C(6)H(7)N(1)O(3)": [
+    "Oxidation+NEM[C]"
+  ],
+  "163.05_C(9)H(9)N(1)S(1)": [
+    "PEITC[AnyN-term]",
+    "PEITC[C]",
+    "PEITC[K]"
+  ],
+  "414.19_C(18)H(30)N(4)O(5)S(1)": [
+    "PEO-Iodoacetyl-LC-Biotin[C]"
+  ],
+  "121.04_C(7)H(7)N(1)O(-1)S(1)": [
+    "PET[S]",
+    "PET[T]"
+  ],
+  "120.02_C(7)H(4)O(2)": [
+    "PS_Hapten[C]",
+    "PS_Hapten[H]",
+    "PS_Hapten[K]"
+  ],
+  "236.21_C(16)H(28)O(1)": [
+    "Palmitoleyl[C]",
+    "Palmitoleyl[S]",
+    "Palmitoleyl[T]"
+  ],
+  "238.23_C(16)H(30)O(1)": [
+    "Palmitoyl[C]",
+    "Palmitoyl[K]",
+    "Palmitoyl[S]",
+    "Palmitoyl[T]",
+    "Palmitoyl[ProteinN-term]"
+  ],
+  "335.12_Ac(1)Pent(1)": [
+    "Pent(1)HexNAc(1)[S]",
+    "Pent(1)HexNAc(1)[T]"
+  ],
+  "264.08_Pent(2)": [
+    "Pent(2)[S]",
+    "Pent(2)[T]"
+  ],
+  "132.04_Pent(1)": [
+    "Pentose[S]",
+    "Pentose[T]"
+  ],
+  "85.09_C(5)H(11)N(1)": [
+    "Pentylamine[Q]"
+  ],
+  "-76.03_C(-6)H(-4)": [
+    "Phe->Ala[F]",
+    "Tyr->Ser[Y]"
+  ],
+  "9.03_C(-3)H(3)N(3)": [
+    "Phe->Arg[F]"
+  ],
+  "-33.03_C(-5)H(-3)N(1)O(1)": [
+    "Phe->Asn[F]"
+  ],
+  "-32.04_C(-5)H(-4)O(2)": [
+    "Phe->Asp[F]"
+  ],
+  "12.96_C(-4)H(-1)N(1)O(1)S(1)": [
+    "Phe->CamCys[F]"
+  ],
+  "-44.06_C(-6)H(-4)S(1)": [
+    "Phe->Cys[F]"
+  ],
+  "-19.01_C(-4)H(-1)N(1)O(1)": [
+    "Phe->Gln[F]"
+  ],
+  "-18.03_C(-4)H(-2)O(2)": [
+    "Phe->Glu[F]"
+  ],
+  "-90.05_C(-7)H(-6)": [
+    "Phe->Gly[F]"
+  ],
+  "-10.01_C(-3)H(-2)N(2)": [
+    "Phe->His[F]"
+  ],
+  "-18.97_C(-3)H(3)N(1)": [
+    "Phe->Lys[F]"
+  ],
+  "-16.03_C(-4)S(1)": [
+    "Phe->Met[F]"
+  ],
+  "-50.02_C(-4)H(-2)": [
+    "Phe->Pro[F]"
+  ],
+  "-60.04_C(-6)H(-4)O(1)": [
+    "Phe->Ser[F]"
+  ],
+  "-46.02_C(-5)H(-2)O(1)": [
+    "Phe->Thr[F]"
+  ],
+  "39.01_C(2)H(1)N(1)": [
+    "Phe->Trp[F]"
+  ],
+  "-48.00_C(-4)": [
+    "Phe->Val[F]"
+  ],
+  "-33.98_C(-3)H(2)": [
+    "Phe->Xle[F]"
+  ],
+  "124.07_C(7)H(5)N(1)O(1)": [
+    "Phenylisocyanate_2H(5)[AnyN-term]"
+  ],
+  "305.04_C(9)H(12)N(3)O(7)P(1)": [
+    "PhosphoCytidine[S]",
+    "PhosphoCytidine[T]",
+    "PhosphoCytidine[Y]"
+  ],
+  "404.07_H(1)Hex(2)O(3)P(1)": [
+    "PhosphoHex(2)[N]",
+    "PhosphoHex(2)[S]",
+    "PhosphoHex(2)[T]"
+  ],
+  "242.02_H(1)Hex(1)O(3)P(1)": [
+    "PhosphoHex[S]",
+    "PhosphoHex[T]"
+  ],
+  "283.05_Ac(1)H(1)O(3)P(1)": [
+    "PhosphoHexNAc[S]",
+    "PhosphoHexNAc[T]"
+  ],
+  "306.03_C(9)H(11)N(2)O(8)P(1)": [
+    "PhosphoUridine[H]",
+    "PhosphoUridine[Y]"
+  ],
+  "329.05_C(10)H(12)N(5)O(6)P(1)": [
+    "Phosphoadenosine[H]",
+    "Phosphoadenosine[K]",
+    "Phosphoadenosine[T]",
+    "Phosphoadenosine[Y]"
+  ],
+  "258.01_C(6)H(11)O(9)P(1)": [
+    "Phosphogluconoylation[AnyN-term]",
+    "Phosphogluconoylation[K]"
+  ],
+  "345.05_C(10)H(12)N(5)O(7)P(1)": [
+    "Phosphoguanosine[H]",
+    "Phosphoguanosine[K]"
+  ],
+  "340.09_C(11)H(21)N(2)O(6)P(1)S(1)": [
+    "Phosphopantetheine[S]"
+  ],
+  "117.00_C(3)H(4)N(1)O(2)P(1)": [
+    "Phosphopropargyl[S]",
+    "Phosphopropargyl[T]",
+    "Phosphopropargyl[Y]"
+  ],
+  "881.15_C(26)H(42)N(7)O(19)P(3)S(1)": [
+    "PhosphoribosyldephosphoCoA[S]"
+  ],
+  "586.28_C(33)H(38)N(4)O(6)": [
+    "Phycocyanobilin[C]"
+  ],
+  "588.29_C(33)H(40)N(4)O(6)": [
+    "Phycoerythrobilin[C]"
+  ],
+  "584.26_C(33)H(36)N(4)O(6)": [
+    "Phytochromobilin[C]"
+  ],
+  "68.06_C(5)H(8)": [
+    "Piperidine[AnyN-term]",
+    "Piperidine[K]"
+  ],
+  "-26.02_C(-2)H(-2)": [
+    "Pro->Ala[P]"
+  ],
+  "59.05_C(1)H(5)N(3)": [
+    "Pro->Arg[P]"
+  ],
+  "16.99_C(-1)H(-1)N(1)O(1)": [
+    "Pro->Asn[P]"
+  ],
+  "17.97_C(-1)H(-2)O(2)": [
+    "Pro->Asp[P]"
+  ],
+  "5.96_C(-2)H(-2)S(1)": [
+    "Pro->Cys[P]"
+  ],
+  "31.01_H(1)N(1)O(1)": [
+    "Pro->Gln[P]"
+  ],
+  "-40.03_C(-3)H(-4)": [
+    "Pro->Gly[P]"
+  ],
+  "18.01_H(2)O(1)": [
+    "Pro->HAVA[P]"
+  ],
+  "40.01_C(1)N(2)": [
+    "Pro->His[P]"
+  ],
+  "31.04_C(1)H(5)N(1)": [
+    "Pro->Lys[P]"
+  ],
+  "33.99_H(2)S(1)": [
+    "Pro->Met[P]"
+  ],
+  "50.02_C(4)H(2)": [
+    "Pro->Phe[P]"
+  ],
+  "-10.02_C(-2)H(-2)O(1)": [
+    "Pro->Ser[P]"
+  ],
+  "3.99_C(-1)O(1)": [
+    "Pro->Thr[P]",
+    "Trp->Kynurenin[W]"
+  ],
+  "89.03_C(6)H(3)N(1)": [
+    "Pro->Trp[P]"
+  ],
+  "2.02_H(2)": [
+    "Pro->Val[P]"
+  ],
+  "16.03_C(1)H(4)": [
+    "Pro->Xle[P]"
+  ],
+  "37.03_C(3)H(3)N(1)O(-1)": [
+    "Propargylamine[AnyC-term]",
+    "Propargylamine[D]",
+    "Propargylamine[E]"
+  ],
+  "74.06_C(3)H(3)N(1)O(1)": [
+    "Propionamide_2H(3)[C]"
+  ],
+  "59.04_C(3)H(4)O(1)": [
+    "Propionyl_13C(3)[AnyN-term]",
+    "Propionyl_13C(3)[K]"
+  ],
+  "132.06_C(9)H(8)O(1)": [
+    "Propiophenone[C]",
+    "Propiophenone[H]",
+    "Propiophenone[K]",
+    "Propiophenone[R]",
+    "Propiophenone[S]",
+    "Propiophenone[T]",
+    "Propiophenone[W]"
+  ],
+  "232.06_C(9)H(14)N(1)O(4)S(1)": [
+    "PropylNAGthiazoline[C]"
+  ],
+  "48.08_C(3)H(6)": [
+    "Propyl_2H(6)[AnyN-term]",
+    "Propyl_2H(6)[K]"
+  ],
+  "453.21_C(22)H(27)N(7)O(4)": [
+    "Puromycin[AnyC-term]"
+  ],
+  "134.05_C(7)H(6)N(2)O(1)": [
+    "PyMIC[AnyN-term]"
+  ],
+  "229.01_C(8)H(8)N(1)O(5)P(1)": [
+    "PyridoxalPhosphate[K]"
+  ],
+  "231.03_C(8)H(10)N(1)O(5)P(1)": [
+    "PyridoxalPhosphateH2[K]"
+  ],
+  "119.04_C(7)H(5)N(1)O(1)": [
+    "Pyridylacetyl[AnyN-term](Phenylisocyanate[AnyN-term])",
+    "Pyridylacetyl[K]"
+  ],
+  "70.01_C(3)H(2)O(2)": [
+    "PyruvicAcidIminyl[K]",
+    "PyruvicAcidIminyl[ProteinN-termC]",
+    "PyruvicAcidIminyl[ProteinN-termV]"
+  ],
+  "171.15_C(9)H(19)N(2)O(1)": [
+    "QAT[C]"
+  ],
+  "174.17_C(9)H(3)N(2)O(1)": [
+    "QAT_2H(3)[C]"
+  ],
+  "600.25_C(23)H(36)N(8)O(11)": [
+    "QEQTGG[K]"
+  ],
+  "599.27_C(23)H(37)N(9)O(10)": [
+    "QQQTGG[K]"
+  ],
+  "343.15_C(13)H(21)N(5)O(6)": [
+    "QTGG[K]"
+  ],
+  "29.97_H(-2)O(2)": [
+    "Quinone[W]",
+    "Quinone[Y]",
+    "Val->Glu[V]"
+  ],
+  "324.04_C(9)H(13)N(2)O(9)P(1)": [
+    "RNPXL[AnyN-termK]",
+    "RNPXL[AnyN-termR]"
+  ],
+  "266.20_C(20)H(26)": [
+    "Retinylidene[K]"
+  ],
+  "127.06_C(6)H(9)N(1)O(2)": [
+    "SMA[AnyN-term]",
+    "SMA[K]"
+  ],
+  "214.97_C(7)H(5)N(1)O(3)S(2)": [
+    "SPITC[AnyN-term]",
+    "SPITC[K]"
+  ],
+  "220.99_C(6)H(5)N(1)O(3)S(2)": [
+    "SPITC_13C(6)[AnyN-term]",
+    "SPITC_13C(6)[K]"
+  ],
+  "2135.92_C(90)H(137)N(21)O(37)S(1)": [
+    "SUMO2135[K]"
+  ],
+  "3549.54_C(150)H(224)N(38)O(60)S(1)": [
+    "SUMO3549[K]"
+  ],
+  "69.07_C(3)H(7)N(3)O(-1)": [
+    "Ser->Arg[S]"
+  ],
+  "27.01_C(1)H(1)N(1)": [
+    "Ser->Asn[S]",
+    "Thr->Gln[T]"
+  ],
+  "50.03_C(3)H(2)N(2)O(-1)": [
+    "Ser->His[S]"
+  ],
+  "41.06_C(3)H(7)N(1)O(-1)": [
+    "Ser->Lys[S]"
+  ],
+  "60.04_C(6)H(4)O(-1)": [
+    "Ser->Phe[S]"
+  ],
+  "10.02_C(2)H(2)O(-1)": [
+    "Ser->Pro[S]"
+  ],
+  "99.05_C(8)H(5)N(1)O(-1)": [
+    "Ser->Trp[S]"
+  ],
+  "12.04_C(2)H(4)O(-1)": [
+    "Ser->Val[S]",
+    "Thr->Xle[T]"
+  ],
+  "26.05_C(3)H(6)O(-1)": [
+    "Ser->Xle[S]"
+  ],
+  "104.03_C(4)H(4)O(3)": [
+    "Succinyl_13C(4)[AnyN-term]",
+    "Succinyl_13C(4)[K]"
+  ],
+  "104.04_C(4)H(4)O(3)": [
+    "Succinyl_2H(4)[AnyN-term]",
+    "Succinyl_2H(4)[K]"
+  ],
+  "155.00_C(6)H(5)N(1)O(2)S(1)": [
+    "SulfanilicAcid[AnyC-term]",
+    "SulfanilicAcid[D]",
+    "SulfanilicAcid[E]"
+  ],
+  "161.02_C(6)H(5)N(1)O(2)S(1)": [
+    "SulfanilicAcid_13C(6)[AnyC-term]",
+    "SulfanilicAcid_13C(6)[D]",
+    "SulfanilicAcid_13C(6)[E]"
+  ],
+  "452.25_C(22)H(36)N(4)O(4)S(1)": [
+    "Sulfo-NHS-LC-LC-Biotin[AnyN-term]",
+    "Sulfo-NHS-LC-LC-Biotin[K]"
+  ],
+  "458.16_C(22)H(26)N(4)O(5)S(1)": [
+    "SulfoGMBS[C]"
+  ],
+  "63.96_O(2)S(1)": [
+    "SulfurDioxide[C]"
+  ],
+  "659.31_C(37)H(46)N(3)O(6)P(1)": [
+    "TAMRA-FP[S]",
+    "TAMRA-FP[Y]"
+  ],
+  "128.11_C(7)H(14)N(1)O(1)": [
+    "TMAB[AnyN-term]",
+    "TMAB[K]"
+  ],
+  "137.16_C(7)H(9)N(1)O(1)": [
+    "TMAB_2H(9)[AnyN-term]",
+    "TMAB_2H(9)[K]"
+  ],
+  "572.18_C(29)H(33)O(10)P(1)": [
+    "TMPP-Ac[AnyN-term]",
+    "TMPP-Ac[K]",
+    "TMPP-Ac[Y]"
+  ],
+  "581.21_C(9)H(33)O(10)P(1)": [
+    "TMPP-Ac_13C(9)[AnyN-term]",
+    "TMPP-Ac_13C(9)[K]",
+    "TMPP-Ac_13C(9)[Y]"
+  ],
+  "224.15_C(12)H(20)N(2)O(2)": [
+    "TMT[AnyN-term]",
+    "TMT[H]",
+    "TMT[K]",
+    "TMT[S]",
+    "TMT[T]",
+    "TMT[ProteinN-term]"
+  ],
+  "210.99_C(6)H(1)N(3)O(6)": [
+    "TNBS[AnyN-term]",
+    "TNBS[K]"
+  ],
+  "174.03_C(9)H(6)N(2)S(1)": [
+    "Thiadiazole[C]"
+  ],
+  "525.14_C(19)H(34)N(4)O(5)P(1)S(3)": [
+    "Thiophos-S-S-biotin[S]",
+    "Thiophos-S-S-biotin[T]",
+    "Thiophos-S-S-biotin[Y]"
+  ],
+  "95.94_H(1)O(2)P(1)S(1)": [
+    "Thiophospho[S]",
+    "Thiophospho[T]",
+    "Thiophospho[Y]"
+  ],
+  "55.05_C(2)H(5)N(3)O(-1)": [
+    "Thr->Arg[T]"
+  ],
+  "13.00_H(-1)N(1)": [
+    "Thr->Asn[T]"
+  ],
+  "1.96_C(-1)H(-2)O(-1)S(1)": [
+    "Thr->Cys[T]"
+  ],
+  "-44.03_C(-2)H(-4)O(-1)": [
+    "Thr->Gly[T]"
+  ],
+  "36.01_C(2)N(2)O(-1)": [
+    "Thr->His[T]"
+  ],
+  "29.99_C(1)H(2)O(-1)S(1)": [
+    "Thr->Met[T]"
+  ],
+  "46.02_C(5)H(2)O(-1)": [
+    "Thr->Phe[T]"
+  ],
+  "85.03_C(7)H(3)N(1)O(-1)": [
+    "Thr->Trp[T]"
+  ],
+  "-1.98_C(1)H(2)O(-1)": [
+    "Thr->Val[T]"
+  ],
+  "240.10_C(10)H(16)N(4)O(1)S(1)": [
+    "Thrbiotinhydrazide[T]"
+  ],
+  "595.61_C(6)I(4)O(1)": [
+    "Thyroxine[Y]"
+  ],
+  "377.69_H(-3)I(3)": [
+    "Triiodo[Y]"
+  ],
+  "469.72_C(6)H(1)I(3)O(1)": [
+    "Triiodothyronine[Y]"
+  ],
+  "54.11_C(3)H(9)": [
+    "Trimethyl_13C(3)2H(9)[K]",
+    "Trimethyl_13C(3)2H(9)[R]"
+  ],
+  "51.10_C(3)H(9)": [
+    "Trimethyl_2H(9)[K]",
+    "Trimethyl_2H(9)[R]"
+  ],
+  "47.98_O(3)": [
+    "Trioxidation[C]",
+    "Trioxidation[F]",
+    "Trioxidation[W]",
+    "Trioxidation[Y]"
+  ],
+  "788.73_C(51)H(96)O(5)": [
+    "Tripalmitate[ProteinN-termC]"
+  ],
+  "104.07_C(4)H(10)N(1)O(2)": [
+    "Tris[N]"
+  ],
+  "188.16_C(14)H(20)": [
+    "Triton[AnyC-term]",
+    "Triton[AnyN-term]"
+  ],
+  "-115.04_C(-8)H(-5)N(-1)": [
+    "Trp->Ala[W]"
+  ],
+  "-29.98_C(-5)H(2)N(2)": [
+    "Trp->Arg[W]"
+  ],
+  "-72.04_C(-7)H(-4)O(1)": [
+    "Trp->Asn[W]"
+  ],
+  "-71.05_C(-7)H(-5)N(-1)O(2)": [
+    "Trp->Asp[W]"
+  ],
+  "-83.07_C(-8)H(-5)N(-1)S(1)": [
+    "Trp->Cys[W]"
+  ],
+  "-58.02_C(-6)H(-2)O(1)": [
+    "Trp->Gln[W]"
+  ],
+  "-57.04_C(-6)H(-3)N(-1)O(2)": [
+    "Trp->Glu[W]"
+  ],
+  "-129.06_C(-9)H(-7)N(-1)": [
+    "Trp->Gly[W]"
+  ],
+  "-49.02_C(-5)H(-3)N(1)": [
+    "Trp->His[W]",
+    "Tyr->Asn[Y]"
+  ],
+  "19.99_C(-1)O(2)": [
+    "Trp->Hydroxykynurenin[W]"
+  ],
+  "-57.98_C(-5)H(2)": [
+    "Trp->Lys[W]"
+  ],
+  "-55.04_C(-6)H(-1)N(-1)S(1)": [
+    "Trp->Met[W]"
+  ],
+  "-39.01_C(-2)H(-1)N(-1)": [
+    "Trp->Phe[W]"
+  ],
+  "-89.03_C(-6)H(-3)N(-1)": [
+    "Trp->Pro[W]"
+  ],
+  "-99.05_C(-8)H(-5)N(-1)O(1)": [
+    "Trp->Ser[W]"
+  ],
+  "-85.03_C(-7)H(-3)N(-1)O(1)": [
+    "Trp->Thr[W]"
+  ],
+  "-87.01_C(-6)H(-1)N(-1)": [
+    "Trp->Val[W]"
+  ],
+  "-73.00_C(-5)H(1)N(-1)": [
+    "Trp->Xle[W]"
+  ],
+  "165.16_C(12)H(21)": [
+    "Tween20[AnyN-term]"
+  ],
+  "263.24_C(18)H(31)O(1)": [
+    "Tween80[AnyC-term]"
+  ],
+  "-92.03_C(-6)H(-4)O(-1)": [
+    "Tyr->Ala[Y]"
+  ],
+  "-6.96_C(-3)H(3)N(3)O(-1)": [
+    "Tyr->Arg[Y]"
+  ],
+  "-48.04_C(-5)H(-4)O(1)": [
+    "Tyr->Asp[Y]"
+  ],
+  "-60.05_C(-6)H(-4)O(-1)S(1)": [
+    "Tyr->Cys[Y]"
+  ],
+  "-94.04_C(-6)H(-6)O(-1)": [
+    "Tyr->Dha[Y]"
+  ],
+  "-35.00_C(-4)H(-1)N(1)": [
+    "Tyr->Gln[Y]"
+  ],
+  "-34.02_C(-4)H(-2)O(1)": [
+    "Tyr->Glu[Y]"
+  ],
+  "-106.04_C(-7)H(-6)O(-1)": [
+    "Tyr->Gly[Y]"
+  ],
+  "-26.00_C(-3)H(-2)N(2)O(-1)": [
+    "Tyr->His[Y]"
+  ],
+  "-34.97_C(-3)H(3)N(1)O(-1)": [
+    "Tyr->Lys[Y]"
+  ],
+  "-32.02_C(-4)O(-1)S(1)": [
+    "Tyr->Met[Y]"
+  ],
+  "-66.01_C(-4)H(-2)O(-1)": [
+    "Tyr->Pro[Y]"
+  ],
+  "-62.02_C(-5)H(-2)": [
+    "Tyr->Thr[Y]"
+  ],
+  "-63.99_C(-4)O(-1)": [
+    "Tyr->Val[Y]"
+  ],
+  "-49.98_C(-3)H(2)O(-1)": [
+    "Tyr->Xle[Y]"
+  ],
+  "100.06_C(4)H(8)N(2)O(1)": [
+    "Ub-Br2[C]"
+  ],
+  "173.09_C(7)H(13)N(2)O(3)": [
+    "Ub-VME[C]"
+  ],
+  "196.11_C(9)H(14)N(3)O(2)": [
+    "Ub-amide[C]"
+  ],
+  "597.21_C(31)H(29)N(6)O(7)": [
+    "Ub-fluorescein[C]"
+  ],
+  "1106.49_C(47)H(60)N(23)O(10)": [
+    "UgiJoullie[D]",
+    "UgiJoullie[E]"
+  ],
+  "154.07_C(7)H(10)N(2)O(2)": [
+    "UgiJoullieProGly[D]",
+    "UgiJoullieProGly[E]"
+  ],
+  "308.15_C(14)H(20)N(4)O(4)": [
+    "UgiJoullieProGlyProGly[D]",
+    "UgiJoullieProGlyProGly[E]"
+  ],
+  "162.13_C(8)H(18)O(3)": [
+    "Unknown_162[AnyC-term]",
+    "Unknown_162[AnyN-term]",
+    "Unknown_162[D]",
+    "Unknown_162[E]"
+  ],
+  "176.74_Fe(3)H(-7)O(1)": [
+    "Unknown_177[AnyC-term]",
+    "Unknown_177[AnyN-term]",
+    "Unknown_177[D]",
+    "Unknown_177[E]"
+  ],
+  "210.16_C(13)H(22)O(2)": [
+    "Unknown_210[AnyC-term]",
+    "Unknown_210[AnyN-term]",
+    "Unknown_210[D]",
+    "Unknown_210[E]"
+  ],
+  "216.10_C(10)H(16)O(5)": [
+    "Unknown_216[AnyC-term]",
+    "Unknown_216[AnyN-term]",
+    "Unknown_216[D]",
+    "Unknown_216[E]"
+  ],
+  "234.07_C(9)H(14)O(7)": [
+    "Unknown_234[AnyC-term]",
+    "Unknown_234[AnyN-term]",
+    "Unknown_234[D]",
+    "Unknown_234[E]"
+  ],
+  "248.20_C(13)H(28)O(4)": [
+    "Unknown_248[AnyC-term]",
+    "Unknown_248[AnyN-term]",
+    "Unknown_248[D]",
+    "Unknown_248[E]"
+  ],
+  "249.98_C(10)H(4)N(1)O(5)S(1)": [
+    "Unknown_250[AnyC-term]",
+    "Unknown_250[AnyN-term]",
+    "Unknown_250[D]",
+    "Unknown_250[E]"
+  ],
+  "301.99_C(4)H(8)N(5)O(7)S(2)": [
+    "Unknown_302[AnyC-term]",
+    "Unknown_302[AnyN-term]",
+    "Unknown_302[D]",
+    "Unknown_302[E]"
+  ],
+  "306.10_C(12)H(18)O(9)": [
+    "Unknown_306[AnyC-term]",
+    "Unknown_306[AnyN-term]",
+    "Unknown_306[D]",
+    "Unknown_306[E]"
+  ],
+  "420.05_C(10)H(14)N(9)O(6)S(2)": [
+    "Unknown_420[AnyC-term]",
+    "Unknown_420[AnyN-term]",
+    "Unknown_420[D]",
+    "Unknown_420[E]"
+  ],
+  "845.40_C(37)H(55)N(11)O(12)": [
+    "VFQQQTGG[K]"
+  ],
+  "1203.58_C(53)H(81)N(13)O(19)": [
+    "VIEVYQEQTGG[K]"
+  ],
+  "57.03_C(1)H(3)N(3)": [
+    "Val->Arg[V]"
+  ],
+  "14.97_C(-1)H(-3)N(1)O(1)": [
+    "Val->Asn[V]",
+    "Xle->Gln[I]",
+    "Xle->Gln[L]"
+  ],
+  "15.96_C(-1)H(-4)O(2)": [
+    "Val->Asp[V]",
+    "Xle->Glu[I]",
+    "Xle->Glu[L]"
+  ],
+  "3.94_C(-2)H(-4)S(1)": [
+    "Val->Cys[V]"
+  ],
+  "-42.05_C(-3)H(-6)": [
+    "Val->Gly[V]",
+    "Xle->Ala[I]",
+    "Xle->Ala[L]"
+  ],
+  "37.99_C(1)H(-2)N(2)": [
+    "Val->His[V]"
+  ],
+  "29.03_C(1)H(3)N(1)": [
+    "Val->Lys[V]"
+  ],
+  "48.00_C(4)": [
+    "Val->Phe[V]"
+  ],
+  "-12.04_C(-2)H(-4)O(1)": [
+    "Val->Ser[V]",
+    "Xle->Thr[I]",
+    "Xle->Thr[L]"
+  ],
+  "1.98_C(-1)H(-2)O(1)": [
+    "Val->Thr[V]"
+  ],
+  "87.01_C(6)H(1)N(1)": [
+    "Val->Trp[V]"
+  ],
+  "63.99_C(4)O(1)": [
+    "Val->Tyr[V]"
+  ],
+  "470.27_C(28)H(38)O(6)": [
+    "Withaferin[C]"
+  ],
+  "43.02_H(1)N(3)": [
+    "Xle->Arg[I]",
+    "Xle->Arg[L]"
+  ],
+  "0.96_C(-2)H(-5)N(1)O(1)": [
+    "Xle->Asn[I]",
+    "Xle->Asn[L]"
+  ],
+  "1.94_C(-2)H(-6)O(2)": [
+    "Xle->Asp[I]",
+    "Xle->Asp[L]"
+  ],
+  "-10.07_C(-3)H(-6)S(1)": [
+    "Xle->Cys[I]",
+    "Xle->Cys[L]"
+  ],
+  "-56.06_C(-4)H(-8)": [
+    "Xle->Gly[I]",
+    "Xle->Gly[L]"
+  ],
+  "23.97_H(-4)N(2)": [
+    "Xle->His[I]",
+    "Xle->His[L]"
+  ],
+  "17.96_C(-1)H(-2)S(1)": [
+    "Xle->Met[I]",
+    "Xle->Met[L]"
+  ],
+  "33.98_C(3)H(-2)": [
+    "Xle->Phe[I]",
+    "Xle->Phe[L]"
+  ],
+  "-16.03_C(-1)H(-4)": [
+    "Xle->Pro[I]",
+    "Xle->Pro[L]"
+  ],
+  "-26.05_C(-3)H(-6)O(1)": [
+    "Xle->Ser[I]",
+    "Xle->Ser[L]"
+  ],
+  "73.00_C(5)H(-1)N(1)": [
+    "Xle->Trp[I]",
+    "Xle->Trp[L]"
+  ],
+  "49.98_C(3)H(-2)O(1)": [
+    "Xle->Tyr[I]",
+    "Xle->Tyr[L]"
+  ],
+  "713.09_C(31)H(30)I(1)N(4)O(6)S(1)": [
+    "Xlink_B10621[C]"
+  ],
+  "220.05_C(10)H(8)N(2)O(4)": [
+    "Xlink_BMOE[C]"
+  ],
+  "113.05_C(5)H(7)N(1)O(2)": [
+    "Xlink_BS2G[113][K]",
+    "Xlink_BS2G[113][ProteinN-term]"
+  ],
+  "114.03_C(5)H(6)O(3)": [
+    "Xlink_BS2G[114][K](Gluratylation[K])",
+    "Xlink_BS2G[114][ProteinN-term]",
+    "Glutarylation[K]"
+  ],
+  "217.10_C(9)H(15)N(1)O(5)": [
+    "Xlink_BS2G[217][K]",
+    "Xlink_BS2G[217][ProteinN-term]"
+  ],
+  "96.02_C(5)H(4)O(2)": [
+    "Xlink_BS2G[96][K]",
+    "Xlink_BS2G[96][ProteinN-term]"
+  ],
+  "196.08_C(9)H(12)N(2)O(3)": [
+    "Xlink_BuUrBu[196][K]",
+    "Xlink_BuUrBu[196][ProteinN-term]"
+  ],
+  "213.11_C(9)H(15)N(3)O(3)": [
+    "Xlink_BuUrBu[213][K]",
+    "Xlink_BuUrBu[213][ProteinN-term]"
+  ],
+  "214.10_C(9)H(14)N(2)O(4)": [
+    "Xlink_BuUrBu[214][K]",
+    "Xlink_BuUrBu[214][ProteinN-term]"
+  ],
+  "317.16_C(13)H(23)N(3)O(6)": [
+    "Xlink_BuUrBu[317][K]",
+    "Xlink_BuUrBu[317][ProteinN-term]"
+  ],
+  "163.99_C(6)N(2)O(4)": [
+    "Xlink_DFDNB[K]",
+    "Xlink_DFDNB[N]",
+    "Xlink_DFDNB[Q]",
+    "Xlink_DFDNB[R]"
+  ],
+  "122.08_C(7)H(10)N(2)": [
+    "Xlink_DMP[122][K]",
+    "Xlink_DMP[122][ProteinN-term]"
+  ],
+  "139.11_C(7)H(13)N(3)": [
+    "Xlink_DMP[139][K]",
+    "Xlink_DMP[139][ProteinN-term]"
+  ],
+  "154.11_C(8)H(14)N(2)O(1)": [
+    "Xlink_DMP[154][K]",
+    "Xlink_DMP[154][ProteinN-term]"
+  ],
+  "103.99_C(3)H(4)O(2)S(1)": [
+    "Xlink_DSSO[104][K]",
+    "Xlink_DSSO[104][ProteinN-term]"
+  ],
+  "158.00_C(6)H(6)O(3)S(1)": [
+    "Xlink_DSSO[158][K]",
+    "Xlink_DSSO[158][ProteinN-term]"
+  ],
+  "176.01_C(6)H(8)O(4)S(1)": [
+    "Xlink_DSSO[176][K]",
+    "Xlink_DSSO[176][ProteinN-term]"
+  ],
+  "279.08_C(10)H(17)N(1)O(6)S(1)": [
+    "Xlink_DSSO[279][K]",
+    "Xlink_DSSO[279][ProteinN-term]"
+  ],
+  "85.98_C(3)H(2)O(1)S(1)": [
+    "Xlink_DSSO[86][K]",
+    "Xlink_DSSO[86][ProteinN-term]"
+  ],
+  "155.09_C(8)H(13)N(1)O(2)": [
+    "Xlink_DSS[155][K]",
+    "Xlink_DSS[155][ProteinN-term]"
+  ],
+  "156.08_C(8)H(12)O(3)": [
+    "Xlink_DSS[156][K]",
+    "Xlink_DSS[156][ProteinN-term]"
+  ],
+  "259.14_C(12)H(21)N(1)O(5)": [
+    "Xlink_DSS[259][K]",
+    "Xlink_DSS[259][ProteinN-term]"
+  ],
+  "114.00_C(4)H(2)O(4)": [
+    "Xlink_DST[114][K]",
+    "Xlink_DST[114][ProteinN-term]"
+  ],
+  "132.01_C(4)H(4)O(5)": [
+    "Xlink_DST[132][K]",
+    "Xlink_DST[132][ProteinN-term]"
+  ],
+  "55.99_C(2)O(2)": [
+    "Xlink_DST[56][K]",
+    "Xlink_DST[56][ProteinN-term]"
+  ],
+  "172.01_C(6)H(8)N(2)S(2)": [
+    "Xlink_DTBP[172][K]",
+    "Xlink_DTBP[172][ProteinN-term]"
+  ],
+  "87.01_C(3)H(5)N(1)S(1)": [
+    "Xlink_DTBP[87][K]",
+    "Xlink_DTBP[87][ProteinN-term]"
+  ],
+  "173.98_C(6)H(6)O(2)S(2)": [
+    "Xlink_DTSSP[174][K]",
+    "Xlink_DTSSP[174][ProteinN-term]"
+  ],
+  "191.99_C(6)H(8)O(3)S(2)": [
+    "Xlink_DTSSP[192][K]",
+    "Xlink_DTSSP[192][ProteinN-term]"
+  ],
+  "88.00_C(3)H(4)O(1)S(1)": [
+    "Xlink_DTSSP[88][K]",
+    "Xlink_DTSSP[88][ProteinN-term]"
+  ],
+  "115.03_C(4)H(5)N(1)O(3)": [
+    "Xlink_EGS[115][K]",
+    "Xlink_EGS[115][ProteinN-term]"
+  ],
+  "226.05_C(10)H(10)O(6)": [
+    "Xlink_EGS[226][K]",
+    "Xlink_EGS[226][ProteinN-term]"
+  ],
+  "244.06_C(10)H(12)O(7)": [
+    "Xlink_EGS[244][K]",
+    "Xlink_EGS[244][ProteinN-term]"
+  ],
+  "219.09_C(12)H(13)N(1)O(3)": [
+    "Xlink_SMCC[219][C]",
+    "Xlink_SMCC[219][K]",
+    "Xlink_SMCC[219][ProteinN-term]"
+  ],
+  "237.10_C(12)H(15)N(1)O(4)": [
+    "Xlink_SMCC[237][C]",
+    "Xlink_SMCC[237][K]",
+    "Xlink_SMCC[237][ProteinN-term]"
+  ],
+  "321.21_C(17)H(27)N(3)O(3)": [
+    "Xlink_SMCC[321][C]"
+  ],
+  "758.38_B(1)C(37)F(2)H(53)N(6)O(6)S(1)": [
+    "ZGB[AnyN-term]",
+    "ZGB[K]"
+  ],
+  "320.10_C(15)H(16)N(2)O(6)": [
+    "ZQG[K]"
+  ],
+  "-46.01_C(-1)H(-2)O(-2)": [
+    "a-type-ion[AnyC-term]"
+  ],
+  "-20.03_H(-4)O(-1)": [
+    "azole[C]",
+    "azole[S]"
+  ],
+  "132.07_C(8)H(8)N(2)": [
+    "benzylguanidine[K]"
+  ],
+  "454.21_C(25)H(30)N(2)O(6)": [
+    "betaFNA[C]",
+    "betaFNA[K]"
+  ],
+  "298.15_C(13)H(22)N(4)O(2)S(1)": [
+    "biotinAcrolein298[C]",
+    "biotinAcrolein298[H]",
+    "biotinAcrolein298[K]",
+    "biotinAcrolein298[ProteinN-term]"
+  ],
+  "437.20_C(32)H(25)N(2)": [
+    "bisANS-sulfonates[K]",
+    "bisANS-sulfonates[S]",
+    "bisANS-sulfonates[T]"
+  ],
+  "150.04_C(5)H(4)N(5)O(1)": [
+    "cGMP+RMP-loss[C]",
+    "cGMP+RMP-loss[S]"
+  ],
+  "343.03_C(10)H(10)N(5)O(7)P(1)": [
+    "cGMP[C]",
+    "cGMP[S]"
+  ],
+  "299.17_C(14)H(25)N(3)O(2)S(1)": [
+    "cysTMT[C]"
+  ],
+  "304.18_C(4)H(25)N(1)O(2)S(1)": [
+    "cysTMT6plex[C]"
+  ],
+  "308.11_Hex(1)": [
+    "dHex(1)Hex(1)[S]",
+    "dHex(1)Hex(1)[T]"
+  ],
+  "1093.38_A(1)Ac(3)Hex(1)": [
+    "dHex(1)Hex(1)HexA(1)HexNAc(3)[S]",
+    "dHex(1)Hex(1)HexA(1)HexNAc(3)[T]"
+  ],
+  "761.26_Ac(1)Hex(1)Kdn(1)": [
+    "dHex(1)Hex(1)HexNAc(1)Kdn(1)[S]",
+    "dHex(1)Hex(1)HexNAc(1)Kdn(1)[T]"
+  ],
+  "802.29_Ac(1)Hex(1)": [
+    "dHex(1)Hex(1)HexNAc(1)NeuAc(1)[S]",
+    "dHex(1)Hex(1)HexNAc(1)NeuAc(1)[T]"
+  ],
+  "818.28_Ac(1)Gc(1)Hex(1)": [
+    "dHex(1)Hex(1)HexNAc(1)NeuGc(1)[S]",
+    "dHex(1)Hex(1)HexNAc(1)NeuGc(1)[T]"
+  ],
+  "964.34_Ac(2)Hex(1)Kdn(1)": [
+    "dHex(1)Hex(1)HexNAc(2)Kdn(1)[S]",
+    "dHex(1)Hex(1)HexNAc(2)Kdn(1)[T]"
+  ],
+  "1005.36_Ac(1)Hex(1)": [
+    "dHex(1)Hex(1)HexNAc(2)NeuAc(1)[S]",
+    "dHex(1)Hex(1)HexNAc(2)NeuAc(1)[T]"
+  ],
+  "1085.32_Ac(1)Hex(1)O(3)S(1)": [
+    "dHex(1)Hex(1)HexNAc(2)NeuAc(1)Sulf(1)[S]",
+    "dHex(1)Hex(1)HexNAc(2)NeuAc(1)Sulf(1)[T]"
+  ],
+  "1296.46_Ac(2)Hex(1)": [
+    "dHex(1)Hex(1)HexNAc(2)NeuAc(2)[S]",
+    "dHex(1)Hex(1)HexNAc(2)NeuAc(2)[T]"
+  ],
+  "794.23_Ac(2)Hex(1)O(3)S(1)": [
+    "dHex(1)Hex(1)HexNAc(2)Sulf(1)[S]",
+    "dHex(1)Hex(1)HexNAc(2)Sulf(1)[T]"
+  ],
+  "917.35_Ac(3)Hex(1)": [
+    "dHex(1)Hex(1)HexNAc(3)[S]",
+    "dHex(1)Hex(1)HexNAc(3)[T]"
+  ],
+  "1208.44_Ac(1)Hex(1)": [
+    "dHex(1)Hex(1)HexNAc(3)NeuAc(1)[S]",
+    "dHex(1)Hex(1)HexNAc(3)NeuAc(1)[T]"
+  ],
+  "1288.40_Ac(1)Hex(1)O(3)S(1)": [
+    "dHex(1)Hex(1)HexNAc(3)NeuAc(1)Sulf(1)[S]",
+    "dHex(1)Hex(1)HexNAc(3)NeuAc(1)Sulf(1)[T]"
+  ],
+  "1224.44_Ac(3)Gc(1)Hex(1)": [
+    "dHex(1)Hex(1)HexNAc(3)NeuGc(1)[S]",
+    "dHex(1)Hex(1)HexNAc(3)NeuGc(1)[T]"
+  ],
+  "997.31_Ac(3)Hex(1)O(3)S(1)": [
+    "dHex(1)Hex(1)HexNAc(3)Sulf(1)[S]",
+    "dHex(1)Hex(1)HexNAc(3)Sulf(1)[T]"
+  ],
+  "1120.43_Ac(4)Hex(1)": [
+    "dHex(1)Hex(1)HexNAc(4)[S]",
+    "dHex(1)Hex(1)HexNAc(4)[T]"
+  ],
+  "470.16_Hex(2)": [
+    "dHex(1)Hex(2)[S]",
+    "dHex(1)Hex(2)[T]"
+  ],
+  "646.20_A(1)Hex(2)": [
+    "dHex(1)Hex(2)HexA(1)[S]",
+    "dHex(1)Hex(2)HexA(1)[T]"
+  ],
+  "849.28_A(1)Ac(1)Hex(2)": [
+    "dHex(1)Hex(2)HexA(1)HexNAc(1)[S]",
+    "dHex(1)Hex(2)HexA(1)HexNAc(1)[T]"
+  ],
+  "929.23_A(1)Ac(1)Hex(2)O(3)S(1)": [
+    "dHex(1)Hex(2)HexA(1)HexNAc(1)Sulf(1)[S]",
+    "dHex(1)Hex(2)HexA(1)HexNAc(1)Sulf(1)[T]"
+  ],
+  "1052.35_A(1)Ac(2)Hex(2)": [
+    "dHex(1)Hex(2)HexA(1)HexNAc(2)[S]",
+    "dHex(1)Hex(2)HexA(1)HexNAc(2)[T]"
+  ],
+  "673.24_Ac(1)Hex(2)": [
+    "dHex(1)Hex(2)HexNAc(1)[S]",
+    "dHex(1)Hex(2)HexNAc(1)[T]"
+  ],
+  "1255.43_Ac(2)Hex(2)": [
+    "dHex(1)Hex(2)HexNAc(1)NeuAc(2)[S]",
+    "dHex(1)Hex(2)HexNAc(1)NeuAc(2)[T]"
+  ],
+  "753.20_Ac(1)Hex(2)O(3)S(1)": [
+    "dHex(1)Hex(2)HexNAc(1)Sulf(1)[S]",
+    "dHex(1)Hex(2)HexNAc(1)Sulf(1)[T]"
+  ],
+  "1247.37_Ac(1)Hex(2)O(3)S(1)": [
+    "dHex(1)Hex(2)HexNAc(2)NeuAc(1)Sulf(1)[S]",
+    "dHex(1)Hex(2)HexNAc(2)NeuAc(1)Sulf(1)[T]"
+  ],
+  "1458.51_Ac(2)Hex(2)": [
+    "dHex(1)Hex(2)HexNAc(2)NeuAc(2)[S]",
+    "dHex(1)Hex(2)HexNAc(2)NeuAc(2)[T]"
+  ],
+  "1538.47_Ac(2)Hex(2)O(3)S(1)": [
+    "dHex(1)Hex(2)HexNAc(2)NeuAc(2)Sulf(1)[S]",
+    "dHex(1)Hex(2)HexNAc(2)NeuAc(2)Sulf(1)[T]"
+  ],
+  "1183.41_Ac(2)Gc(1)Hex(2)": [
+    "dHex(1)Hex(2)HexNAc(2)NeuGc(1)[N](Hex(3)HexNAc(2)NeuAc(1)[N])",
+    "dHex(1)Hex(2)HexNAc(2)NeuGc(1)[S]",
+    "dHex(1)Hex(2)HexNAc(2)NeuGc(1)[T]"
+  ],
+  "1490.50_Ac(2)Gc(2)Hex(2)": [
+    "dHex(1)Hex(2)HexNAc(2)NeuGc(2)[S]",
+    "dHex(1)Hex(2)HexNAc(2)NeuGc(2)[T]"
+  ],
+  "1797.59_Ac(2)Gc(3)Hex(2)": [
+    "dHex(1)Hex(2)HexNAc(2)NeuGc(3)[S]",
+    "dHex(1)Hex(2)HexNAc(2)NeuGc(3)[T]"
+  ],
+  "1008.36_Ac(2)Hex(2)Pent(1)": [
+    "dHex(1)Hex(2)HexNAc(2)Pent(1)[N]"
+  ],
+  "956.28_Ac(2)Hex(2)O(3)S(1)": [
+    "dHex(1)Hex(2)HexNAc(2)Sulf(1)[S]",
+    "dHex(1)Hex(2)HexNAc(2)Sulf(1)[T]"
+  ],
+  "1079.40_Ac(3)Hex(2)": [
+    "dHex(1)Hex(2)HexNAc(3)[N]",
+    "dHex(1)Hex(2)HexNAc(3)[S]",
+    "dHex(1)Hex(2)HexNAc(3)[T]"
+  ],
+  "1370.50_Ac(1)Hex(2)": [
+    "dHex(1)Hex(2)HexNAc(3)NeuAc(1)[S]",
+    "dHex(1)Hex(2)HexNAc(3)NeuAc(1)[T]"
+  ],
+  "1450.45_Ac(1)Hex(2)O(3)S(1)": [
+    "dHex(1)Hex(2)HexNAc(3)NeuAc(1)Sulf(1)[S]",
+    "dHex(1)Hex(2)HexNAc(3)NeuAc(1)Sulf(1)[T]"
+  ],
+  "1159.36_Ac(3)Hex(2)O(3)S(1)": [
+    "dHex(1)Hex(2)HexNAc(3)Sulf(1)[S]",
+    "dHex(1)Hex(2)HexNAc(3)Sulf(1)[T]"
+  ],
+  "1282.48_Ac(4)Hex(2)": [
+    "dHex(1)Hex(2)HexNAc(4)[N]",
+    "dHex(1)Hex(2)HexNAc(4)[S]",
+    "dHex(1)Hex(2)HexNAc(4)[T]"
+  ],
+  "1573.58_Ac(1)Hex(2)": [
+    "dHex(1)Hex(2)HexNAc(4)NeuAc(1)[S]",
+    "dHex(1)Hex(2)HexNAc(4)NeuAc(1)[T]"
+  ],
+  "1864.67_Ac(2)Hex(2)": [
+    "dHex(1)Hex(2)HexNAc(4)NeuAc(2)[S]",
+    "dHex(1)Hex(2)HexNAc(4)NeuAc(2)[T]"
+  ],
+  "1442.39_Ac(4)Hex(2)Sulf(2)": [
+    "dHex(1)Hex(2)HexNAc(4)Sulf(2)[S]",
+    "dHex(1)Hex(2)HexNAc(4)Sulf(2)[T]"
+  ],
+  "632.22_Hex(3)": [
+    "dHex(1)Hex(3)[S]",
+    "dHex(1)Hex(3)[T]"
+  ],
+  "1011.33_A(1)Ac(1)Hex(3)": [
+    "dHex(1)Hex(3)HexA(1)HexNAc(1)[S]",
+    "dHex(1)Hex(3)HexA(1)HexNAc(1)[T]"
+  ],
+  "1091.28_A(1)Ac(1)Hex(3)O(3)S(1)": [
+    "dHex(1)Hex(3)HexA(1)HexNAc(1)Sulf(1)[S]",
+    "dHex(1)Hex(3)HexA(1)HexNAc(1)Sulf(1)[T]"
+  ],
+  "1214.41_A(1)Ac(2)Hex(3)": [
+    "dHex(1)Hex(3)HexA(1)HexNAc(2)[S]",
+    "dHex(1)Hex(3)HexA(1)HexNAc(2)[T]"
+  ],
+  "1294.36_A(1)Ac(2)Hex(3)O(3)S(1)": [
+    "dHex(1)Hex(3)HexA(1)HexNAc(2)Sulf(1)[S]",
+    "dHex(1)Hex(3)HexA(1)HexNAc(2)Sulf(1)[T]"
+  ],
+  "1497.44_A(1)Ac(3)Hex(3)O(3)S(1)": [
+    "dHex(1)Hex(3)HexA(1)HexNAc(3)Sulf(1)[S]",
+    "dHex(1)Hex(3)HexA(1)HexNAc(3)Sulf(1)[T]"
+  ],
+  "1390.44_A(2)Ac(2)Hex(3)": [
+    "dHex(1)Hex(3)HexA(2)HexNAc(2)[S]",
+    "dHex(1)Hex(3)HexA(2)HexNAc(2)[T]"
+  ],
+  "835.30_Ac(1)Hex(3)": [
+    "dHex(1)Hex(3)HexNAc(1)[S]",
+    "dHex(1)Hex(3)HexNAc(1)[T]"
+  ],
+  "915.25_Ac(1)Hex(3)O(3)S(1)": [
+    "dHex(1)Hex(3)HexNAc(1)Sulf(1)[S]",
+    "dHex(1)Hex(3)HexNAc(1)Sulf(1)[T]"
+  ],
+  "1038.38_Ac(2)Hex(3)": [
+    "dHex(1)Hex(3)HexNAc(2)[N]",
+    "dHex(1)Hex(3)HexNAc(2)[S]",
+    "dHex(1)Hex(3)HexNAc(2)[T]"
+  ],
+  "1170.42_Ac(2)Hex(3)Pent(1)": [
+    "dHex(1)Hex(3)HexNAc(2)Pent(1)[N]"
+  ],
+  "1118.33_Ac(2)Hex(3)O(3)S(1)": [
+    "dHex(1)Hex(3)HexNAc(2)Sulf(1)[N]",
+    "dHex(1)Hex(3)HexNAc(2)Sulf(1)[S]",
+    "dHex(1)Hex(3)HexNAc(2)Sulf(1)[T]"
+  ],
+  "1241.45_Ac(3)Hex(3)": [
+    "dHex(1)Hex(3)HexNAc(3)[N]",
+    "dHex(1)Hex(3)HexNAc(3)[S]",
+    "dHex(1)Hex(3)HexNAc(3)[T]"
+  ],
+  "1823.65_Ac(2)Hex(3)": [
+    "dHex(1)Hex(3)HexNAc(3)NeuAc(2)[S]",
+    "dHex(1)Hex(3)HexNAc(3)NeuAc(2)[T]"
+  ],
+  "1373.50_Ac(3)Hex(3)Pent(1)": [
+    "dHex(1)Hex(3)HexNAc(3)Pent(1)[N]"
+  ],
+  "1505.54_Ac(3)Hex(3)Pent(2)": [
+    "dHex(1)Hex(3)HexNAc(3)Pent(2)[N]"
+  ],
+  "1637.58_Ac(3)Hex(3)Pent(3)": [
+    "dHex(1)Hex(3)HexNAc(3)Pent(3)[N]"
+  ],
+  "1321.41_Ac(3)Hex(3)O(3)S(1)": [
+    "dHex(1)Hex(3)HexNAc(3)Sulf(1)[S]",
+    "dHex(1)Hex(3)HexNAc(3)Sulf(1)[T]"
+  ],
+  "1444.53_Ac(4)Hex(3)": [
+    "dHex(1)Hex(3)HexNAc(4)[N]",
+    "dHex(1)Hex(3)HexNAc(4)[S]",
+    "dHex(1)Hex(3)HexNAc(4)[T]"
+  ],
+  "1735.63_Ac(1)Hex(3)": [
+    "dHex(1)Hex(3)HexNAc(4)NeuAc(1)[N]"
+  ],
+  "1576.58_Ac(4)Hex(3)Pent(1)": [
+    "dHex(1)Hex(3)HexNAc(4)Pent(1)[N]"
+  ],
+  "1708.62_Ac(4)Hex(3)Pent(2)": [
+    "dHex(1)Hex(3)HexNAc(4)Pent(2)[N]"
+  ],
+  "1840.66_Ac(4)Hex(3)Pent(3)": [
+    "dHex(1)Hex(3)HexNAc(4)Pent(3)[N]"
+  ],
+  "1524.49_Ac(4)Hex(3)O(3)S(1)": [
+    "dHex(1)Hex(3)HexNAc(4)Sulf(1)[N]"
+  ],
+  "1647.61_Ac(5)Hex(3)": [
+    "dHex(1)Hex(3)HexNAc(5)[N]",
+    "dHex(1)Hex(3)HexNAc(5)[S]",
+    "dHex(1)Hex(3)HexNAc(5)[T]"
+  ],
+  "1938.71_Ac(1)Hex(3)": [
+    "dHex(1)Hex(3)HexNAc(5)NeuAc(1)[N]",
+    "dHex(1)Hex(3)HexNAc(5)NeuAc(1)[S]",
+    "dHex(1)Hex(3)HexNAc(5)NeuAc(1)[T]"
+  ],
+  "1727.57_Ac(5)Hex(3)O(3)S(1)": [
+    "dHex(1)Hex(3)HexNAc(5)Sulf(1)[N]"
+  ],
+  "1850.69_Ac(6)Hex(3)": [
+    "dHex(1)Hex(3)HexNAc(6)[N]",
+    "dHex(1)Hex(3)HexNAc(6)[S]",
+    "dHex(1)Hex(3)HexNAc(6)[T]"
+  ],
+  "1930.65_Ac(6)Hex(3)O(3)S(1)": [
+    "dHex(1)Hex(3)HexNAc(6)Sulf(1)[N]"
+  ],
+  "794.27_Hex(4)": [
+    "dHex(1)Hex(4)[S]",
+    "dHex(1)Hex(4)[T]"
+  ],
+  "970.30_A(1)Hex(4)": [
+    "dHex(1)Hex(4)HexA(1)[S]",
+    "dHex(1)Hex(4)HexA(1)[T]"
+  ],
+  "1376.46_A(1)Ac(2)Hex(4)": [
+    "dHex(1)Hex(4)HexA(1)HexNAc(2)[S]",
+    "dHex(1)Hex(4)HexA(1)HexNAc(2)[T]"
+  ],
+  "1659.50_A(1)Ac(3)Hex(4)O(3)S(1)": [
+    "dHex(1)Hex(4)HexA(1)HexNAc(3)Sulf(1)[S]",
+    "dHex(1)Hex(4)HexA(1)HexNAc(3)Sulf(1)[T]"
+  ],
+  "1129.39_Ac(1)Hex(4)Pent(1)": [
+    "dHex(1)Hex(4)HexNAc(1)Pent(1)[N]"
+  ],
+  "1200.43_Ac(2)Hex(4)": [
+    "dHex(1)Hex(4)HexNAc(2)[N]",
+    "dHex(1)Hex(4)HexNAc(2)[S]",
+    "dHex(1)Hex(4)HexNAc(2)[T]"
+  ],
+  "1332.47_Ac(2)Hex(4)Pent(1)": [
+    "dHex(1)Hex(4)HexNAc(2)Pent(1)[N]"
+  ],
+  "1403.51_Ac(3)Hex(4)": [
+    "dHex(1)Hex(4)HexNAc(3)[N]"
+  ],
+  "1694.60_Ac(1)Hex(4)": [
+    "dHex(1)Hex(4)HexNAc(3)NeuAc(1)[N]",
+    "dHex(1)Hex(4)HexNAc(3)NeuAc(1)[S]",
+    "dHex(1)Hex(4)HexNAc(3)NeuAc(1)[T]"
+  ],
+  "1774.56_Ac(1)Hex(4)O(3)S(1)": [
+    "dHex(1)Hex(4)HexNAc(3)NeuAc(1)Sulf(1)[N]"
+  ],
+  "1710.60_Ac(3)Gc(1)Hex(4)": [
+    "dHex(1)Hex(4)HexNAc(3)NeuGc(1)[N]"
+  ],
+  "1535.55_Ac(3)Hex(4)Pent(1)": [
+    "dHex(1)Hex(4)HexNAc(3)Pent(1)[N]"
+  ],
+  "1483.46_Ac(3)Hex(4)O(3)S(1)": [
+    "dHex(1)Hex(4)HexNAc(3)Sulf(1)[N]"
+  ],
+  "1606.59_Ac(4)Hex(4)": [
+    "dHex(1)Hex(4)HexNAc(4)[N]",
+    "dHex(1)Hex(4)HexNAc(4)[S]",
+    "dHex(1)Hex(4)HexNAc(4)[T]"
+  ],
+  "1897.68_Ac(1)Hex(4)": [
+    "dHex(1)Hex(4)HexNAc(4)NeuAc(1)[N]",
+    "dHex(1)Hex(4)HexNAc(4)NeuAc(1)[S]",
+    "dHex(1)Hex(4)HexNAc(4)NeuAc(1)[T]"
+  ],
+  "1977.64_Ac(1)Hex(4)O(3)S(1)": [
+    "dHex(1)Hex(4)HexNAc(4)NeuAc(1)Sulf(1)[N]"
+  ],
+  "1738.63_Ac(4)Hex(4)Pent(1)": [
+    "dHex(1)Hex(4)HexNAc(4)Pent(1)[N]"
+  ],
+  "1686.54_Ac(4)Hex(4)O(3)S(1)": [
+    "dHex(1)Hex(4)HexNAc(4)Sulf(1)[N]"
+  ],
+  "1809.67_Ac(5)Hex(4)": [
+    "dHex(1)Hex(4)HexNAc(5)[N]"
+  ],
+  "1889.62_Ac(5)Hex(4)O(3)S(1)": [
+    "dHex(1)Hex(4)HexNAc(5)Sulf(1)[N]"
+  ],
+  "956.32_Hex(5)": [
+    "dHex(1)Hex(5)[S]",
+    "dHex(1)Hex(5)[T]"
+  ],
+  "1821.55_A(1)Ac(3)Hex(5)O(3)S(1)": [
+    "dHex(1)Hex(5)HexA(1)HexNAc(3)Sulf(1)[N]"
+  ],
+  "1901.51_A(1)Ac(3)Hex(5)O(6)S(2)": [
+    "dHex(1)Hex(5)HexA(1)HexNAc(3)Sulf(2)[N]"
+  ],
+  "1362.48_Ac(2)Hex(5)": [
+    "dHex(1)Hex(5)HexNAc(2)[N]"
+  ],
+  "1494.52_Ac(2)Hex(5)Pent(1)": [
+    "dHex(1)Hex(5)HexNAc(2)Pent(1)[N]"
+  ],
+  "1565.56_Ac(3)Hex(5)": [
+    "dHex(1)Hex(5)HexNAc(3)[N]"
+  ],
+  "1856.66_Ac(1)Hex(5)": [
+    "dHex(1)Hex(5)HexNAc(3)NeuAc(1)[N]"
+  ],
+  "1936.61_Ac(1)Hex(5)O(3)S(1)": [
+    "dHex(1)Hex(5)HexNAc(3)NeuAc(1)Sulf(1)[N]"
+  ],
+  "1872.65_Ac(3)Gc(1)Hex(5)": [
+    "dHex(1)Hex(5)HexNAc(3)NeuGc(1)[N]"
+  ],
+  "1952.61_Ac(3)Gc(1)Hex(5)O(3)S(1)": [
+    "dHex(1)Hex(5)HexNAc(3)NeuGc(1)Sulf(1)[N]"
+  ],
+  "1645.52_Ac(3)Hex(5)O(3)S(1)": [
+    "dHex(1)Hex(5)HexNAc(3)Sulf(1)[N]"
+  ],
+  "1768.64_Ac(4)Hex(5)": [
+    "dHex(1)Hex(5)HexNAc(4)[N]"
+  ],
+  "1928.71_Ac(4)Hex(5)Me(2)Pent(1)": [
+    "dHex(1)Hex(5)HexNAc(4)Me(2)Pent(1)[N]"
+  ],
+  "2059.73_Ac(1)Hex(5)": [
+    "dHex(1)Hex(5)HexNAc(4)NeuAc(1)[N]"
+  ],
+  "2350.83_Ac(2)Hex(5)": [
+    "dHex(1)Hex(5)HexNAc(4)NeuAc(2)[N]"
+  ],
+  "1900.68_Ac(4)Hex(5)Pent(1)": [
+    "dHex(1)Hex(5)HexNAc(4)Pent(1)[N]"
+  ],
+  "1848.60_Ac(4)Hex(5)O(3)S(1)": [
+    "dHex(1)Hex(5)HexNAc(4)Sulf(1)[N]"
+  ],
+  "1928.55_Ac(4)Hex(5)O(6)S(2)": [
+    "dHex(1)Hex(5)HexNAc(4)Sulf(2)[N]"
+  ],
+  "1971.72_Ac(5)Hex(5)": [
+    "dHex(1)Hex(5)HexNAc(5)[N]"
+  ],
+  "1118.37_Hex(6)": [
+    "dHex(1)Hex(6)[S]",
+    "dHex(1)Hex(6)[T]"
+  ],
+  "1524.53_Ac(2)Hex(6)": [
+    "dHex(1)Hex(6)HexNAc(2)[N]"
+  ],
+  "1727.61_Ac(3)Hex(6)": [
+    "dHex(1)Hex(6)HexNAc(3)[N]"
+  ],
+  "1807.57_Ac(3)Hex(6)O(3)S(1)": [
+    "dHex(1)Hex(6)HexNAc(3)Sulf(1)[N]"
+  ],
+  "1930.69_Ac(4)Hex(6)": [
+    "dHex(1)Hex(6)HexNAc(4)[N]"
+  ],
+  "1686.59_Ac(2)Hex(7)": [
+    "dHex(1)Hex(7)HexNAc(2)[N]"
+  ],
+  "1889.67_Ac(3)Hex(7)": [
+    "dHex(1)Hex(7)HexNAc(3)[N]"
+  ],
+  "1969.63_Ac(3)H(1)Hex(7)O(3)P(1)": [
+    "dHex(1)Hex(7)HexNAc(3)Phos(1)[N]"
+  ],
+  "1969.62_Ac(3)Hex(7)O(3)S(1)": [
+    "dHex(1)Hex(7)HexNAc(3)Sulf(1)[N]"
+  ],
+  "2092.75_Ac(4)Hex(7)": [
+    "dHex(1)Hex(7)HexNAc(4)[N]"
+  ],
+  "1848.64_Ac(2)Hex(8)": [
+    "dHex(1)Hex(8)HexNAc(2)[N]"
+  ],
+  "755.30_Ac(3)Hex(1)": [
+    "dHex(1)HexNAc(3)[S]",
+    "dHex(1)HexNAc(3)[T]"
+  ],
+  "958.38_Ac(4)Hex(1)": [
+    "dHex(1)HexNAc(4)[S]",
+    "dHex(1)HexNAc(4)[T]"
+  ],
+  "1161.45_Ac(5)Hex(1)": [
+    "dHex(1)HexNAc(5)[S]",
+    "dHex(1)HexNAc(5)[T]"
+  ],
+  "907.32_Ac(1)Hex(1)Kdn(1)": [
+    "dHex(2)Hex(1)HexNAc(1)Kdn(1)[S]",
+    "dHex(2)Hex(1)HexNAc(1)Kdn(1)[T]"
+  ],
+  "1110.40_Ac(2)Hex(1)Kdn(1)": [
+    "dHex(2)Hex(1)HexNAc(2)Kdn(1)[S]",
+    "dHex(2)Hex(1)HexNAc(2)Kdn(1)[T]"
+  ],
+  "1151.42_Ac(1)Hex(1)": [
+    "dHex(2)Hex(1)HexNAc(2)NeuAc(1)[S]",
+    "dHex(2)Hex(1)HexNAc(2)NeuAc(1)[T]"
+  ],
+  "1167.42_Ac(2)Gc(1)Hex(1)": [
+    "dHex(2)Hex(1)HexNAc(2)NeuGc(1)[S]",
+    "dHex(2)Hex(1)HexNAc(2)NeuGc(1)[T]"
+  ],
+  "1063.41_Ac(3)Hex(1)": [
+    "dHex(2)Hex(1)HexNAc(3)[S]",
+    "dHex(2)Hex(1)HexNAc(3)[T]"
+  ],
+  "1346.44_Ac(4)Hex(1)Sulf(1)": [
+    "dHex(2)Hex(1)HexNAc(4)Sulf(1)[S]",
+    "dHex(2)Hex(1)HexNAc(4)Sulf(1)[T]"
+  ],
+  "616.22_Hex(2)": [
+    "dHex(2)Hex(2)[S]",
+    "dHex(2)Hex(2)[T]"
+  ],
+  "792.25_A(1)Hex(2)": [
+    "dHex(2)Hex(2)HexA(1)[S]",
+    "dHex(2)Hex(2)HexA(1)[T]"
+  ],
+  "995.33_A(1)Ac(1)Hex(2)": [
+    "dHex(2)Hex(2)HexA(1)HexNAc(1)[S]",
+    "dHex(2)Hex(2)HexA(1)HexNAc(1)[T]"
+  ],
+  "1278.37_A(1)Ac(2)Hex(2)O(3)S(1)": [
+    "dHex(2)Hex(2)HexA(1)HexNAc(2)Sulf(1)[S]",
+    "dHex(2)Hex(2)HexA(1)HexNAc(2)Sulf(1)[T]"
+  ],
+  "819.30_Ac(1)Hex(2)": [
+    "dHex(2)Hex(2)HexNAc(1)[S]",
+    "dHex(2)Hex(2)HexNAc(1)[T]"
+  ],
+  "1022.38_Ac(2)Hex(2)": [
+    "dHex(2)Hex(2)HexNAc(2)[N]",
+    "dHex(2)Hex(2)HexNAc(2)[S]",
+    "dHex(2)Hex(2)HexNAc(2)[T]"
+  ],
+  "1272.45_Ac(2)Hex(2)Kdn(1)": [
+    "dHex(2)Hex(2)HexNAc(2)Kdn(1)[S]",
+    "dHex(2)Hex(2)HexNAc(2)Kdn(1)[T]"
+  ],
+  "1313.48_Ac(1)Hex(2)": [
+    "dHex(2)Hex(2)HexNAc(2)NeuAc(1)[S]",
+    "dHex(2)Hex(2)HexNAc(2)NeuAc(1)[T]"
+  ],
+  "1393.43_Ac(1)Hex(2)O(3)S(1)": [
+    "dHex(2)Hex(2)HexNAc(2)NeuAc(1)Sulf(1)[S]",
+    "dHex(2)Hex(2)HexNAc(2)NeuAc(1)Sulf(1)[T]"
+  ],
+  "1329.47_Ac(2)Gc(1)Hex(2)": [
+    "dHex(2)Hex(2)HexNAc(2)NeuGc(1)[S]",
+    "dHex(2)Hex(2)HexNAc(2)NeuGc(1)[T]"
+  ],
+  "1102.34_Ac(2)Hex(2)O(3)S(1)": [
+    "dHex(2)Hex(2)HexNAc(2)Sulf(1)[S]",
+    "dHex(2)Hex(2)HexNAc(2)Sulf(1)[T]"
+  ],
+  "1182.29_Ac(2)Hex(2)O(6)S(2)": [
+    "dHex(2)Hex(2)HexNAc(2)Sulf(2)[S]",
+    "dHex(2)Hex(2)HexNAc(2)Sulf(2)[T]"
+  ],
+  "1225.46_Ac(3)Hex(2)": [
+    "dHex(2)Hex(2)HexNAc(3)[N]",
+    "dHex(2)Hex(2)HexNAc(3)[S]",
+    "dHex(2)Hex(2)HexNAc(3)[T]"
+  ],
+  "1516.55_Ac(1)Hex(2)": [
+    "dHex(2)Hex(2)HexNAc(3)NeuAc(1)[S]",
+    "dHex(2)Hex(2)HexNAc(3)NeuAc(1)[T]"
+  ],
+  "1532.55_Ac(3)Gc(1)Hex(2)": [
+    "dHex(2)Hex(2)HexNAc(3)NeuGc(1)[S]",
+    "dHex(2)Hex(2)HexNAc(3)NeuGc(1)[T]"
+  ],
+  "1305.42_Ac(3)Hex(2)O(3)S(1)": [
+    "dHex(2)Hex(2)HexNAc(3)Sulf(1)[S]",
+    "dHex(2)Hex(2)HexNAc(3)Sulf(1)[T]"
+  ],
+  "1428.54_Ac(4)Hex(2)": [
+    "dHex(2)Hex(2)HexNAc(4)[S]",
+    "dHex(2)Hex(2)HexNAc(4)[T]"
+  ],
+  "1588.45_Ac(4)Hex(2)Sulf(2)": [
+    "dHex(2)Hex(2)HexNAc(4)Sulf(2)[S]",
+    "dHex(2)Hex(2)HexNAc(4)Sulf(2)[T]"
+  ],
+  "1631.62_Ac(5)Hex(2)": [
+    "dHex(2)Hex(2)HexNAc(5)[S]",
+    "dHex(2)Hex(2)HexNAc(5)[T]"
+  ],
+  "1914.65_Ac(6)Hex(2)Sulf(1)": [
+    "dHex(2)Hex(2)HexNAc(6)Sulf(1)[S]",
+    "dHex(2)Hex(2)HexNAc(6)Sulf(1)[T]"
+  ],
+  "778.27_Hex(3)": [
+    "dHex(2)Hex(3)[S]",
+    "dHex(2)Hex(3)[T]"
+  ],
+  "1237.34_A(1)Ac(1)Hex(3)O(3)S(1)": [
+    "dHex(2)Hex(3)HexA(1)HexNAc(1)Sulf(1)[S]",
+    "dHex(2)Hex(3)HexA(1)HexNAc(1)Sulf(1)[T]"
+  ],
+  "1440.42_A(1)Ac(2)Hex(3)O(3)S(1)": [
+    "dHex(2)Hex(3)HexA(1)HexNAc(2)Sulf(1)[S]",
+    "dHex(2)Hex(3)HexA(1)HexNAc(2)Sulf(1)[T]"
+  ],
+  "1643.50_A(1)Ac(3)Hex(3)O(3)S(1)": [
+    "dHex(2)Hex(3)HexA(1)HexNAc(3)Sulf(1)[S]",
+    "dHex(2)Hex(3)HexA(1)HexNAc(3)Sulf(1)[T]"
+  ],
+  "1061.31_Ac(1)Hex(3)O(3)S(1)": [
+    "dHex(2)Hex(3)HexNAc(1)Sulf(1)[S]",
+    "dHex(2)Hex(3)HexNAc(1)Sulf(1)[T]"
+  ],
+  "1184.43_Ac(2)Hex(3)": [
+    "dHex(2)Hex(3)HexNAc(2)[N]",
+    "dHex(2)Hex(3)HexNAc(2)[S]",
+    "dHex(2)Hex(3)HexNAc(2)[T]"
+  ],
+  "1491.52_Ac(2)Gc(1)Hex(3)": [
+    "dHex(2)Hex(3)HexNAc(2)NeuGc(1)[S]",
+    "dHex(2)Hex(3)HexNAc(2)NeuGc(1)[T]"
+  ],
+  "1264.39_Ac(2)Hex(3)O(3)S(1)": [
+    "dHex(2)Hex(3)HexNAc(2)Sulf(1)[S]",
+    "dHex(2)Hex(3)HexNAc(2)Sulf(1)[T]"
+  ],
+  "1387.51_Ac(3)Hex(3)": [
+    "dHex(2)Hex(3)HexNAc(3)[N]",
+    "dHex(2)Hex(3)HexNAc(3)[S]",
+    "dHex(2)Hex(3)HexNAc(3)[T]"
+  ],
+  "1678.61_Ac(1)Hex(3)": [
+    "dHex(2)Hex(3)HexNAc(3)NeuAc(1)[S]",
+    "dHex(2)Hex(3)HexNAc(3)NeuAc(1)[T]"
+  ],
+  "1969.70_Ac(2)Hex(3)": [
+    "dHex(2)Hex(3)HexNAc(3)NeuAc(2)[S]",
+    "dHex(2)Hex(3)HexNAc(3)NeuAc(2)[T]"
+  ],
+  "1519.55_Ac(3)Hex(3)Pent(1)": [
+    "dHex(2)Hex(3)HexNAc(3)Pent(1)[N]"
+  ],
+  "1651.60_Ac(3)Hex(3)Pent(2)": [
+    "dHex(2)Hex(3)HexNAc(3)Pent(2)[N]"
+  ],
+  "1467.47_Ac(3)Hex(3)Sulf(1)": [
+    "dHex(2)Hex(3)HexNAc(3)Sulf(1)[S]",
+    "dHex(2)Hex(3)HexNAc(3)Sulf(1)[T]"
+  ],
+  "1590.59_Ac(4)Hex(3)": [
+    "dHex(2)Hex(3)HexNAc(4)[N]",
+    "dHex(2)Hex(3)HexNAc(4)[S]",
+    "dHex(2)Hex(3)HexNAc(4)[T]"
+  ],
+  "1881.69_Ac(1)Hex(3)": [
+    "dHex(2)Hex(3)HexNAc(4)NeuAc(1)[N]"
+  ],
+  "1722.63_Ac(4)Hex(3)Pent(1)": [
+    "dHex(2)Hex(3)HexNAc(4)Pent(1)[N]"
+  ],
+  "1854.68_Ac(4)Hex(3)Pent(2)": [
+    "dHex(2)Hex(3)HexNAc(4)Pent(2)[N]"
+  ],
+  "1793.67_Ac(5)Hex(3)": [
+    "dHex(2)Hex(3)HexNAc(5)[N]",
+    "dHex(2)Hex(3)HexNAc(5)[S]",
+    "dHex(2)Hex(3)HexNAc(5)[T]"
+  ],
+  "1996.75_Ac(6)Hex(3)": [
+    "dHex(2)Hex(3)HexNAc(6)[N]"
+  ],
+  "940.33_Hex(4)": [
+    "dHex(2)Hex(4)[S]",
+    "dHex(2)Hex(4)[T]"
+  ],
+  "1805.55_A(1)Ac(3)Hex(4)O(3)S(1)": [
+    "dHex(2)Hex(4)HexA(1)HexNAc(3)Sulf(1)[S]",
+    "dHex(2)Hex(4)HexA(1)HexNAc(3)Sulf(1)[T]"
+  ],
+  "1143.41_Ac(1)Hex(4)": [
+    "dHex(2)Hex(4)HexNAc(1)[S]",
+    "dHex(2)Hex(4)HexNAc(1)[T]"
+  ],
+  "1346.49_Ac(2)Hex(4)": [
+    "dHex(2)Hex(4)HexNAc(2)[N]",
+    "dHex(2)Hex(4)HexNAc(2)[S]",
+    "dHex(2)Hex(4)HexNAc(2)[T]"
+  ],
+  "1549.57_Ac(3)Hex(4)": [
+    "dHex(2)Hex(4)HexNAc(3)[N]"
+  ],
+  "1920.62_Ac(1)Hex(4)O(3)S(1)": [
+    "dHex(2)Hex(4)HexNAc(3)NeuAc(1)Sulf(1)[N]"
+  ],
+  "1681.61_Ac(3)Hex(4)Pent(1)": [
+    "dHex(2)Hex(4)HexNAc(3)Pent(1)[N]"
+  ],
+  "1752.64_Ac(4)Hex(4)": [
+    "dHex(2)Hex(4)HexNAc(4)[N]",
+    "dHex(2)Hex(4)HexNAc(4)[S]",
+    "dHex(2)Hex(4)HexNAc(4)[T]"
+  ],
+  "1884.69_Ac(4)Hex(4)Pent(1)": [
+    "dHex(2)Hex(4)HexNAc(4)Pent(1)[N]"
+  ],
+  "1832.60_Ac(4)Hex(4)O(3)S(1)": [
+    "dHex(2)Hex(4)HexNAc(4)Sulf(1)[N]"
+  ],
+  "1955.72_Ac(5)Hex(4)": [
+    "dHex(2)Hex(4)HexNAc(5)[N]",
+    "dHex(2)Hex(4)HexNAc(5)[S]",
+    "dHex(2)Hex(4)HexNAc(5)[T]"
+  ],
+  "1522.55_Ac(2)Hex(5)Me(1)": [
+    "dHex(2)Hex(5)HexNAc(2)Me(1)[S]",
+    "dHex(2)Hex(5)HexNAc(2)Me(1)[T]"
+  ],
+  "1843.66_Ac(3)Hex(5)Pent(1)": [
+    "dHex(2)Hex(5)HexNAc(3)Pent(1)[N]"
+  ],
+  "1914.70_Ac(4)Hex(5)": [
+    "dHex(2)Hex(5)HexNAc(4)[N]"
+  ],
+  "948.34_Ac(2)Hex(2)Kdn(1)": [
+    "dHex(2)HexNAc(2)Kdn(1)[S]",
+    "dHex(2)HexNAc(2)Kdn(1)[T]"
+  ],
+  "1307.51_Ac(5)Hex(2)": [
+    "dHex(2)HexNAc(5)[S]",
+    "dHex(2)HexNAc(5)[T]"
+  ],
+  "1713.67_Ac(7)Hex(2)": [
+    "dHex(2)HexNAc(7)[S]",
+    "dHex(2)HexNAc(7)[T]"
+  ],
+  "1256.45_Ac(2)Hex(1)Kdn(1)": [
+    "dHex(3)Hex(1)HexNAc(2)Kdn(1)[S]",
+    "dHex(3)Hex(1)HexNAc(2)Kdn(1)[T]"
+  ],
+  "1459.53_Ac(3)Hex(1)Kdn(1)": [
+    "dHex(3)Hex(1)HexNAc(3)Kdn(1)[S]",
+    "dHex(3)Hex(1)HexNAc(3)Kdn(1)[T]"
+  ],
+  "1424.43_A(1)Ac(2)Hex(2)O(3)S(1)": [
+    "dHex(3)Hex(2)HexA(1)HexNAc(2)Sulf(1)[S]",
+    "dHex(3)Hex(2)HexA(1)HexNAc(2)Sulf(1)[T]"
+  ],
+  "1168.44_Ac(2)Hex(2)": [
+    "dHex(3)Hex(2)HexNAc(2)[S]",
+    "dHex(3)Hex(2)HexNAc(2)[T]"
+  ],
+  "1418.51_Ac(2)Hex(2)Kdn(1)": [
+    "dHex(3)Hex(2)HexNAc(2)Kdn(1)[S]",
+    "dHex(3)Hex(2)HexNAc(2)Kdn(1)[T]"
+  ],
+  "1371.52_Ac(3)Hex(2)": [
+    "dHex(3)Hex(2)HexNAc(3)[S]",
+    "dHex(3)Hex(2)HexNAc(3)[T]"
+  ],
+  "1621.59_Ac(3)Hex(2)Kdn(1)": [
+    "dHex(3)Hex(2)HexNAc(3)Kdn(1)[S]",
+    "dHex(3)Hex(2)HexNAc(3)Kdn(1)[T]"
+  ],
+  "1574.60_Ac(4)Hex(2)": [
+    "dHex(3)Hex(2)HexNAc(4)[S]",
+    "dHex(3)Hex(2)HexNAc(4)[T]"
+  ],
+  "1734.51_Ac(4)Hex(2)Sulf(2)": [
+    "dHex(3)Hex(2)HexNAc(4)Sulf(2)[S]",
+    "dHex(3)Hex(2)HexNAc(4)Sulf(2)[T]"
+  ],
+  "1127.41_Ac(1)Hex(3)": [
+    "dHex(3)Hex(3)HexNAc(1)[S]",
+    "dHex(3)Hex(3)HexNAc(1)[T]"
+  ],
+  "1330.49_Ac(2)Hex(3)": [
+    "dHex(3)Hex(3)HexNAc(2)[S]",
+    "dHex(3)Hex(3)HexNAc(2)[T]"
+  ],
+  "1533.57_Ac(3)Hex(3)": [
+    "dHex(3)Hex(3)HexNAc(3)[S]",
+    "dHex(3)Hex(3)HexNAc(3)[T]"
+  ],
+  "1824.67_Ac(1)Hex(3)": [
+    "dHex(3)Hex(3)HexNAc(3)NeuAc(1)[S]",
+    "dHex(3)Hex(3)HexNAc(3)NeuAc(1)[T]"
+  ],
+  "1665.61_Ac(3)Hex(3)Pent(1)": [
+    "dHex(3)Hex(3)HexNAc(3)Pent(1)[N]"
+  ],
+  "1736.65_Ac(4)Hex(3)": [
+    "dHex(3)Hex(3)HexNAc(4)[N]"
+  ],
+  "1868.69_Ac(4)Hex(3)Pent(1)": [
+    "dHex(3)Hex(3)HexNAc(4)Pent(1)[N]"
+  ],
+  "1898.70_Ac(4)Hex(4)": [
+    "dHex(3)Hex(4)HexNAc(4)[N]",
+    "dHex(3)Hex(4)HexNAc(4)[S]",
+    "dHex(3)Hex(4)HexNAc(4)[T]"
+  ],
+  "1978.66_Ac(4)Hex(4)O(3)S(1)": [
+    "dHex(3)Hex(4)HexNAc(4)Sulf(1)[N]"
+  ],
+  "1297.48_Ac(3)Hex(3)Kdn(1)": [
+    "dHex(3)HexNAc(3)Kdn(1)[S]",
+    "dHex(3)HexNAc(3)Kdn(1)[T]"
+  ],
+  "1449.50_Ac(1)Hex(1)Kdn(2)": [
+    "dHex(4)Hex(1)HexNAc(1)Kdn(2)[S]",
+    "dHex(4)Hex(1)HexNAc(1)Kdn(2)[T]"
+  ],
+  "1402.51_Ac(2)Hex(1)Kdn(1)": [
+    "dHex(4)Hex(1)HexNAc(2)Kdn(1)[S]",
+    "dHex(4)Hex(1)HexNAc(2)Kdn(1)[T]"
+  ],
+  "1605.59_Ac(3)Hex(1)Kdn(1)": [
+    "dHex(4)Hex(1)HexNAc(3)Kdn(1)[S]",
+    "dHex(4)Hex(1)HexNAc(3)Kdn(1)[T]"
+  ],
+  "1564.56_Ac(2)Hex(2)Kdn(1)": [
+    "dHex(4)Hex(2)HexNAc(2)Kdn(1)[S]",
+    "dHex(4)Hex(2)HexNAc(2)Kdn(1)[T]"
+  ],
+  "1517.58_Ac(3)Hex(2)": [
+    "dHex(4)Hex(2)HexNAc(3)[S]",
+    "dHex(4)Hex(2)HexNAc(3)[T]"
+  ],
+  "1767.64_Ac(1)Hex(3)": [
+    "dHex(4)Hex(3)HexNAc(2)NeuAc(1)[S]",
+    "dHex(4)Hex(3)HexNAc(2)NeuAc(1)[T]"
+  ],
+  "1679.63_Ac(3)Hex(3)": [
+    "dHex(4)Hex(3)HexNAc(3)[S]",
+    "dHex(4)Hex(3)HexNAc(3)[T]"
+  ],
+  "1443.54_Ac(3)Hex(4)Kdn(1)": [
+    "dHex(4)HexNAc(3)Kdn(1)[S]",
+    "dHex(4)HexNAc(3)Kdn(1)[T]"
+  ],
+  "146.06_Hex(1)": [
+    "dHex[N]",
+    "dHex[S]",
+    "dHex[T]"
+  ],
+  "109.05_C(6)H(3)N(1)O(1)": [
+    "dNIC[AnyN-term]",
+    "dNIC[K]"
+  ],
+  "67.92_Cl(2)H(-2)": [
+    "dichlorination[C]",
+    "dichlorination[Y]"
+  ],
+  "27.05_C(2)H(5)N(1)O(-1)": [
+    "ethylamino[S]",
+    "ethylamino[T](Thr->Lys[T])"
+  ],
+  "120.02_C(4)H(8)O(2)S(1)": [
+    "ethylsulfonylethyl[C](BEMAD_C[C])",
+    "ethylsulfonylethyl[H]",
+    "ethylsulfonylethyl[K]"
+  ],
+  "160.04_C(6)H(8)O(5)": [
+    "glucosone[R]"
+  ],
+  "87.03_C(3)H(5)N(1)O(2)": [
+    "glycidamide[AnyN-term]",
+    "glycidamide[K]"
+  ],
+  "21.98_C(2)H(-2)": [
+    "glyoxalAGE[R]"
+  ],
+  "144.11_C(2)H(12)N(2)O(1)": [
+    "iTRAQ4plex114[AnyN-term]",
+    "iTRAQ4plex114[C]",
+    "iTRAQ4plex114[K]",
+    "iTRAQ4plex114[Y]"
+  ],
+  "144.10_C(1)H(12)N(1)O(1)": [
+    "iTRAQ4plex115[AnyN-term]",
+    "iTRAQ4plex115[C]",
+    "iTRAQ4plex115[K]",
+    "iTRAQ4plex115[Y]"
+  ],
+  "304.20_C(6)H(24)N(2)O(3)": [
+    "iTRAQ8plex_13C(6)15N(2)[AnyN-term]",
+    "iTRAQ8plex_13C(6)15N(2)[C]",
+    "iTRAQ8plex_13C(6)15N(2)[K]",
+    "iTRAQ8plex_13C(6)15N(2)[Y]"
+  ],
+  "324.22_C(16)H(28)N(4)O(3)": [
+    "iodoTMT[C]",
+    "iodoTMT[D]",
+    "iodoTMT[E]",
+    "iodoTMT[H]",
+    "iodoTMT[K]"
+  ],
+  "329.23_C(4)H(28)N(1)O(3)": [
+    "iodoTMT6plex[C]",
+    "iodoTMT6plex[D]",
+    "iodoTMT6plex[E]",
+    "iodoTMT6plex[H]",
+    "iodoTMT6plex[K]"
+  ],
+  "240.12_C(16)H(16)O(2)": [
+    "lapachenole[C]"
+  ],
+  "97.02_C(4)H(3)N(1)O(2)": [
+    "maleimide[C]",
+    "maleimide[K]"
+  ],
+  "969.37_C(37)H(59)N(7)O(23)": [
+    "maleimide3[C]",
+    "maleimide3[K]"
+  ],
+  "1293.47_C(49)H(79)N(7)O(33)": [
+    "maleimide5[C]",
+    "maleimide5[K]"
+  ],
+  "106.01_C(3)H(6)O(2)S(1)": [
+    "methylsulfonylethyl[C]",
+    "methylsulfonylethyl[H]",
+    "methylsulfonylethyl[K]"
+  ],
+  "109.96_C(1)H(3)O(2)P(1)S(1)": [
+    "monomethylphosphothione[C]",
+    "monomethylphosphothione[H]",
+    "monomethylphosphothione[K]",
+    "monomethylphosphothione[S]",
+    "monomethylphosphothione[T]",
+    "monomethylphosphothione[Y]"
+  ],
+  "168.02_C(8)H(8)O(2)S(1)": [
+    "phenylsulfonylethyl[C]"
+  ],
+  "212.01_C(5)H(9)O(7)P(1)": [
+    "phosphoRibosyl[D]",
+    "phosphoRibosyl[E]",
+    "phosphoRibosyl[R]"
+  ],
+  "258.12_C(10)H(18)N(4)O(2)S(1)": [
+    "probiotinhydrazide[P]"
+  ],
+  "243.09_C(9)H(13)N(3)O(5)": [
+    "pupylation[K]"
+  ],
+  "159.93_H(2)O(6)P(2)": [
+    "pyrophospho[S]",
+    "pyrophospho[T]"
+  ],
+  "283.04_Ac(1)O(3)S(1)": [
+    "s-GlcNAc[S]",
+    "s-GlcNAc[T]"
+  ],
+  "159.07_C(10)H(9)N(1)O(1)": [
+    "serotonylation[Q]"
+  ],
+  "128.13_C(7)H(16)N(2)": [
+    "spermidine[Q]"
+  ],
+  "185.19_C(10)H(23)N(3)": [
+    "spermine[Q]"
+  ],
+  "94.97_H(1)N(1)O(3)S(1)": [
+    "sulfo+amino[Y]"
+  ],
+  "53.97_F(3)H(-3)": [
+    "trifluoro[L]"
+  ],
+  "333.21_": [
+    "NHS[K]",
+    "NHS[pep-N]",
+    "NHS[protein-N]"
+  ],
+  "442.23_": [
+    "YJ3[pep-N]",
+    "YJ3[protein-N]",
+    "YJ3[C]",
+    "YJ3[K]"
+  ]
+}
