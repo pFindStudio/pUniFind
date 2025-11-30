@@ -63,7 +63,7 @@ If you encounter any issues running pUniFind, please first refer to the FAQ sect
 **Staring** and **watching** our repo will remind you of our updates. We will keep optimizing our model.
 | Milestone         | Status |
 |-------------------|--------|
-| nce option (currently use default 25 as input) | 🚄 very soon |
+| Supporting EThcD | 🚄 Highest priority |
 | Integarating pUniFind into open-pFind | 🚧 Preparing |
 | User-defined new PTM Tuning | 📝 Planning |
 | Improving the performance and speed of scoring and de novo sequencing. | 📝 Long-term |
