@@ -63,7 +63,7 @@ If you encounter any issues running pUniFind, please first refer to the FAQ sect
 **Staring** and **watching** our repo will remind you of our updates. We will keep optimizing our model.
 | Milestone         | Status |
 |-------------------|--------|
-| Supporting EThcD | 🚄 Highest priority |
+| Supporting EThcD | 🚄 Highest priority (maybe 2 months) |
 | Integarating pUniFind into open-pFind | 🚧 Preparing |
 | User-defined new PTM Tuning | 📝 Planning |
 | Improving the performance and speed of scoring and de novo sequencing. | 📝 Long-term |

@@ -51,7 +51,7 @@ bash env.sh
 ```
 
 #### Download checkpoint to ckpts
-You can download checkpoint from [here](https://drive.google.com/drive/folders/1CQzNypmOscCpvyK3MnCj4AhEWGlx9mbn?usp=sharing) to ```ckpts``` folder.
+You can download checkpoint from [here](https://huggingface.co/Heisenburger2000/pUniFind/tree/main) to ```ckpts``` folder.
 
 Use checkpoint_rank.pt for scoring and de novo sequencing of Thermo data, and checkpoint_tims.pt for de novo sequencing of TIMS data. The default model is checkpoint_rank.pt. You can configure this setting in official_denovo_workflow.sh or official_score_workflow.sh.
 

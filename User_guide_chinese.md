@@ -43,7 +43,7 @@ bash env.sh
 ```
 
 #### checkpoint下载
-从[这里](https://drive.google.com/drive/folders/1CQzNypmOscCpvyK3MnCj4AhEWGlx9mbn?usp=sharing)下载checkpoint到ckpts文件夹下。
+从[这里](https://huggingface.co/Heisenburger2000/pUniFind/tree/main)下载checkpoint到ckpts文件夹下。
 
 Thermo仪器打分、从头测序用checkpoint_rank.pt，TIMS从头测序用checkpoint_tims.pt，默认使用checkpoint_rank.pt，可以在official_denovo_workflow.sh或者official_score_workflow.sh中设置
 
