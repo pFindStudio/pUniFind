@@ -24,7 +24,7 @@
 重打分结果将保存在```result```文件夹，从头测序结果将存储在```pUniFind_result```文件夹。
 
 #### 如果安装后提示下载的文件下载失败备选方案
-请到[huggingface仓库]()下载对应文件放到对应路径下：
+请到[huggingface仓库](https://huggingface.co/Heisenburger2000/pUniFind/tree/main)下载对应文件放到对应路径下：
 1. torchlib.zip: 放到：安装路径\piUniMS\punifind\torch\lib，然后解压里面所有的ddl文件到这个路径下
 2. checkpoint_rank.pt: 放到：安装路径\piUniMS\punifind\ckpts下面
 2. checkpoint4.pt: 放到：安装路径\piUniMS\punifind\ckpts下面

@@ -28,7 +28,7 @@ For ```GPU Batch size```, you can set it to 128 if your GPU has more than 8GB me
 The rescoring results will be saved in the ```result``` folder. The de novo sequencing results will be stored in the ```pUniFind_result``` folder.
 
 #### Alternative Solution for Download Failures
-If you encounter a download failure prompt after installation, please download the corresponding files from the [Hugging Face repository]() and place them in the following directories:
+If you encounter a download failure prompt after installation, please download the corresponding files from the [Hugging Face repository](https://huggingface.co/Heisenburger2000/pUniFind/tree/main) and place them in the following directories:
 
 1. **torchlib.zip**: Place in `Installation Path\piUniMS\punifind\torch\lib`, then extract all `.dll` files inside into this directory.
 2. **checkpoint_rank.pt**: Place in `Installation Path\piUniMS\punifind\ckpts`.
