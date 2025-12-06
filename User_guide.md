@@ -27,6 +27,16 @@ For ```GPU Batch size```, you can set it to 128 if your GPU has more than 8GB me
 
 The rescoring results will be saved in the ```result``` folder. The de novo sequencing results will be stored in the ```pUniFind_result``` folder.
 
+#### Alternative Solution for Download Failures
+If you encounter a download failure prompt after installation, please download the corresponding files from the [Hugging Face repository]() and place them in the following directories:
+
+1. **torchlib.zip**: Place in `Installation Path\piUniMS\punifind\torch\lib`, then extract all `.dll` files inside into this directory.
+2. **checkpoint_rank.pt**: Place in `Installation Path\piUniMS\punifind\ckpts`.
+3. **checkpoint4.pt**: Place in `Installation Path\piUniMS\punifind\ckpts`.
+
+Then reopen the software.
+
+**Note:** The default installation path is `C:\Users\[Your Username]\AppData\Local\Programs\piUniMS`. If you customized the location during installation, you can find the actual path by hovering your mouse over the desktop shortcut.
 
 ### Local deployment for Linux (Preview usage)
 (We will optimize the user experience in the near future, This is just a preview version linux source code.)

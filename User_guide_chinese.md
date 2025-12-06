@@ -22,6 +22,15 @@
 可通过终端命令```nvidia-smi```查看显存信息。
 
 重打分结果将保存在```result```文件夹，从头测序结果将存储在```pUniFind_result```文件夹。
+
+#### 如果安装后提示下载的文件下载失败备选方案
+请到[huggingface仓库]()下载对应文件放到对应路径下：
+1. torchlib.zip: 放到：安装路径\piUniMS\punifind\torch\lib，然后解压里面所有的ddl文件到这个路径下
+2. checkpoint_rank.pt: 放到：安装路径\piUniMS\punifind\ckpts下面
+2. checkpoint4.pt: 放到：安装路径\piUniMS\punifind\ckpts下面
+然后重启软件。
+注：安装路径默认在 C:\Users\[你的用户名]\AppData\Local\Programs\piUniMS，可能安装的时候修改了路径，可以返回桌面后鼠标悬停在快捷方式上查看。
+
 ### Linux本地部署（preview版本）
 我们会在后续优化用户使用体验，目前是尝鲜版本。
 #### 环境配置
