@@ -2,3 +2,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 ckpts/checkpoint_rank.pt
+*.egg-info/
+**/.DS_Store
+projects/

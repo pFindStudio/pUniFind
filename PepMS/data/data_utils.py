@@ -24,9 +24,12 @@ def numpy_seed(seed, *addl_seeds, key=None):
         return
 
     def check_seed(s):
-        assert type(s) == int or type(s) == np.int32 or type(s) == np.int64
+        # Use isinstance to properly handle int subclasses and numpy integer types
+        assert isinstance(s, (int, np.integer)), f"Seed must be an integer, got {type(s)}: {s}"
 
     check_seed(seed)
+    # Filter out None values from addl_seeds
+    addl_seeds = tuple(s for s in addl_seeds if s is not None)
     if len(addl_seeds) > 0:
         for s in addl_seeds:
             check_seed(s)

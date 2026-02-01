@@ -13,7 +13,7 @@ from torch import Tensor
 from torch.nn.modules import Module
 from torch.nn.modules.transformer import _get_clones
 from torch.utils.checkpoint import checkpoint
-from unicore.modules import LayerNorm, SelfMultiheadAttention, softmax_dropout
+from compat.modules import LayerNorm, SelfMultiheadAttention, softmax_dropout
 
 from . import utils
 

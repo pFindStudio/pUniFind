@@ -6,7 +6,6 @@ import sys
 from multiprocessing import Pool
 from os.path import join
 
-import lmdb
 import numpy as np
 import spectrum_utils.spectrum as sus
 import torch

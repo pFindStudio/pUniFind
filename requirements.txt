@@ -1,0 +1,43 @@
+# =============================================================================
+# pUniFind Requirements
+# =============================================================================
+#
+# INSTALLATION (安装方式):
+#
+#   Step 1: Install PyTorch first (choose ONE based on your CUDA version)
+#   第一步: 先安装 PyTorch (根据你的 CUDA 版本选择)
+#
+#     # CUDA 11.8:
+#     pip install torch==2.1.0 --index-url https://download.pytorch.org/whl/cu118
+#
+#     # CUDA 12.1:
+#     pip install torch==2.1.0 --index-url https://download.pytorch.org/whl/cu121
+#
+#     # CPU only:
+#     pip install torch==2.1.0 --index-url https://download.pytorch.org/whl/cpu
+#
+#   Step 2: Install pUniFind
+#   第二步: 安装 pUniFind
+#
+#     pip install -e .
+#
+# =============================================================================
+
+# Core - version constraints ensure compatibility
+numpy>=1.21.0,<2.0.0
+pandas==1.5.3
+pyarrow==12.0.1
+
+# Scientific computing
+scipy>=1.7.0,<1.12.0
+scikit-learn>=1.0.0,<1.4.0
+tqdm
+
+# MS/Proteomics
+spectrum_utils>=0.4.0
+pyteomics>=4.5
+
+# Deep learning utilities
+einops
+opt_einsum
+tensorboard

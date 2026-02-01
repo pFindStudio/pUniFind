@@ -4,7 +4,6 @@ import pickle
 from multiprocessing import Pool
 from os.path import join
 
-import lmdb
 import numba
 import numpy as np
 import pandas as pd
@@ -15,6 +14,7 @@ import torch.nn as nn
 import torch.nn.init as init
 from tqdm import tqdm
 
+from compat.parquet_storage import ParquetReader, get_storage_path
 from PepMS.eval.eval_draw import *
 from PepMS.eval.process_result import *
 
@@ -130,7 +130,7 @@ class PercolatorConfig:
             try_remove([self.pfind_result_middle_path])
 
         self.lmdb_path_base = lmdb_path_base
-        self.lmdb_path = join(lmdb_path_base, dataset_name + ".lmdb")
+        self.lmdb_path = get_storage_path(join(lmdb_path_base, dataset_name + ".lmdb"))
 
         self.debug_mode = debug_mode
 
@@ -473,18 +473,8 @@ class Percolator:
         self.model = NNRescore(self.feature_list)
 
     def load_data(self):
-        env_read = lmdb.open(
-            self.config.lmdb_path,
-            subdir=False,
-            readonly=True,
-            lock=False,
-            readahead=False,
-            meminit=False,
-            max_readers=1,
-            map_size=int(100e9),
-        )
-        self.txn_read = env_read.begin()
-        # keys = list(txn_read.cursor().iternext(values=False))
+        """Load data from Parquet storage."""
+        self._reader = ParquetReader(self.config.lmdb_path)
         filtered_keys = pickle.load(
             open(
                 join(
@@ -510,7 +500,7 @@ class Percolator:
 
         def input_pfind():
             for key in self.lmdb_keys:
-                yield key, self.txn_read.get(key), False
+                yield key, self._reader.get(key), False
 
         set_all_001 = {}
         if os.path.exists(pfind_result_middle_path):
@@ -644,8 +634,7 @@ class Percolator:
                         gzip.decompress(pscore_output[pscore_key])
                     )
                     idx = pscore_res["index"]
-                    # print(idx, pscore_key)
-                    yield pscore_res, pscore_key, self.txn_read.get(
+                    yield pscore_res, pscore_key, self._reader.get(
                         self.lmdb_keys[idx]
                     ), False, self.config
 

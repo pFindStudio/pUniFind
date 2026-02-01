@@ -28,7 +28,9 @@
 1. torchlib.zip: 放到：安装路径\piUniMS\punifind\torch\lib，然后解压里面所有的ddl文件到这个路径下
 2. checkpoint_rank.pt: 放到：安装路径\piUniMS\punifind\ckpts下面
 2. checkpoint4.pt: 放到：安装路径\piUniMS\punifind\ckpts下面
+
 然后重启软件。
+
 注：安装路径默认在 C:\Users\[你的用户名]\AppData\Local\Programs\piUniMS，可能安装的时候修改了路径，可以返回桌面后鼠标悬停在快捷方式上查看。
 
 ### Linux本地部署（preview版本）
@@ -44,12 +46,15 @@ pUniFind支持多GPU加速处理。
 
 ```bash
 # 创建conda环境
-conda create -n pUniFind python=3.8 -y
+conda create -n pUniFind python=3.9 -y
 conda activate pUniFind
 # 进入项目目录
-cd Contrast_MS_Pep
-bash env.sh
+git clone https://github.com/pFindStudio/pUniFind.git
+cd pUniFind
+pip install torch==2.1.0 --index-url https://download.pytorch.org/whl/cu118
+pip install -e .
 ```
+如果网络有故障无法安装torch，可以考虑从[这里](https://huggingface.co/Heisenburger2000/pUniFind/tree/main)下载whl文件用pip install XX.whl文件来安装。
 
 #### checkpoint下载
 从[这里](https://huggingface.co/Heisenburger2000/pUniFind/tree/main)下载checkpoint到ckpts文件夹下。
@@ -57,7 +62,7 @@ bash env.sh
 Thermo仪器打分、从头测序用checkpoint_rank.pt，TIMS从头测序用checkpoint_tims.pt，默认使用checkpoint_rank.pt，可以在official_denovo_workflow.sh或者official_score_workflow.sh中设置
 
 #### 开放式重打分
-将以下文件夹放入```projects```：
+下面是一个重打分项目的文件结构```projects```：
 ```bash
 project_name/ # pFind任务文件夹
 ├── param/ # pFind搜索参数（由pFind生成）
@@ -67,19 +72,19 @@ project_name/ # pFind任务文件夹
 ```
 执行重打分：
 ```bash
-bash official_score_workflow.sh project_name batchsize
+pUniFind rescore project_path batchsize
 ```
 建议初始批量大小设为256，根据运行速度和显存调整。
 - 结果文件保存为```project_namefdr0.01_pUniFind.spectra```
 #### 开放式从头测序
-将以下文件夹放入```projects```文件夹：
+下面是一个从头测序项目文件结构```projects```文件夹：
 ```bash
 project_name/ 
 └── mgfs/ # mgf文件（由pFind生成后用户移动至此）   
 ```
 执行从头测序：
 ```bash
-bash official_denovo_workflow.sh project_name batchsize
+pUniFind denovo project_path batchsize
 ```
 建议初始批量大小设为256，根据运行速度和显存调整。
 - 直接测序结果保存为```pUniFind_result```文件夹下的```project_name_001_5_merged.csv```和```project_name_001_5_filtered.csv```

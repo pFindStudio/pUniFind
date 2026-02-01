@@ -17,7 +17,6 @@ from multiprocessing import Pool
 from os import listdir
 from os.path import isdir, join
 
-import lmdb
 import numpy as np
 import pandas as pd
 from pyteomics.mgf import MGF

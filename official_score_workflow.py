@@ -8,13 +8,15 @@ from multiprocessing import Pool
 from os import listdir
 from os.path import isdir, join
 
-import lmdb
 import numpy as np
 import torch
 import torch.nn.functional as F
 from tqdm import tqdm
-from unicore import checkpoint_utils, distributed_utils, options, tasks, utils
-from unicore.logging import progress_bar
+
+# Cross-platform compatible imports (unicore removed, using compat module)
+from compat import checkpoint_utils, distributed_utils, options, tasks, utils
+from compat import progress_bar
+from compat.parquet_storage import ParquetWriter, get_storage_path
 
 from PepMS.eval.eval_draw import draw_multiple_peptide, draw_multiple_psm
 from PepMS.eval.percolator import Percolator, PercolatorConfig
@@ -30,10 +32,18 @@ logging.basicConfig(
 logger = logging.getLogger("pUniFind.inference_database_search")
 
 
+def get_distributed_backend():
+    """Get the appropriate distributed backend based on platform."""
+    if sys.platform == "win32":
+        return "gloo"  # Windows does not support NCCL
+    else:
+        return "nccl" if torch.cuda.is_available() else "gloo"
+
+
 def preprocess_data(args):
     mgf_path = args.mgf_path
     qry_res_path = args.qry_res_path
-    lmdb_path = args.tmp_data_path
+    storage_path = get_storage_path(args.tmp_data_path)
 
     qryress = custom_sort(
         [
@@ -43,22 +53,15 @@ def preprocess_data(args):
         ]
     )
 
+    # Remove existing storage file
     try:
-        os.remove(lmdb_path)
+        os.remove(storage_path)
     except:
         pass
-    env_new_train = lmdb.open(
-        lmdb_path,
-        subdir=False,
-        readonly=False,
-        lock=False,
-        readahead=False,
-        meminit=False,
-        max_readers=1,
-        map_size=int(1000e9),
-    )
 
-    txn_write_train = env_new_train.begin(write=True)
+    # Use Parquet-based storage (cross-platform compatible)
+    writer = ParquetWriter(storage_path, batch_size=100)
+
     keys = []
     with Pool(args.num_proc) as pool:
         i = 0
@@ -74,23 +77,18 @@ def preprocess_data(args):
                 ret = {}
                 ret["small"] = results[spec_name]
                 i += 1
-                txn_write_train.put(
-                    f"{i}".encode("ascii"), gzip.compress(pickle.dumps(ret))
-                )
-                keys.append(f"{i}".encode("ascii"))
-                if i % 100 == 0:
-                    txn_write_train.commit()
-                    txn_write_train = env_new_train.begin(write=True)
+                key = f"{i}".encode("ascii")
+                writer.put(key, gzip.compress(pickle.dumps(ret)))
+                keys.append(key)
 
-    txn_write_train.commit()
-    env_new_train.close()
+    writer.close()
 
     with open(
-        join(os.path.dirname(lmdb_path), f"{args.project_name}_FDR0.1_keys.pkl"), "wb"
+        join(os.path.dirname(storage_path), f"{args.project_name}_FDR0.1_keys.pkl"), "wb"
     ) as file:
         pickle.dump(keys, file)
 
-    print("{} process {} ms/ms".format(lmdb_path, i))
+    print("{} process {} ms/ms".format(storage_path, i))
 
 
 def main(args):
@@ -104,7 +102,7 @@ def main(args):
     if use_cuda:
         torch.cuda.set_device(args.device_id)
     else:
-        assert 0, "better use gpu"
+        logger.warning("CUDA not available, using CPU. Performance will be slower.")
 
     if args.distributed_world_size > 1:
         data_parallel_world_size = distributed_utils.get_data_parallel_world_size()
@@ -126,8 +124,6 @@ def main(args):
 
     if use_cuda:
         model.cuda()
-    else:
-        assert 0, "better use gpu"
 
     model.eval()
 
@@ -163,7 +159,7 @@ def main(args):
         num_workers=args.num_workers,
         data_buffer_size=args.data_buffer_size,
     ).next_epoch_itr(shuffle=False)
-    progress = progress_bar.progress_bar(
+    progress = progress_bar(
         itr,
         log_format=args.log_format,
         log_interval=args.log_interval,
@@ -313,29 +309,41 @@ def cli_main():
     options.add_model_args(parser)
     args = options.parse_args_and_arch(parser)
 
+    # Determine backend based on platform
+    backend = get_distributed_backend()
+    logger.info(f"Using distributed backend: {backend}")
+
     torch.distributed.init_process_group(
-        backend="nccl", timeout=timedelta(seconds=1800)  # 30分钟超时
+        backend=backend, timeout=timedelta(seconds=1800)  # 30分钟超时
     )
 
-    local_rank = os.environ["LOCAL_RANK"]  # 节点内的本地进程ID
-    if local_rank == "0":
-        logger.info("Start preprocessing data to lmdb.")
+    # Get local rank and global rank from environment (set by torchrun)
+    local_rank = int(os.environ.get("LOCAL_RANK", "0"))
+    global_rank = int(os.environ.get("RANK", "0"))
+    world_size = int(os.environ.get("WORLD_SIZE", "1"))
+
+    # Set device_id and distributed settings in args
+    args.device_id = local_rank
+    args.distributed_rank = global_rank
+    args.distributed_world_size = world_size
+
+    # Set CUDA device for this process
+    if torch.cuda.is_available():
+        torch.cuda.set_device(local_rank)
+        logger.info(f"Process rank {global_rank}/{world_size}, using GPU {local_rank}")
+
+    storage_path = get_storage_path(args.tmp_data_path)
+    if local_rank == 0:
+        logger.info("Start preprocessing data to parquet.")
         preprocess_data(args)
         logger.info("Finished preprocessing data.")
-    else:
-        while not os.path.exists(
-            join(
-                os.path.dirname(args.tmp_data_path),
-                f"{args.project_name}_FDR0.1_keys.pkl",
-            )
-        ):
-            pass
+    torch.distributed.barrier()
 
-    logger.info("Start inferencing data from lmdb.")
+    logger.info("Start inferencing data from parquet.")
     distributed_utils.call_main(args, main)
     logger.info("Finished inferencing data.")
 
-    logger.info("Start evaluating data from lmdb.")
+    logger.info("Start evaluating data from parquet.")
     evaluate_database_search(args)
     logger.info("Finished rescoring!")
 

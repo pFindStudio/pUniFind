@@ -15,8 +15,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 from spectrum_utils.utils import mass_diff
 from torch import Tensor
-from unicore import utils
-from unicore.models import BaseUnicoreModel, register_model, register_model_architecture
+from compat import utils
+from compat.models import BaseUnicoreModel, register_model, register_model_architecture
 
 from PepMS.data.ms_pep import get_spectrum_prediction_label
 from PepMS.models.decoders import (

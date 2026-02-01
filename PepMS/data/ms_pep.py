@@ -12,15 +12,15 @@ from functools import lru_cache
 from multiprocessing import Pool
 from os.path import join
 
-import lmdb
 import numpy as np
 import spectrum_utils.spectrum as sus
 import torch
 import torch.nn as nn
-from scipy.spatial import distance_matrix
 from torch.utils.data.dataloader import default_collate
-from unicore.data import BaseWrapperDataset, UnicoreDataset
-from unicore.distributed.utils import get_data_parallel_rank
+# Note: scipy.spatial.distance_matrix was removed as it was unused and caused GLIBCXX issues
+from compat.data import BaseWrapperDataset, UnicoreDataset
+from compat.distributed_utils import get_data_parallel_rank
+from compat.parquet_storage import ParquetReader, ParquetDataset, get_storage_path
 
 from . import data_utils
 from .mass_calculation import PeptideIonCalculator
@@ -1583,32 +1583,26 @@ def data_2_str(data, modification_dict):
 
 
 class LMDB2Dataset:
+    """Dataset class using Parquet storage (cross-platform compatible replacement for LMDB)."""
+
     def __init__(self, db_path):
-        self.db_path = db_path
+        self.db_path = get_storage_path(db_path)
         assert os.path.isfile(self.db_path), "{} not found".format(self.db_path)
 
-        self.env = self.connect_db(self.db_path)
-        with self.env.begin() as txn:
-            self._keys = list(txn.cursor().iternext(values=False))
+        self._reader = self.connect_db(self.db_path)
+        self._keys = self._reader.keys()
 
-    def connect_db(self, lmdb_path=None):
-        env = lmdb.open(
-            lmdb_path,
-            subdir=False,
-            readonly=True,
-            lock=False,
-            readahead=True,
-            meminit=False,
-            max_readers=128,
-        )
-        return env
+    def connect_db(self, parquet_path=None):
+        """Connect to Parquet storage."""
+        reader = ParquetReader(parquet_path)
+        return reader
 
     def __len__(self):
         return len(self._keys)
 
     @lru_cache(maxsize=16)
     def __getitem__(self, idx):
-        datapoint_pickled = self.env.begin().get(self._keys[idx])
+        datapoint_pickled = self._reader.get(self._keys[idx])
         data = pickle.loads(datapoint_pickled)
         return data
 
@@ -1639,6 +1633,8 @@ def random_sample_from_dict_weighted(d):
 
 
 class WeightedMultiZipLMDBDataset:
+    """Dataset class using Parquet storage for weighted multi-split data."""
+
     def __init__(
         self,
         db_path,
@@ -1648,7 +1644,7 @@ class WeightedMultiZipLMDBDataset:
         ft_tims=0,
     ):
         self.db_path = db_path
-        self.env_dict = {}
+        self._reader_dict = {}
 
         if is_train:
             if not ft_tims:
@@ -1675,25 +1671,16 @@ class WeightedMultiZipLMDBDataset:
         )
 
         for split in splits:
-            sub_path = os.path.join(self.db_path, split + ".lmdb")
+            sub_path = get_storage_path(os.path.join(self.db_path, split + ".lmdb"))
             assert os.path.isfile(sub_path), f"{sub_path} not found"
-            self.env_dict[split] = self.connect_db(sub_path)
+            self._reader_dict[split] = self.connect_db(sub_path)
 
-        # with self.env.begin() as txn:
-        # self._keys = list(txn.cursor().iternext(values=False))
         self._keys = list(self.expanded_key_dict.keys())
 
-    def connect_db(self, lmdb_path=None):
-        env = lmdb.open(
-            lmdb_path,
-            subdir=False,
-            readonly=True,
-            lock=False,
-            readahead=True,
-            meminit=False,
-            max_readers=128,
-        )
-        return env
+    def connect_db(self, parquet_path=None):
+        """Connect to Parquet storage."""
+        reader = ParquetReader(parquet_path)
+        return reader
 
     def __len__(self):
         return len(self._keys)
@@ -1702,14 +1689,16 @@ class WeightedMultiZipLMDBDataset:
     def __getitem__(self, idx):
         expanded_key = self._keys[idx]
         peptide = self.expanded_key_dict[expanded_key]
-        # 从原始字典中获取对应的文件和LMDB键
+        # 从原始字典中获取对应的文件和Parquet键
         split, key = random_sample_from_dict(self.key_dict[peptide])
-        datapoint_pickled = self.env_dict[split].begin().get(key)
+        datapoint_pickled = self._reader_dict[split].get(key)
         data = pickle.loads(gzip.decompress(datapoint_pickled))
         return data
 
 
 class MultiZipLMDB2Dataset:
+    """Dataset class using Parquet storage for multi-split data."""
+
     def __init__(
         self,
         db_path,
@@ -1719,7 +1708,7 @@ class MultiZipLMDB2Dataset:
         ft_tims=0,
     ):
         self.db_path = db_path
-        self.env_dict = {}
+        self._reader_dict = {}
         weighted = False
         self.weighted = weighted
         assert not weighted, "not ready"
@@ -1734,9 +1723,9 @@ class MultiZipLMDB2Dataset:
                     open(join(db_path, "weighted_test_keys.pkl"), "rb")
                 )
             for split in splits:
-                sub_path = join(self.db_path, split + ".lmdb")
+                sub_path = get_storage_path(join(self.db_path, split + ".lmdb"))
                 assert os.path.isfile(sub_path), f"{sub_path} not found"
-                self.env_dict[split] = self.connect_db(sub_path)
+                self._reader_dict[split] = self.connect_db(sub_path)
 
             # 提取所有键对
             self.keys = []
@@ -1767,25 +1756,16 @@ class MultiZipLMDB2Dataset:
                     )
 
             for split in splits:
-                sub_path = join(self.db_path, split + ".lmdb")
+                sub_path = get_storage_path(join(self.db_path, split + ".lmdb"))
                 assert os.path.isfile(sub_path), "{} not found".format(sub_path)
-                self.env_dict[split] = self.connect_db(sub_path)
+                self._reader_dict[split] = self.connect_db(sub_path)
 
-            # with self.env.begin() as txn:
-            #     self._keys = list(txn.cursor().iternext(values=False))
             self._keys = list(self.key_dict.keys())
 
-    def connect_db(self, lmdb_path=None):
-        env = lmdb.open(
-            lmdb_path,
-            subdir=False,
-            readonly=True,
-            lock=False,
-            readahead=True,
-            meminit=False,
-            max_readers=128,
-        )
-        return env
+    def connect_db(self, parquet_path=None):
+        """Connect to Parquet storage."""
+        reader = ParquetReader(parquet_path)
+        return reader
 
     def __len__(self):
         return len(self._keys)
@@ -1795,17 +1775,19 @@ class MultiZipLMDB2Dataset:
         if self.weighted:
             pass
             # random_peptide, random_file, sample_key = random_sample_from_weighted_dict(self.weighted_key_dict)
-            # datapoint_pickled = self.env_dict[random_file].begin().get(sample_key)
+            # datapoint_pickled = self._reader_dict[random_file].get(sample_key)
             # data = pickle.loads(gzip.decompress(datapoint_pickled))
             # return data
         else:
             split, key = random_sample_from_dict(self.key_dict[self._keys[idx]])
-            datapoint_pickled = self.env_dict[split].begin().get(key)
+            datapoint_pickled = self._reader_dict[split].get(key)
             data = pickle.loads(gzip.decompress(datapoint_pickled))
             return data
 
 
 class ZipLMDB2Dataset:
+    """Dataset class using Parquet storage for zipped data."""
+
     def __init__(
         self,
         db_path,
@@ -1816,13 +1798,12 @@ class ZipLMDB2Dataset:
         massive=False,
         keys=None,
     ):
-        self.db_path = db_path
+        self.db_path = get_storage_path(db_path)
         assert os.path.isfile(self.db_path), "{} not found".format(self.db_path)
 
-        self.env = self.connect_db(self.db_path)
+        self._reader = self.connect_db(self.db_path)
         if keys is None or isinstance(keys, str):
-            with self.env.begin() as txn:
-                self._keys = list(txn.cursor().iternext(values=False))
+            self._keys = self._reader.keys()
             if isinstance(keys, str):
                 with open(keys, "wb") as f:
                     pickle.dump(self._keys, f)
@@ -1838,24 +1819,17 @@ class ZipLMDB2Dataset:
         else:
             self._keys = keys
 
-    def connect_db(self, lmdb_path=None):
-        env = lmdb.open(
-            lmdb_path,
-            subdir=False,
-            readonly=True,
-            lock=False,
-            readahead=True,
-            meminit=False,
-            max_readers=128,
-        )
-        return env
+    def connect_db(self, parquet_path=None):
+        """Connect to Parquet storage."""
+        reader = ParquetReader(parquet_path)
+        return reader
 
     def __len__(self):
         return len(self._keys)
 
     @lru_cache(maxsize=16)
     def __getitem__(self, idx):
-        datapoint_pickled = self.env.begin().get(self._keys[idx])
+        datapoint_pickled = self._reader.get(self._keys[idx])
         data = pickle.loads(gzip.decompress(datapoint_pickled))
         return data
 
@@ -1941,30 +1915,17 @@ class pFindIs2reDataset(BaseWrapperDataset):
         try:
             # self.pept_to_spec_dict = pickle.load(open(join(self.args.data, "pept_to_spec.pkl"), 'rb'))
             if not finetune:
-                pep2spec_path = join(self.args.data, "pept_to_spec61.lmdb")
+                pep2spec_path = get_storage_path(join(self.args.data, "pept_to_spec61.lmdb"))
             else:
-                pep2spec_path = join(
+                pep2spec_path = get_storage_path(join(
                     r"/mnt/vepfs/fs_users/zhaojiale/dataset/lmdbs",
                     "pept_to_spec61.lmdb",
-                )
-                # pep2spec_path = join(self.args.data, "pept_to_spec3.lmdb")
+                ))
 
-            env_read = lmdb.open(
-                pep2spec_path,
-                subdir=False,
-                readonly=True,
-                lock=False,
-                readahead=False,
-                meminit=False,
-                max_readers=1,
-                map_size=int(1e9),
-            )
-            self.txn_read = env_read.begin()
-            # keys = list(txn_read.cursor().iternext(values=False))
+            self._pep2spec_reader = ParquetReader(pep2spec_path)
         except:
             print("warning: failed loading spec label")
-            # if not self.args.inference:
-            #     assert 0
+            self._pep2spec_reader = None
 
     def __len__(self):
         return len(self.dataset)
@@ -2359,10 +2320,12 @@ class pFindIs2reDataset(BaseWrapperDataset):
 
 
 class InferenceZipLMDB2Dataset:
+    """Dataset class using Parquet storage for inference."""
+
     def __init__(
         self, db_path, split, check=False, fdr_thread=0.1, pkl_path="", spec_pred=False
     ):
-        self.db_path = db_path
+        self.db_path = get_storage_path(db_path)
         self.fdr_thread = fdr_thread
         self.pkl_path = pkl_path
         self.split = split
@@ -2370,62 +2333,34 @@ class InferenceZipLMDB2Dataset:
 
         assert os.path.isfile(self.db_path), "{} not found".format(self.db_path)
 
-        self.env = self.connect_db(self.db_path)
-        # with self.env.begin() as txn:
-        #     self._keys = list(txn.cursor().iternext(values=False)) # 9Aips_FDR0.001_keys
+        self._reader = self.connect_db(self.db_path)
         if fdr_thread <= 1:
-            # if not spec_pred:
             self._keys = pickle.load(
                 open(join(pkl_path, f"{split}_FDR{fdr_thread}_keys.pkl"), "rb")
             )
-        # else:
-        # self._keys = pickle.load(open(join(pkl_path, f"{split}_FDR{fdr_thread}_keys_spec_pred.pkl"), 'rb'))
-
         else:
-            with self.env.begin() as txn:
-                self._keys = list(
-                    txn.cursor().iternext(values=False)
-                )  # 9Aips_FDR0.001_keys
-        # if not self.check:
-        #     try:
-        #         self.filtered_keys = pickle.load(open(join(pkl_path, f"{split}_{fdr_thread}.pkl"), 'rb'))
-        #     except:
-        #         print("no pkl, start generating ... ")
-        #         self.reset_with_fdr_thread()
-        # else:
-        #     self.filtered_keys = self._keys
+            self._keys = self._reader.keys()
 
-        # print(f"finished loading: # original {len(self._keys)}, # filtered {len(self.filtered_keys)}")
         print(f"finished loading: # original {len(self._keys)}")
-        # self._keys = self._keys[::num]
-        # num_sample = len(self._keys) // bsz
-        # self._keys = self._keys[:(num_sample * bsz)]
 
-    def connect_db(self, lmdb_path=None):
-        env = lmdb.open(
-            lmdb_path,
-            subdir=False,
-            readonly=True,
-            lock=False,
-            readahead=True,
-            meminit=False,
-            max_readers=128,
-        )
-        return env
+    def connect_db(self, parquet_path=None):
+        """Connect to Parquet storage."""
+        reader = ParquetReader(parquet_path)
+        return reader
 
     def __len__(self):
         return len(self._keys)
 
     @lru_cache(maxsize=16)
     def __getitem__(self, idx):
-        datapoint_pickled = self.env.begin().get(self._keys[idx])
+        datapoint_pickled = self._reader.get(self._keys[idx])
         data = pickle.loads(gzip.decompress(datapoint_pickled))
         return data
 
     def reset_with_fdr_thread(self, thread=16):
 
         def if_thread(key):
-            datapoint_pickled = self.env.begin().get(key)
+            datapoint_pickled = self._reader.get(key)
             data = pickle.loads(gzip.decompress(datapoint_pickled))
             if data["small"]["1"]["fdr_value"] > self.fdr_thread:
                 return None
@@ -2433,21 +2368,11 @@ class InferenceZipLMDB2Dataset:
 
         self.filtered_keys = []
 
-        def input_files():
-            for fn in self._keys:
-                yield fn, self.env, self.fdr_thread
-
         for key in tqdm(self._keys, total=len(self._keys)):
             ret = if_thread(key)
             if ret is not None:
                 self.filtered_keys.append(ret)
 
-        # with Pool(56) as pool:
-        #     for ret in tqdm(
-        #         pool.imap(if_thread, input_files(), chunksize=10), total=len(self._keys)
-        #     ):
-        #         if ret is not None:
-        #             self.filtered_keys.append(ret)
         pickle.dump(
             self.filtered_keys,
             open(join(self.pkl_path, f"{self.split}_{self.fdr_thread}.pkl"), "wb"),
@@ -2455,72 +2380,51 @@ class InferenceZipLMDB2Dataset:
 
 
 class SampleZipLMDB2Dataset:
+    """Dataset class using Parquet storage for sampled data."""
+
     def __init__(self, db_path, num=1000, bsz=128):
-        self.db_path = db_path
+        self.db_path = get_storage_path(db_path)
         assert os.path.isfile(self.db_path), "{} not found".format(self.db_path)
 
-        self.env = self.connect_db(self.db_path)
-        with self.env.begin() as txn:
-            self._keys = list(txn.cursor().iternext(values=False))
-        # sample_size = 1000
-        # # 计算采样间隔
-        # interval = len(self._keys) // sample_size
-        # # 从列表中采样元素
-        # self._keys = self._keys[::interval]
+        self._reader = self.connect_db(self.db_path)
+        self._keys = self._reader.keys()
 
-        # self._keys = self._keys[::num]
-        # num_sample = len(self._keys) // bsz
-        # self._keys = self._keys[:(num_sample * bsz)]
-
-    def connect_db(self, lmdb_path=None):
-        env = lmdb.open(
-            lmdb_path,
-            subdir=False,
-            readonly=True,
-            lock=False,
-            readahead=True,
-            meminit=False,
-            max_readers=128,
-        )
-        return env
+    def connect_db(self, parquet_path=None):
+        """Connect to Parquet storage."""
+        reader = ParquetReader(parquet_path)
+        return reader
 
     def __len__(self):
         return len(self._keys)
 
     @lru_cache(maxsize=16)
     def __getitem__(self, idx):
-        datapoint_pickled = self.env.begin().get(self._keys[idx])
+        datapoint_pickled = self._reader.get(self._keys[idx])
         data = pickle.loads(gzip.decompress(datapoint_pickled))
         return data
 
 
 class ClusteredDataset:
+    """Dataset class using Parquet storage for clustered data."""
+
     def __init__(self, db_path):
-        self.db_path = db_path
+        self.db_path = get_storage_path(db_path)
         assert os.path.isfile(self.db_path), "{} not found".format(self.db_path)
 
-        self.env = self.connect_db(self.db_path)
-        with self.env.begin() as txn:
-            self._keys = list(txn.cursor().iternext(values=False))
+        self._reader = self.connect_db(self.db_path)
+        self._keys = self._reader.keys()
 
-    def connect_db(self, lmdb_path=None):
-        env = lmdb.open(
-            lmdb_path,
-            subdir=False,
-            readonly=True,
-            lock=False,
-            readahead=True,
-            meminit=False,
-            max_readers=128,
-        )
-        return env
+    def connect_db(self, parquet_path=None):
+        """Connect to Parquet storage."""
+        reader = ParquetReader(parquet_path)
+        return reader
 
     def __len__(self):
         return len(self._keys)
 
     @lru_cache(maxsize=16)
     def __getitem__(self, idx):
-        datapoint_pickled = self.env.begin().get(self._keys[idx])
+        datapoint_pickled = self._reader.get(self._keys[idx])
         data = pickle.loads(gzip.decompress(datapoint_pickled))
         ret = data[np.random.randint(len(data))]
         return ret
@@ -2597,20 +2501,11 @@ class ScoreInferenceDataset(BaseWrapperDataset):
 
         try:
             # self.pept_to_spec_dict = pickle.load(open(join(self.args.data, "pept_to_spec.pkl"), 'rb'))
-            env_read = lmdb.open(
-                join(self.args.data, "pept_to_spec2.lmdb"),
-                subdir=False,
-                readonly=True,
-                lock=False,
-                readahead=False,
-                meminit=False,
-                max_readers=1,
-                map_size=int(1e9),
-            )
-            self.txn_read = env_read.begin()
-            # keys = list(txn_read.cursor().iternext(values=False))
+            pep2spec_path = get_storage_path(join(self.args.data, "pept_to_spec2.lmdb"))
+            self._pep2spec_reader = ParquetReader(pep2spec_path)
         except:
             print("warning: failed loading spec label")
+            self._pep2spec_reader = None
 
     def __len__(self):
         return len(self.dataset)
@@ -3178,23 +3073,12 @@ class SpecPredDataset(BaseWrapperDataset):
 
         try:
             # self.pept_to_spec_dict = pickle.load(open(join(self.args.data, "pept_to_spec.pkl"), 'rb'))
-            pep2spec_path = join(self.args.data, "pept_to_spec2.lmdb")
-
-            env_read = lmdb.open(
-                pep2spec_path,
-                subdir=False,
-                readonly=True,
-                lock=False,
-                readahead=False,
-                meminit=False,
-                max_readers=1,
-                map_size=int(1e9),
-            )
-            self.txn_read = env_read.begin()
-            # keys = list(txn_read.cursor().iternext(values=False))
+            pep2spec_path = get_storage_path(join(self.args.data, "pept_to_spec2.lmdb"))
+            self._pep2spec_reader = ParquetReader(pep2spec_path)
         except:
             assert 0
             print("warning: failed loading spec label")
+            self._pep2spec_reader = None
 
     def __len__(self):
         return len(self.dataset)
@@ -3790,20 +3674,11 @@ class ContrastIs2reDataset(BaseWrapperDataset):
 
         try:
             # self.pept_to_spec_dict = pickle.load(open(join(self.args.data, "pept_to_spec.pkl"), 'rb'))
-            env_read = lmdb.open(
-                join(self.args.data, "pept_to_spec61.lmdb"),
-                subdir=False,
-                readonly=True,
-                lock=False,
-                readahead=False,
-                meminit=False,
-                max_readers=1,
-                map_size=int(1e9),
-            )
-            self.txn_read = env_read.begin()
-            # keys = list(txn_read.cursor().iternext(values=False))
+            pep2spec_path = get_storage_path(join(self.args.data, "pept_to_spec61.lmdb"))
+            self._pep2spec_reader = ParquetReader(pep2spec_path)
         except:
             print("warning: failed loading spec label")
+            self._pep2spec_reader = None
 
     def __len__(self):
         return len(self.dataset)

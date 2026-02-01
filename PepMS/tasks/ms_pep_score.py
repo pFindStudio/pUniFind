@@ -10,8 +10,8 @@ import pickle
 
 import numpy as np
 import torch
-from unicore.data import EpochShuffleDataset, NestedDictionaryDataset
-from unicore.tasks import UnicoreTask, register_task
+from compat.data import EpochShuffleDataset, NestedDictionaryDataset
+from compat.tasks import UnicoreTask, register_task
 
 from PepMS.data import (
     BatchIndexDataset,
@@ -216,7 +216,7 @@ class ScoreProteinTask(UnicoreTask):
         self.datasets[split] = dataset
 
     def build_model(self, args):
-        from unicore import models
+        from compat import models
 
         model = models.build_model(args, self)
         return model

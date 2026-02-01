@@ -1,0 +1,89 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pUniFind"
+version = "1.0.0"
+description = "pUniFind: A unified deep learning framework for de novo peptide sequencing and database search rescoring"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "pUniFind Team"}
+]
+keywords = ["proteomics", "mass-spectrometry", "deep-learning", "peptide-sequencing", "de-novo"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+requires-python = ">=3.8,<3.12"
+dependencies = [
+    # NumPy must be <2.0 for pandas 1.5.3 compatibility
+    "numpy>=1.21.0,<2.0.0",
+    "pandas==1.5.3",
+    "pyarrow==12.0.1",
+    # Scientific computing
+    "scipy>=1.7.0,<1.12.0",
+    "scikit-learn>=1.0.0,<1.4.0",
+    # MS/proteomics
+    "spectrum_utils>=0.4.0",
+    "pyteomics>=4.5",
+    # Deep learning utilities
+    "tqdm",
+    "einops",
+    "opt_einsum",
+    "tensorboard",
+]
+
+[project.optional-dependencies]
+# =============================================================================
+# PyTorch Installation (choose ONE based on your hardware):
+#
+#   CPU only:     pip install -e ".[cpu]"
+#   CUDA 11.8:    pip install -e ".[cu118]"
+#   CUDA 12.1:    pip install -e ".[cu121]"
+#
+# Or install PyTorch separately first, then: pip install -e .
+# =============================================================================
+cu118 = [
+    "torch==2.1.0",
+]
+cu121 = [
+    "torch==2.1.0",
+]
+cpu = [
+    "torch==2.1.0",
+]
+dev = [
+    "pytest",
+    "black",
+    "flake8",
+]
+
+[project.scripts]
+pUniFind = "punifind.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/pUniFind/pUniFind"
+Documentation = "https://github.com/pUniFind/pUniFind"
+Repository = "https://github.com/pUniFind/pUniFind"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["punifind*", "PepMS*", "compat*", "scripts*", "consts*"]
+
+[tool.setuptools.package-data]
+"consts" = ["*.pkl", "*.json", "*.py"]
+"PepMS.data" = ["*.json"]
+"*" = ["*.pkl", "*.json"]
+
+[tool.setuptools]
+include-package-data = true

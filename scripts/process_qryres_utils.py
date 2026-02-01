@@ -10,7 +10,6 @@ from os import listdir
 from os.path import isdir, join
 from pathlib import Path
 
-import lmdb
 import numpy as np
 import pandas as pd
 import spectrum_utils.spectrum as sus

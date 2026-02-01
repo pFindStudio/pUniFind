@@ -1,0 +1,8 @@
+include README.md
+include requirements.txt
+recursive-include consts *.pkl *.json *.py
+recursive-include PepMS *.py *.json
+recursive-include compat *.py
+recursive-include scripts *.py
+include official_denovo_workflow.py
+include official_score_workflow.py

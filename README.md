@@ -25,6 +25,7 @@ This is the official repository for **pUniFind**, the most powerful zero-shot op
 🔥 **De Novo reliable result filtering and user-friendly result file.** Based on various deep learning features, our model can effectively filter out unreliable results which is extremely useful for real world usage. Our user-friendly results file also contains end-to-end score, cos similarity, mass difference and missing fragment ion sites, which can better help user to evaluate its reliability. Result file also support visualization.
 
 ## &#x1F4E3; News
+- **2026/2/1** pUniFind has released a more user-friendly version of its Linux source code! Please refer to the updated 'Linux Usage Instructions' in the User Guide for more details. We are also working on a fix for Windows-specific issues—stay tuned.
 - **2025/11/29** pUniFind released linux source code preview!🚀. (We will optimize the user experience in the near future, This is just a preview version linux source code.)
 - **2025/6/24** pUniFind supports timsTOF open de novo sequencing.
 - **2025/5/25** pUniFind repository Initial Release 🚀.
