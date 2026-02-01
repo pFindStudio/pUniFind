@@ -276,12 +276,20 @@ class EpochBatchIterator:
 
         self._current_epoch += 1
 
-        return DataLoader(
-            self.dataset,
-            batch_size=self.batch_size,
-            sampler=sampler,
-            num_workers=self.num_workers,
-            collate_fn=self.collate_fn,
-            pin_memory=torch.cuda.is_available(),
-            drop_last=False,
-        )
+        # Optimize DataLoader for better GPU utilization
+        loader_kwargs = {
+            "dataset": self.dataset,
+            "batch_size": self.batch_size,
+            "sampler": sampler,
+            "num_workers": self.num_workers,
+            "collate_fn": self.collate_fn,
+            "pin_memory": torch.cuda.is_available(),
+            "drop_last": False,
+        }
+
+        # Add prefetch and persistent workers for better throughput
+        if self.num_workers > 0:
+            loader_kwargs["prefetch_factor"] = 4  # Prefetch more batches
+            loader_kwargs["persistent_workers"] = True  # Keep workers alive
+
+        return DataLoader(**loader_kwargs)

@@ -191,7 +191,7 @@ def build_common_args(args, task_type):
         f"--mgf-path={mgf_path}",
         f"--num-proc={args.num_proc}",
         "--data-buffer-size=32",
-        "--num-workers=0",
+        f"--num-workers={args.num_workers}",
         "--ddp-backend=c10d",
         f"--batch-size={batch_size}",
         f"--task={task}",
@@ -356,6 +356,7 @@ def add_common_arguments(parser):
 
     # Processing settings
     parser.add_argument("--num-proc", type=int, default=16, help="Number of processes for data preprocessing")
+    parser.add_argument("--num-workers", type=int, default=4, help="Number of DataLoader workers (increase for better GPU utilization)")
     parser.add_argument("--fdr-threshold", type=float, default=0.1, help="FDR threshold")
     parser.add_argument("--max-charges", type=int, default=4, help="Maximum charge state")
     parser.add_argument("--cutoff-spectra", type=int, default=300, help="Spectrum cutoff")
