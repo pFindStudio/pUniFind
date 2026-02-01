@@ -32,7 +32,31 @@ from .plot_utils import (
     sqrt_and_norm,
     write_mgf,
 )
-from .utils import remove_precursor_peak, sqrt_and_norm
+from .utils import remove_precursor_peak, sqrt_and_norm, preprocess_spectrum_fast
+
+
+def _fast_unpickle(data: bytes):
+    """
+    Fast unpickle with fallback for gzip-compressed data.
+
+    Tries pickle.loads first (fastest for new data), falls back to gzip.decompress
+    for legacy gzip-compressed data.
+    """
+    if data is None:
+        return None
+
+    # Fast path: try direct unpickle first (most common case for new data)
+    try:
+        return pickle.loads(data)
+    except Exception:
+        pass
+
+    # Fallback: try gzip decompression (for legacy data)
+    try:
+        return pickle.loads(gzip.decompress(data))
+    except Exception:
+        return None
+
 
 protein_letters_3to1 = {
     "00C": "C",
@@ -1692,7 +1716,7 @@ class WeightedMultiZipLMDBDataset:
         # 从原始字典中获取对应的文件和Parquet键
         split, key = random_sample_from_dict(self.key_dict[peptide])
         datapoint_pickled = self._reader_dict[split].get(key)
-        data = pickle.loads(gzip.decompress(datapoint_pickled))
+        data = _fast_unpickle(datapoint_pickled)
         return data
 
 
@@ -1776,12 +1800,12 @@ class MultiZipLMDB2Dataset:
             pass
             # random_peptide, random_file, sample_key = random_sample_from_weighted_dict(self.weighted_key_dict)
             # datapoint_pickled = self._reader_dict[random_file].get(sample_key)
-            # data = pickle.loads(gzip.decompress(datapoint_pickled))
+            # data = _fast_unpickle(datapoint_pickled)
             # return data
         else:
             split, key = random_sample_from_dict(self.key_dict[self._keys[idx]])
             datapoint_pickled = self._reader_dict[split].get(key)
-            data = pickle.loads(gzip.decompress(datapoint_pickled))
+            data = _fast_unpickle(datapoint_pickled)
             return data
 
 
@@ -1830,7 +1854,7 @@ class ZipLMDB2Dataset:
     @lru_cache(maxsize=16)
     def __getitem__(self, idx):
         datapoint_pickled = self._reader.get(self._keys[idx])
-        data = pickle.loads(gzip.decompress(datapoint_pickled))
+        data = _fast_unpickle(datapoint_pickled)
         return data
 
 
@@ -1942,14 +1966,9 @@ class pFindIs2reDataset(BaseWrapperDataset):
         with data_utils.numpy_seed(self.args.seed, epoch, idx):
 
             spectrum = self.dataset[idx]
-            try:
-                spectrum = gzip.decompress(spectrum)
-            except:
-                pass
-            try:
-                spectrum = pickle.loads(spectrum)
-            except:
-                pass
+            # Handle both new (non-gzip) and legacy (gzip) data formats
+            if isinstance(spectrum, bytes):
+                spectrum = _fast_unpickle(spectrum)
 
             if self.args.only_decoy:
                 # assert not self.args.inference
@@ -2115,27 +2134,23 @@ class pFindIs2reDataset(BaseWrapperDataset):
                 len(residue_type_after_mod),
             )
 
-            spectrum_ = sus.MsmsSpectrum(
-                "",
+            # Use fast vectorized preprocessing (replaces spectrum_utils)
+            mz_processed, int_processed = preprocess_spectrum_fast(
+                mz_array.numpy() if isinstance(mz_array, torch.Tensor) else mz_array,
+                intensity.numpy() if isinstance(intensity, torch.Tensor) else intensity,
                 precursor_mz,
                 precursor_charge,
-                mz_array.numpy().astype(np.float64),
-                intensity.numpy().astype(np.float32),
+                min_mz=self.min_mz,
+                max_mz=self.max_mz,
+                min_intensity=self.min_intensity,
+                n_peaks=self.n_peaks,
+                remove_precursor_tol_ppm=20.0,
             )
+            if mz_processed is None or len(mz_processed) == 0:
+                raise ValueError("Empty spectrum after preprocessing")
 
-            spectrum_.set_mz_range(self.min_mz, self.max_mz)
-            if len(spectrum_.mz) == 0:
-                raise ValueError
-            spectrum_.remove_precursor_peak(20, "ppm")
-            if len(spectrum_.mz) == 0:
-                raise ValueError
-            spectrum_.filter_intensity(self.min_intensity, self.n_peaks)
-            if len(spectrum_.mz) == 0:
-                raise ValueError
-            spectrum_.scale_intensity("root", 1)
-            intensity = spectrum_.intensity / np.linalg.norm(spectrum_.intensity)
-            mz_array = spectrum_.mz
-            mz_array, intensity = torch.Tensor(mz_array), torch.Tensor(intensity)
+            mz_array = torch.Tensor(mz_processed)
+            intensity = torch.Tensor(int_processed)
 
             (
                 spec_label,
@@ -2159,13 +2174,13 @@ class pFindIs2reDataset(BaseWrapperDataset):
             str_pept = data_2_str(spectrum, self.modification_meta_dict)
             # tmp = spec_label.copy()
             try:
-                spec_label, _ = pickle.loads(
-                    gzip.decompress(self.txn_read.get(str_pept.encode("ascii")))
-                )
-                # print(f"success_loading {str_pept} spec")
+                cached_data = self.txn_read.get(str_pept.encode("ascii"))
+                if cached_data is not None:
+                    unpickled = _fast_unpickle(cached_data)
+                    if unpickled is not None:
+                        spec_label, _ = unpickled
             except:
                 pass
-                # print(f"error_loading {str_pept} spec")
             # print(spec_label)
             spec_label = torch.Tensor(spec_label)
 
@@ -2354,14 +2369,14 @@ class InferenceZipLMDB2Dataset:
     @lru_cache(maxsize=16)
     def __getitem__(self, idx):
         datapoint_pickled = self._reader.get(self._keys[idx])
-        data = pickle.loads(gzip.decompress(datapoint_pickled))
+        data = _fast_unpickle(datapoint_pickled)
         return data
 
     def reset_with_fdr_thread(self, thread=16):
 
         def if_thread(key):
             datapoint_pickled = self._reader.get(key)
-            data = pickle.loads(gzip.decompress(datapoint_pickled))
+            data = _fast_unpickle(datapoint_pickled)
             if data["small"]["1"]["fdr_value"] > self.fdr_thread:
                 return None
             return key
@@ -2400,7 +2415,7 @@ class SampleZipLMDB2Dataset:
     @lru_cache(maxsize=16)
     def __getitem__(self, idx):
         datapoint_pickled = self._reader.get(self._keys[idx])
-        data = pickle.loads(gzip.decompress(datapoint_pickled))
+        data = _fast_unpickle(datapoint_pickled)
         return data
 
 
@@ -2425,7 +2440,7 @@ class ClusteredDataset:
     @lru_cache(maxsize=16)
     def __getitem__(self, idx):
         datapoint_pickled = self._reader.get(self._keys[idx])
-        data = pickle.loads(gzip.decompress(datapoint_pickled))
+        data = _fast_unpickle(datapoint_pickled)
         ret = data[np.random.randint(len(data))]
         return ret
 
@@ -2521,14 +2536,9 @@ class ScoreInferenceDataset(BaseWrapperDataset):
     def __getitem_cached__(self, epoch: int, idx):
         with data_utils.numpy_seed(self.args.seed, epoch, idx):
             spectrum = self.dataset[idx]
-            try:
-                spectrum = gzip.decompress(spectrum)
-            except:
-                pass
-            try:
-                spectrum = pickle.loads(spectrum)
-            except:
-                pass
+            # Handle both new (non-gzip) and legacy (gzip) data formats
+            if isinstance(spectrum, bytes):
+                spectrum = _fast_unpickle(spectrum)
             if "mgf" in spectrum["small"].keys():
                 mgf = spectrum["small"]["mgf"]
             else:
@@ -2634,34 +2644,24 @@ class ScoreInferenceDataset(BaseWrapperDataset):
                 len(residue_type_after_mod),
             )
 
-            spectrum_ = sus.MsmsSpectrum(
-                "",
+            # Use fast vectorized preprocessing (replaces spectrum_utils)
+            mz_processed, int_processed = preprocess_spectrum_fast(
+                mz_array.numpy() if isinstance(mz_array, torch.Tensor) else mz_array,
+                intensity.numpy() if isinstance(intensity, torch.Tensor) else intensity,
                 precursor_mz,
                 precursor_charge,
-                mz_array.numpy().astype(np.float64),
-                intensity.numpy().astype(np.float32),
+                min_mz=50.5,
+                max_mz=4500.0,
+                min_intensity=self.min_intensity,
+                n_peaks=self.n_peaks,
+                remove_precursor_tol_da=2.0,  # Use Da tolerance
             )
+            if mz_processed is None or len(mz_processed) == 0:
+                raise ValueError("Empty spectrum after preprocessing")
 
-            spectrum_.set_mz_range(50.5, 4500.0)
-            if len(spectrum_.mz) == 0:
-                raise ValueError
-            spectrum_.remove_precursor_peak(2.0, "Da")
-            if len(spectrum_.mz) == 0:
-                raise ValueError
-            spectrum_.filter_intensity(self.min_intensity, self.n_peaks)
-            if len(spectrum_.mz) == 0:
-                raise ValueError
-            spectrum_.scale_intensity("root", 1)
-            intensity = spectrum_.intensity / np.linalg.norm(spectrum_.intensity)
-            mz_array = spectrum_.mz
-            mz_array, intensity = torch.Tensor(mz_array), torch.Tensor(intensity)
+            mz_array = torch.Tensor(mz_processed)
+            intensity = torch.Tensor(int_processed)
 
-            # mz_array, intensity = sqrt_and_norm(mz_array, intensity, precursor_mz, precursor_charge)
-            # mz_array, intensity = remove_precursor_peak(mz_array, intensity, precursor_mz)
-
-            # top_values, top_indices = torch.topk(intensity.view(-1), k=min(self.args.cutoff_spectra, mz_array.shape[0]))
-
-            # print(spectrum["small"]["title"], spectrum["small"]["1"]["peptide"])
             (
                 spec_label,
                 ion_peak_flag,
@@ -2684,17 +2684,14 @@ class ScoreInferenceDataset(BaseWrapperDataset):
             str_pept = data_2_str(spectrum, self.modification_meta_dict)
             # tmp = spec_label.copy()
             try:
-                spec_label, _ = pickle.loads(
-                    gzip.decompress(self.txn_read.get(str_pept.encode("ascii")))
-                )
+                cached_data = self.txn_read.get(str_pept.encode("ascii"))
+                if cached_data is not None:
+                    unpickled = _fast_unpickle(cached_data)
+                    if unpickled is not None:
+                        spec_label, _ = unpickled
             except:
-                # print(f"error_loading {str_pept} spec")
                 pass
-            # print(spec_label)
             spec_label = torch.Tensor(spec_label)
-
-            # from PepMS.plot.plot_spectrum import plot_two_spectrum
-            # plot_two_spectrum(ion_mz.reshape(-1), tmp.reshape(-1), ion_mz.reshape(-1), spec_label.reshape(-1), save_name=str_pept)
 
             ion_comp_res_num = (ion_res_num > 0) * (
                 len(spectrum["small"]["1"]["peptide"]) - ion_res_num
@@ -3094,14 +3091,9 @@ class SpecPredDataset(BaseWrapperDataset):
     def __getitem_cached__(self, epoch: int, idx):
         with data_utils.numpy_seed(self.args.seed, epoch, idx):
             spectrum = self.dataset[idx]
-            try:
-                spectrum = gzip.decompress(spectrum)
-            except:
-                pass
-            try:
-                spectrum = pickle.loads(spectrum)
-            except:
-                pass
+            # Handle both new (non-gzip) and legacy (gzip) data formats
+            if isinstance(spectrum, bytes):
+                spectrum = _fast_unpickle(spectrum)
             try:
                 if "mgf" in spectrum["small"].keys():
                     mgf = spectrum["small"]["mgf"]
@@ -3145,27 +3137,23 @@ class SpecPredDataset(BaseWrapperDataset):
                     # mod[0] -= 1
                 modification[0].append((mod[0], self.modification_meta_dict[mod[1]]))
 
-            spectrum_ = sus.MsmsSpectrum(
-                "",
+            # Use fast vectorized preprocessing (replaces spectrum_utils)
+            mz_processed, int_processed = preprocess_spectrum_fast(
+                mz_array.numpy() if isinstance(mz_array, torch.Tensor) else mz_array,
+                intensity.numpy() if isinstance(intensity, torch.Tensor) else intensity,
                 precursor_mz,
                 precursor_charge,
-                mz_array.numpy().astype(np.float64),
-                intensity.numpy().astype(np.float32),
+                min_mz=50.5,
+                max_mz=4500.0,
+                min_intensity=self.min_intensity,
+                n_peaks=self.n_peaks,
+                remove_precursor_tol_da=2.0,  # Use Da tolerance
             )
+            if mz_processed is None or len(mz_processed) == 0:
+                raise ValueError("Empty spectrum after preprocessing")
 
-            spectrum_.set_mz_range(50.5, 4500.0)
-            if len(spectrum_.mz) == 0:
-                raise ValueError
-            spectrum_.remove_precursor_peak(2.0, "Da")
-            if len(spectrum_.mz) == 0:
-                raise ValueError
-            spectrum_.filter_intensity(self.min_intensity, self.n_peaks)
-            if len(spectrum_.mz) == 0:
-                raise ValueError
-            spectrum_.scale_intensity("root", 1)
-            intensity = spectrum_.intensity / np.linalg.norm(spectrum_.intensity)
-            mz_array = spectrum_.mz
-            mz_array, intensity = torch.Tensor(mz_array), torch.Tensor(intensity)
+            mz_array = torch.Tensor(mz_processed)
+            intensity = torch.Tensor(int_processed)
 
             (
                 spec_label,
@@ -3188,9 +3176,11 @@ class SpecPredDataset(BaseWrapperDataset):
             )
             str_pept = data_2_str(spectrum, self.modification_meta_dict)
             try:
-                spec_label, _ = pickle.loads(
-                    gzip.decompress(self.txn_read.get(str_pept.encode("ascii")))
-                )
+                cached_data = self.txn_read.get(str_pept.encode("ascii"))
+                if cached_data is not None:
+                    unpickled = _fast_unpickle(cached_data)
+                    if unpickled is not None:
+                        spec_label, _ = unpickled
             except:
                 print(f"error_loading {str_pept} spec")
             spec_label = torch.Tensor(spec_label)
@@ -3364,14 +3354,9 @@ class DeNovoIs2reDataset(BaseWrapperDataset):
             # pred label: delete(-> and cannot tell the exact residue type)
 
             spectrum = self.dataset[idx]
-            try:
-                spectrum = gzip.decompress(spectrum)
-            except:
-                pass
-            try:
-                spectrum = pickle.loads(spectrum)
-            except:
-                pass
+            # Handle both new (non-gzip) and legacy (gzip) data formats
+            if isinstance(spectrum, bytes):
+                spectrum = _fast_unpickle(spectrum)
             try:
                 if "mgf" in spectrum["small"].keys():
                     mgf = spectrum["small"]["mgf"]
@@ -3506,27 +3491,23 @@ class DeNovoIs2reDataset(BaseWrapperDataset):
                 len(residue_type_after_mod),
             )
 
-            spectrum_ = sus.MsmsSpectrum(
-                "",
+            # Use fast vectorized preprocessing (replaces spectrum_utils)
+            mz_processed, int_processed = preprocess_spectrum_fast(
+                mz_array.numpy() if isinstance(mz_array, torch.Tensor) else mz_array,
+                intensity.numpy() if isinstance(intensity, torch.Tensor) else intensity,
                 precursor_mz,
                 precursor_charge,
-                mz_array.numpy().astype(np.float64),
-                intensity.numpy().astype(np.float32),
+                min_mz=50.5,
+                max_mz=4500.0,
+                min_intensity=self.min_intensity,
+                n_peaks=self.n_peaks,
+                remove_precursor_tol_ppm=20.0,
             )
+            if mz_processed is None or len(mz_processed) == 0:
+                raise ValueError("Empty spectrum after preprocessing")
 
-            spectrum_.set_mz_range(50.5, 4500.0)
-            if len(spectrum_.mz) == 0:
-                raise ValueError
-            spectrum_.remove_precursor_peak(20, "ppm")
-            if len(spectrum_.mz) == 0:
-                raise ValueError
-            spectrum_.filter_intensity(self.min_intensity, self.n_peaks)
-            if len(spectrum_.mz) == 0:
-                raise ValueError
-            spectrum_.scale_intensity("root", 1)
-            intensity = spectrum_.intensity / np.linalg.norm(spectrum_.intensity)
-            mz_array = spectrum_.mz
-            mz_array, intensity = torch.Tensor(mz_array), torch.Tensor(intensity)
+            mz_array = torch.Tensor(mz_processed)
+            intensity = torch.Tensor(int_processed)
 
             try:
                 instrument = torch.Tensor([mgf["inst"]]).long()
@@ -3537,7 +3518,6 @@ class DeNovoIs2reDataset(BaseWrapperDataset):
                 print("warning no ins nce")
             if self.args.spectrum_pred:
                 spec_label = [0]
-                # spec_label, ion_peak_flag, ion_peak_class, ion_res_num, res_idx, error_tol, ion_mz = get_spectrum_prediction_label(spectrum["small"]["1"]["peptide"], mz_array, intensity, spectrum["small"]["1"]["mods"], self.ion_types, self.args.max_charges, flag_ITMS=False, shift=True, return_mz=True)
             else:
                 spec_label = [0]
             seq_len_label = torch.Tensor(
@@ -3699,14 +3679,9 @@ class ContrastIs2reDataset(BaseWrapperDataset):
             # pred label: delete(-> and cannot tell the exact residue type)
 
             spectrum = self.dataset[idx]
-            try:
-                spectrum = gzip.decompress(spectrum)
-            except:
-                pass
-            try:
-                spectrum = pickle.loads(spectrum)
-            except:
-                pass
+            # Handle both new (non-gzip) and legacy (gzip) data formats
+            if isinstance(spectrum, bytes):
+                spectrum = _fast_unpickle(spectrum)
 
             if "mgf" in spectrum["small"].keys():
                 mgf = spectrum["small"]["mgf"]
@@ -3799,27 +3774,23 @@ class ContrastIs2reDataset(BaseWrapperDataset):
                 zero_tensor = torch.tensor([0.0])
                 mod_label = torch.cat((zero_tensor, mod_label))
 
-            spectrum_ = sus.MsmsSpectrum(
-                "",
+            # Use fast vectorized preprocessing (replaces spectrum_utils)
+            mz_processed, int_processed = preprocess_spectrum_fast(
+                mz_array.numpy() if isinstance(mz_array, torch.Tensor) else mz_array,
+                intensity.numpy() if isinstance(intensity, torch.Tensor) else intensity,
                 precursor_mz,
                 precursor_charge,
-                mz_array.numpy().astype(np.float64),
-                intensity.numpy().astype(np.float32),
+                min_mz=50.5,
+                max_mz=4500.0,
+                min_intensity=self.min_intensity,
+                n_peaks=self.n_peaks,
+                remove_precursor_tol_ppm=20.0,
             )
+            if mz_processed is None or len(mz_processed) == 0:
+                raise ValueError("Empty spectrum after preprocessing")
 
-            spectrum_.set_mz_range(50.5, 4500.0)
-            if len(spectrum_.mz) == 0:
-                raise ValueError
-            spectrum_.remove_precursor_peak(20, "ppm")
-            if len(spectrum_.mz) == 0:
-                raise ValueError
-            spectrum_.filter_intensity(self.min_intensity, self.n_peaks)
-            if len(spectrum_.mz) == 0:
-                raise ValueError
-            spectrum_.scale_intensity("root", 1)
-            intensity = spectrum_.intensity / np.linalg.norm(spectrum_.intensity)
-            mz_array = spectrum_.mz
-            mz_array, intensity = torch.Tensor(mz_array), torch.Tensor(intensity)
+            mz_array = torch.Tensor(mz_processed)
+            intensity = torch.Tensor(int_processed)
 
             (
                 spec_label,
@@ -3838,17 +3809,15 @@ class ContrastIs2reDataset(BaseWrapperDataset):
                 flag_ITMS=flag_ITMS,
                 shift=self.args.shift,
             )
-            # assert (ion_peak_flag > 0).sum() == (ion_res_num > 0).sum() == (ion_peak_class > 0).sum(), (ion_peak_flag.shape, ion_res_num.shape, noise_peak_label.shape, (ion_peak_flag > 0).sum(), (ion_res_num > 0).sum(), (noise_peak_label > 0).sum())
-
-            # spec_label_strict, ion_peak_flag_strict, ion_peak_class_strict, error_tol_strict = get_spectrum_prediction_label(spectrum["small"]["1"]["peptide"], mz_array, intensity, spectrum["small"]["1"]["mods"], self.args.max_charges, PPM_THRESHOLD=5)
             str_pept = data_2_str(spectrum, self.modification_meta_dict)
             # tmp = spec_label.copy()
             try:
-                spec_label, _ = pickle.loads(
-                    gzip.decompress(self.txn_read.get(str_pept.encode("ascii")))
-                )
+                cached_data = self.txn_read.get(str_pept.encode("ascii"))
+                if cached_data is not None:
+                    unpickled = _fast_unpickle(cached_data)
+                    if unpickled is not None:
+                        spec_label, _ = unpickled
             except:
-                # print(f"error_loading {str_pept} spec")
                 pass
             spec_label = torch.Tensor(spec_label)
 

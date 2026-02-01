@@ -90,7 +90,8 @@ def preprocess_data(args):
                 ret["small"] = results[spec_name]
                 i += 1
                 key = f"{i}".encode("ascii")
-                writer.put(key, gzip.compress(pickle.dumps(ret)))
+                # Use put_object for faster serialization without gzip
+                writer.put_object(key, ret)
                 keys.append(key)
 
     writer.close()

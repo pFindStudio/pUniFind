@@ -4,8 +4,8 @@ Parquet-based storage module to replace LMDB.
 This module provides cross-platform compatible storage using Parquet format,
 which works well on both Windows and Linux, unlike LMDB which has poor Windows support.
 
-The data is stored as gzip-compressed pickled objects in a binary column,
-maintaining compatibility with the existing data format.
+The data is stored as pickled objects in a binary column.
+Compression is handled by Parquet's native snappy/zstd compression, which is faster than gzip.
 """
 
 import gzip
@@ -19,27 +19,33 @@ import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
 
+# Use faster pickle protocol
+PICKLE_PROTOCOL = pickle.HIGHEST_PROTOCOL
+
 
 class ParquetWriter:
     """
     Writer class for creating Parquet files from spectrum data.
 
     Replaces LMDB write operations with Parquet-based storage.
-    Data is stored as gzip-compressed pickled binary in a Parquet column.
+    Data is stored as pickled binary in a Parquet column.
+    Parquet's native compression (snappy/zstd) is used instead of gzip for better performance.
     """
 
-    def __init__(self, path: str, batch_size: int = 1000):
+    def __init__(self, path: str, batch_size: int = 1000, use_gzip: bool = False):
         """
         Initialize ParquetWriter.
 
         Args:
             path: Path to the Parquet file (should end with .parquet)
             batch_size: Number of records to accumulate before writing to disk
+            use_gzip: Whether to use gzip compression (default: False for better performance)
         """
         self.path = path
         if not path.endswith('.parquet'):
             self.path = path.replace('.lmdb', '.parquet')
         self.batch_size = batch_size
+        self.use_gzip = use_gzip
         self._buffer: List[Dict[str, Any]] = []
         self._keys: List[bytes] = []
         self._written = False
@@ -55,7 +61,7 @@ class ParquetWriter:
 
         Args:
             key: Key as bytes (typically index encoded as ASCII)
-            value: Value as bytes (typically gzip-compressed pickled data)
+            value: Value as bytes (pickled data, optionally gzip-compressed)
         """
         self._buffer.append({
             'key': key,
@@ -65,6 +71,20 @@ class ParquetWriter:
 
         if len(self._buffer) >= self.batch_size:
             self._flush()
+
+    def put_object(self, key: bytes, obj: Any) -> None:
+        """
+        Add an object to the storage (will be pickled automatically).
+
+        This method avoids gzip compression for better performance.
+
+        Args:
+            key: Key as bytes
+            obj: Python object to store
+        """
+        # Use highest protocol for fastest serialization
+        value = pickle.dumps(obj, protocol=PICKLE_PROTOCOL)
+        self.put(key, value)
 
     def commit(self) -> None:
         """Commit any buffered data to disk."""
@@ -79,14 +99,16 @@ class ParquetWriter:
         df = pd.DataFrame(self._buffer)
         table = pa.Table.from_pandas(df)
 
+        # Use zstd for better compression ratio with good speed
+        # snappy is faster but larger, zstd is a good balance
         if not self._written:
-            pq.write_table(table, self.path, compression='snappy')
+            pq.write_table(table, self.path, compression='zstd', compression_level=3)
             self._written = True
         else:
             # Append to existing file by reading, concatenating, and rewriting
             existing_table = pq.read_table(self.path)
             combined_table = pa.concat_tables([existing_table, table])
-            pq.write_table(combined_table, self.path, compression='snappy')
+            pq.write_table(combined_table, self.path, compression='zstd', compression_level=3)
 
         self._total_count += len(self._buffer)
         self._buffer = []
@@ -203,6 +225,29 @@ class ParquetReader:
         self.close()
 
 
+def _fast_unpickle(data: bytes) -> Any:
+    """
+    Fast unpickle with fallback for gzip-compressed data.
+
+    Tries pickle.loads first (fastest), falls back to gzip.decompress if needed.
+    This is optimized for the common case where data is not gzip-compressed.
+    """
+    if data is None:
+        return None
+
+    # Fast path: try direct unpickle first (most common case for new data)
+    try:
+        return pickle.loads(data)
+    except Exception:
+        pass
+
+    # Fallback: try gzip decompression (for legacy data)
+    try:
+        return pickle.loads(gzip.decompress(data))
+    except Exception:
+        return None
+
+
 class ParquetDataset:
     """
     Dataset class providing LMDB-like interface for Parquet storage.
@@ -210,15 +255,24 @@ class ParquetDataset:
     This class is designed to be a drop-in replacement for LMDB-based datasets.
     It provides the same interface (connect_db, __len__, __getitem__) but uses
     Parquet files instead of LMDB.
+
+    Performance optimizations:
+    - Larger LRU cache (512 instead of 16) for better cache hit rate
+    - Fast unpickle path that tries direct pickle first, gzip fallback second
+    - Pre-loaded data in memory via Parquet reader
     """
 
-    def __init__(self, db_path: str, decompress: bool = True):
+    # Class-level cache size configuration
+    CACHE_SIZE = 512  # Increased from 16 for better hit rate
+
+    def __init__(self, db_path: str, decompress: bool = True, cache_size: int = None):
         """
         Initialize ParquetDataset.
 
         Args:
             db_path: Path to the Parquet file (or .lmdb path which will be converted)
             decompress: Whether to decompress and unpickle data on access
+            cache_size: LRU cache size (default: 512)
         """
         self.db_path = db_path
         if not db_path.endswith('.parquet'):
@@ -230,6 +284,11 @@ class ParquetDataset:
         self.decompress = decompress
         self._reader = ParquetReader(self.db_path)
         self._keys = self._reader.keys()
+
+        # Configure cache size
+        self._cache_size = cache_size or self.CACHE_SIZE
+        # Clear any existing cache and set new size
+        self._getitem_cached = lru_cache(maxsize=self._cache_size)(self._getitem_impl)
 
     def connect_db(self, path: Optional[str] = None) -> 'ParquetDataset':
         """
@@ -247,7 +306,15 @@ class ParquetDataset:
         """Return the number of records."""
         return len(self._keys)
 
-    @lru_cache(maxsize=16)
+    def _getitem_impl(self, idx: int) -> Any:
+        """
+        Internal implementation of __getitem__ (cached via lru_cache).
+        """
+        data = self._reader.get(self._keys[idx])
+        if self.decompress and data is not None:
+            return _fast_unpickle(data)
+        return data
+
     def __getitem__(self, idx: int) -> Any:
         """
         Get item by index.
@@ -259,39 +326,7 @@ class ParquetDataset:
             Decompressed and unpickled data if decompress=True,
             otherwise raw bytes
         """
-        data = self._reader.get(self._keys[idx])
-        if self.decompress and data is not None:
-            try:
-                data = pickle.loads(gzip.decompress(data))
-            except Exception:
-                # Try without decompression (some data may not be compressed)
-                try:
-                    data = pickle.loads(data)
-                except Exception:
-                    pass
-        return data
-
-    def get_by_key(self, key: bytes) -> Any:
-        """
-        Get item by key.
-
-        Args:
-            key: Key as bytes
-
-        Returns:
-            Decompressed and unpickled data if decompress=True,
-            otherwise raw bytes
-        """
-        data = self._reader.get(key)
-        if self.decompress and data is not None:
-            try:
-                data = pickle.loads(gzip.decompress(data))
-            except Exception:
-                try:
-                    data = pickle.loads(data)
-                except Exception:
-                    pass
-        return data
+        return self._getitem_cached(idx)
 
     def keys(self) -> List[bytes]:
         """Return all keys."""
@@ -348,7 +383,7 @@ class MultiParquetDataset:
         """Return the number of records."""
         return len(self._keys)
 
-    @lru_cache(maxsize=16)
+    @lru_cache(maxsize=512)  # Increased from 16 for better cache hit rate
     def __getitem__(self, idx: int) -> Any:
         """
         Get item by index.
@@ -377,13 +412,8 @@ class MultiParquetDataset:
 
         data = self._readers[split].get(key)
         if data is not None:
-            try:
-                data = pickle.loads(gzip.decompress(data))
-            except Exception:
-                try:
-                    data = pickle.loads(data)
-                except Exception:
-                    pass
+            # Use fast unpickle with gzip fallback
+            return _fast_unpickle(data)
         return data
 
     def close(self) -> None:

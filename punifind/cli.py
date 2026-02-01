@@ -334,6 +334,14 @@ def add_common_arguments(parser):
     parser.add_argument("project_path", type=str, help="Path to project directory (can be any path)")
     parser.add_argument("batch_size", type=int, help="Batch size for inference")
 
+    # Processing settings
+    parser.add_argument("--num-proc", type=int, default=16, help="Number of processes for data preprocessing")
+    parser.add_argument("--num-workers", type=int, default=4, help="Number of DataLoader workers (increase for better GPU utilization)")
+    parser.add_argument("--fdr-threshold", type=float, default=0.1, help="FDR threshold")
+    parser.add_argument("--max-charges", type=int, default=4, help="Maximum charge state")
+    parser.add_argument("--cutoff-spectra", type=int, default=300, help="Spectrum cutoff")
+    parser.add_argument("--tof", type=int, default=0, help="TOF mode")
+
     # Optional model/data paths
     parser.add_argument("--ckpt", "--weight-path", type=str, default=None, dest="ckpt",
                         help="Path to model checkpoint (default: <install_dir>/ckpts/checkpoint_rank.pt)")
@@ -354,15 +362,9 @@ def add_common_arguments(parser):
     parser.add_argument("--num-head", type=int, default=8, help="Number of attention heads")
     parser.add_argument("--joint-encoding-layers", type=int, default=4, help="Number of joint encoding layers")
 
-    # Processing settings
-    parser.add_argument("--num-proc", type=int, default=16, help="Number of processes for data preprocessing")
-    parser.add_argument("--num-workers", type=int, default=4, help="Number of DataLoader workers (increase for better GPU utilization)")
-    parser.add_argument("--fdr-threshold", type=float, default=0.1, help="FDR threshold")
-    parser.add_argument("--max-charges", type=int, default=4, help="Maximum charge state")
-    parser.add_argument("--cutoff-spectra", type=int, default=300, help="Spectrum cutoff")
-    parser.add_argument("--tof", type=int, default=0, help="TOF mode")
 
-    # Feature flags
+
+    # Feature flags (do not modify)
     parser.add_argument("--use-nce", type=int, default=1, help="Use NCE")
     parser.add_argument("--use-ins", type=int, default=1, help="Use instrument info")
     parser.add_argument("--use-clip", type=int, default=1, help="Use CLIP")
