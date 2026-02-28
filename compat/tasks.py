@@ -289,7 +289,7 @@ class EpochBatchIterator:
 
         # Add prefetch and persistent workers for better throughput
         if self.num_workers > 0:
-            loader_kwargs["prefetch_factor"] = 4  # Prefetch more batches
-            loader_kwargs["persistent_workers"] = True  # Keep workers alive
+            loader_kwargs["prefetch_factor"] = 8  # Prefetch enough batches to keep GPU fed
+            loader_kwargs["persistent_workers"] = True  # Keep workers alive between epochs
 
         return DataLoader(**loader_kwargs)

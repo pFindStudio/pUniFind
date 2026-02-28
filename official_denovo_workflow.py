@@ -4,6 +4,7 @@ import logging
 import os
 import pickle
 import sys
+import types
 from collections import Counter
 from datetime import timedelta
 from multiprocessing import Pool
@@ -13,18 +14,44 @@ from os.path import isdir, join
 import numpy as np
 import pandas as pd
 import torch
+
+# Workaround: torch.optim.Adam lazily imports torch._dynamo, which crashes
+# on this environment due to transformers/PyTorch version incompatibility.
+# Pre-register a minimal dummy module so the lazy import succeeds silently.
+if 'torch._dynamo' not in sys.modules:
+    try:
+        import torch._dynamo  # noqa
+    except (ImportError, AttributeError):
+        _dynamo_mod = types.ModuleType('torch._dynamo')
+        _dynamo_mod.config = types.SimpleNamespace(suppress_errors=True, disable=True)
+        _dynamo_mod.disable = lambda fn=None, recursive=True: fn if fn else (lambda f: f)
+        _dynamo_mod.is_compiling = lambda: False
+        sys.modules['torch._dynamo'] = _dynamo_mod
 import torch.nn.functional as F
 from tqdm import tqdm
 
 # Cross-platform compatible imports (unicore removed, using compat module)
 from compat import checkpoint_utils, distributed_utils, options, tasks, utils
 from compat import progress_bar as progress_bar_module
-from compat.parquet_storage import ParquetWriter, get_storage_path
+from compat.parquet_storage import ParquetWriter, get_storage_path, check_parquet_up_to_date
 
 # Import PepMS.tasks to register task classes
 import PepMS.tasks
 
 from scripts.process_full_qryresv4_with_decoy import read_denovo_mgfs
+
+# Pickle protocol for pre-serialization in worker processes
+_PICKLE_PROTOCOL = pickle.HIGHEST_PROTOCOL
+
+
+def _read_and_pickle_denovo(mgf_path):
+    """Read MGF and pre-pickle each spectrum in worker process."""
+    results = read_denovo_mgfs(mgf_path)
+    pickled = []
+    for spec_name in results:
+        ret = {"small": results[spec_name]}
+        pickled.append(pickle.dumps(ret, protocol=_PICKLE_PROTOCOL))
+    return pickled
 
 logging.basicConfig(
     format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
@@ -63,45 +90,90 @@ def write_fasta(protein_sequences, output_file):
 def preprocess_data(args):
     mgf_path = args.mgf_path
     storage_path = get_storage_path(args.tmp_data_path)
+    keys_path = join(os.path.dirname(storage_path), f"{args.project_name}_FDR0.1_keys.pkl")
     mgf_paths = [join(mgf_path, _) for _ in os.listdir(mgf_path)]
 
-    # Remove existing storage file
+    # Check if parquet is already up-to-date
+    if check_parquet_up_to_date(storage_path, keys_path, mgf_paths):
+        logger.info(f"Parquet file {storage_path} is up-to-date, skipping preprocessing.")
+        return
+
+    # Sort by file size descending so large files start processing first,
+    # preventing progress stalls when all workers are stuck on big files
+    mgf_paths.sort(key=lambda p: os.path.getsize(p), reverse=True)
+
+    # Write to temp file first, rename on success to avoid corrupted files from Ctrl+C
+    tmp_storage_path = storage_path + ".tmp"
+    tmp_keys_path = keys_path + ".tmp"
+
+    # Clean up any leftover temp files from previous interrupted runs
+    for tmp in (tmp_storage_path, tmp_keys_path):
+        try:
+            os.remove(tmp)
+        except OSError:
+            pass
+
+    writer = None
+    pool = None
     try:
-        os.remove(storage_path)
-    except:
-        pass
-
-    # Use Parquet-based storage (cross-platform compatible)
-    writer = ParquetWriter(storage_path, batch_size=100)
-
-    keys = []
-    with Pool(args.num_proc) as pool:
+        writer = ParquetWriter(tmp_storage_path)
+        keys = []
+        pool = Pool(args.num_proc)
         i = 0
-        for results in tqdm(
-            pool.imap_unordered(read_denovo_mgfs, mgf_paths, chunksize=1),
+        for pickled_list in tqdm(
+            pool.imap_unordered(_read_and_pickle_denovo, mgf_paths, chunksize=1),
             total=len(mgf_paths),
         ):
-            small_specs = set(results.keys())
-
-            difference1 = small_specs
-
-            for spec_name in difference1:
-                ret = {}
-                ret["small"] = results[spec_name]
+            for pickled_data in pickled_list:
                 i += 1
                 key = f"{i}".encode("ascii")
-                # Use put_object for faster serialization without gzip
-                writer.put_object(key, ret)
+                writer.put(key, pickled_data)
                 keys.append(key)
 
-    writer.close()
+        pool.close()
+        pool.join()
+        pool = None
+        writer.close()
+        writer = None
 
-    with open(
-        join(os.path.dirname(storage_path), f"{args.project_name}_FDR0.1_keys.pkl"), "wb"
-    ) as file:
-        pickle.dump(keys, file)
+        # Save keys to temp file
+        with open(tmp_keys_path, "wb") as file:
+            pickle.dump(keys, file)
 
-    print("{} process {} ms/ms".format(storage_path, i))
+        # Atomic rename: only after both files are fully written
+        # Remove old files first
+        for f in (storage_path, keys_path):
+            try:
+                os.remove(f)
+            except OSError:
+                pass
+        os.rename(tmp_storage_path, storage_path)
+        os.rename(tmp_keys_path, keys_path)
+
+        print("{} process {} ms/ms".format(storage_path, i))
+
+    except (KeyboardInterrupt, Exception):
+        logger.warning("Preprocessing interrupted, cleaning up temp files...")
+        # Ensure writer is closed to release file handles
+        if writer is not None:
+            try:
+                writer.close()
+            except Exception:
+                pass
+        # Terminate pool workers immediately
+        if pool is not None:
+            try:
+                pool.terminate()
+                pool.join()
+            except Exception:
+                pass
+        # Remove incomplete temp files
+        for tmp in (tmp_storage_path, tmp_keys_path):
+            try:
+                os.remove(tmp)
+            except OSError:
+                pass
+        raise
 
 
 def filter_unreliable(input_file, output_file, chunksize=10000):
@@ -177,6 +249,8 @@ def main(args):
 
     if use_cuda:
         torch.cuda.set_device(args.device_id)
+        # Enable cudnn benchmark for faster convolution kernel selection
+        torch.backends.cudnn.benchmark = True
     else:
         logger.warning("CUDA not available, using CPU. Performance will be slower.")
 
@@ -199,9 +273,6 @@ def main(args):
     # print(f"missing keys: {missing_keys}")
     # print(f"unexpected keys: {unexpected_keys}")
 
-    # Move models to GPU
-    # if use_fp16:
-    #     model.half()
     if use_cuda:
         model.cuda()
 
@@ -287,13 +358,16 @@ def main(args):
         except:
             pass
 
+        # Open CSV file once and keep it open for the whole loop (avoid per-batch open/close)
+        csv_path = join(
+            args.results_path,
+            f"{subset}_{args.range_pred}_{data_parallel_rank}.csv",
+        )
+        csv_buffer = []  # Buffer rows, flush periodically
+        CSV_FLUSH_INTERVAL = 50  # Flush every N batches
+
         for i, sample in enumerate(progress):
-            if i % 100 == 0:
-                print(f"processing {i}")
             sample = utils.move_to_cuda(sample) if use_cuda else sample
-            # if len(sample) == 0:
-            #     continue
-            # print(len(sample))
             with torch.no_grad():
                 if "net_input" not in sample.keys():
                     print(sample)
@@ -316,36 +390,35 @@ def main(args):
             all_pep_recall += ret_info["pep_recall"] * bsz
             all_bsz += bsz
 
-            with open(
-                join(
-                    args.results_path,
-                    f"{subset}_{args.range_pred}_{data_parallel_rank}.csv",
-                ),
-                "a",
-                newline="",
-            ) as csvfile:
-                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-                for id in range(len(ret_info["peptide_mod_pred"])):
-                    writer.writerow(
-                        {
-                            "title": ret_info["title"][id],
-                            # "peptide_same": ret_info["peptides_true"][id] == ret_info["peptides_pred"][id],
-                            "score": ret_info["score"][id].item(),
-                            "cos_sim": ret_info["cos_sim"][id].item(),
-                            "RT_true": ret_info["RT"][id].item(),
-                            "miss_cleav": ret_info["miss_cleav"][id],
-                            # "len_diff": len(ret_info["peptides_true"][id][0]) - len(ret_info["peptides_pred"][id][0]),
-                            "mass_shift": ret_info["mass_shift"][id].item(),
-                            # "peptides_true": ret_info["peptides_true"][id],
-                            "peptides_pred": ret_info["peptides_pred"][id],
-                            # "peptide_mod_true": ret_info["peptide_mod_true"][id],
-                            "peptide_mod_pred": ret_info["peptide_mod_pred"][id],
-                            "mod_pred": ret_info["mod_pred"][id],
-                        }
-                    )
+            # Buffer CSV rows instead of writing per-batch
+            for id in range(len(ret_info["peptide_mod_pred"])):
+                csv_buffer.append({
+                    "title": ret_info["title"][id],
+                    "score": ret_info["score"][id].item(),
+                    "cos_sim": ret_info["cos_sim"][id].item(),
+                    "RT_true": ret_info["RT"][id].item(),
+                    "miss_cleav": ret_info["miss_cleav"][id],
+                    "mass_shift": ret_info["mass_shift"][id].item(),
+                    "peptides_pred": ret_info["peptides_pred"][id],
+                    "peptide_mod_pred": ret_info["peptide_mod_pred"][id],
+                    "mod_pred": ret_info["mod_pred"][id],
+                })
 
-            # print(">>>>>>>", ret_info["aa_recall"], ret_info["pep_recall"], bsz, all_aa_recall / all_bsz, all_pep_recall / all_bsz, all_bsz)
+            # Flush buffer periodically
+            if i % CSV_FLUSH_INTERVAL == 0 and csv_buffer:
+                with open(csv_path, "a", newline="") as csvfile:
+                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                    writer.writerows(csv_buffer)
+                csv_buffer = []
+
             progress.log({}, step=i)
+
+        # Flush remaining buffer
+        if csv_buffer:
+            with open(csv_path, "a", newline="") as csvfile:
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                writer.writerows(csv_buffer)
+            csv_buffer = []
         # print("Finished {} subset, rank {}".format(subset, data_parallel_rank))
         # print(">>>>", all_aa_recall / all_bsz, all_pep_recall / all_bsz, all_bsz)
         mod_stat_all = Counter(mod_stat_all)

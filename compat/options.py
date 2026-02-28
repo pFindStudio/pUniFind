@@ -67,9 +67,9 @@ def add_dataset_args(parser: argparse.ArgumentParser) -> argparse.ArgumentParser
 
     group.add_argument(
         "--num-workers",
-        default=1,
+        default=16,
         type=int,
-        help="Number of data loading workers",
+        help="Number of data loading workers (higher values keep GPU fed during inference)",
     )
     group.add_argument(
         "--data-buffer-size",

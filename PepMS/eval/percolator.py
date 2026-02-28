@@ -626,13 +626,16 @@ class Percolator:
             pscore_keys = list(pscore_output.keys())
 
             print("num keys", len(pscore_keys), len(self.lmdb_keys))
-            assert len(pscore_keys) == len(self.lmdb_keys)
+            assert len(pscore_keys) == len(self.lmdb_keys), (
+                f"Inference results ({len(pscore_keys)}) != dataset entries ({len(self.lmdb_keys)}). "
+                f"Possibly duplicate keys or incomplete inference."
+            )
 
             def input_pscore():
                 for pscore_key in pscore_keys:
-                    pscore_res = pickle.loads(
-                        gzip.decompress(pscore_output[pscore_key])
-                    )
+                    raw = pscore_output[pscore_key]
+                    # Support both raw dicts (new format) and pickled bytes (legacy)
+                    pscore_res = raw if isinstance(raw, dict) else safe_unpickle(raw)
                     idx = pscore_res["index"]
                     yield pscore_res, pscore_key, self._reader.get(
                         self.lmdb_keys[idx]

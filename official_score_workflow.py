@@ -3,6 +3,7 @@ import logging
 import os
 import pickle
 import sys
+import types
 from datetime import timedelta
 from multiprocessing import Pool
 from os import listdir
@@ -10,18 +11,45 @@ from os.path import isdir, join
 
 import numpy as np
 import torch
+
+# Workaround: torch.optim.Adam lazily imports torch._dynamo, which crashes
+# on this environment due to transformers/PyTorch version incompatibility.
+# Pre-register a minimal dummy module so the lazy import succeeds silently.
+if 'torch._dynamo' not in sys.modules:
+    try:
+        import torch._dynamo  # noqa
+    except (ImportError, AttributeError):
+        _dynamo_mod = types.ModuleType('torch._dynamo')
+        _dynamo_mod.config = types.SimpleNamespace(suppress_errors=True, disable=True)
+        _dynamo_mod.disable = lambda fn=None, recursive=True: fn if fn else (lambda f: f)
+        _dynamo_mod.is_compiling = lambda: False
+        sys.modules['torch._dynamo'] = _dynamo_mod
 import torch.nn.functional as F
 from tqdm import tqdm
 
 # Cross-platform compatible imports (unicore removed, using compat module)
 from compat import checkpoint_utils, distributed_utils, options, tasks, utils
 from compat import progress_bar
-from compat.parquet_storage import ParquetWriter, get_storage_path
+from compat.parquet_storage import ParquetWriter, get_storage_path, check_parquet_up_to_date
 
 from PepMS.eval.eval_draw import draw_multiple_peptide, draw_multiple_psm
 from PepMS.eval.percolator import Percolator, PercolatorConfig
 from PepMS.eval.trans_to_pfind import write_spectra_file
 from scripts.process_full_qryresv4_with_decoy import custom_sort, read_one_results
+
+# Pickle protocol for pre-serialization in worker processes
+_PICKLE_PROTOCOL = pickle.HIGHEST_PROTOCOL
+
+
+def _read_and_pickle_results(inputs):
+    """Read qry.res and pre-pickle each spectrum in worker process.
+    Returns list of (title, pickled_data) tuples for deduplication."""
+    results = read_one_results(inputs)
+    pickled = []
+    for spec_name in results:
+        ret = {"small": results[spec_name]}
+        pickled.append((spec_name, pickle.dumps(ret, protocol=_PICKLE_PROTOCOL)))
+    return pickled
 
 logging.basicConfig(
     format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
@@ -44,6 +72,7 @@ def preprocess_data(args):
     mgf_path = args.mgf_path
     qry_res_path = args.qry_res_path
     storage_path = get_storage_path(args.tmp_data_path)
+    keys_path = join(os.path.dirname(storage_path), f"{args.project_name}_FDR0.1_keys.pkl")
 
     qryress = custom_sort(
         [
@@ -53,43 +82,100 @@ def preprocess_data(args):
         ]
     )
 
-    # Remove existing storage file
+    # Collect all source files for freshness check (qry.res files + mgf files)
+    source_files = [q[0] for q in qryress]
+    mgf_files = [join(mgf_path, f) for f in os.listdir(mgf_path) if f.endswith(".mgf")]
+    source_files.extend(mgf_files)
+
+    # Check if parquet is already up-to-date
+    if check_parquet_up_to_date(storage_path, keys_path, source_files):
+        logger.info(f"Parquet file {storage_path} is up-to-date, skipping preprocessing.")
+        return
+
+    # Sort by qry.res file size descending so large files start processing first,
+    # preventing progress stalls when all workers are stuck on big files
+    qryress.sort(key=lambda x: os.path.getsize(x[0]), reverse=True)
+
+    # Write to temp file first, rename on success to avoid corrupted files from Ctrl+C
+    tmp_storage_path = storage_path + ".tmp"
+    tmp_keys_path = keys_path + ".tmp"
+
+    # Clean up any leftover temp files from previous interrupted runs
+    for tmp in (tmp_storage_path, tmp_keys_path):
+        try:
+            os.remove(tmp)
+        except OSError:
+            pass
+
+    writer = None
+    pool = None
     try:
-        os.remove(storage_path)
-    except:
-        pass
-
-    # Use Parquet-based storage (cross-platform compatible)
-    writer = ParquetWriter(storage_path, batch_size=100)
-
-    keys = []
-    with Pool(args.num_proc) as pool:
+        writer = ParquetWriter(tmp_storage_path)
+        keys = []
+        pool = Pool(args.num_proc)
         i = 0
-        for results in tqdm(
-            pool.imap_unordered(read_one_results, qryress, chunksize=1),
+        seen_titles = set()
+        dup_count = 0
+        for pickled_list in tqdm(
+            pool.imap_unordered(_read_and_pickle_results, qryress, chunksize=1),
             total=len(qryress),
         ):
-            small_specs = set(results.keys())
-
-            difference1 = small_specs
-
-            for spec_name in difference1:
-                ret = {}
-                ret["small"] = results[spec_name]
+            for title, pickled_data in pickled_list:
+                if title in seen_titles:
+                    dup_count += 1
+                    continue
+                seen_titles.add(title)
                 i += 1
                 key = f"{i}".encode("ascii")
-                # Use put_object for faster serialization without gzip
-                writer.put_object(key, ret)
+                writer.put(key, pickled_data)
                 keys.append(key)
+        if dup_count > 0:
+            logger.warning(
+                f"Skipped {dup_count} duplicate spectra (same title in multiple qry.res files). "
+                f"This is usually caused by bloated mgf files where file names like "
+                f"'raw_1' incorrectly include spectra from 'raw_10'-'raw_19'."
+            )
 
-    writer.close()
+        pool.close()
+        pool.join()
+        pool = None
+        writer.close()
+        writer = None
 
-    with open(
-        join(os.path.dirname(storage_path), f"{args.project_name}_FDR0.1_keys.pkl"), "wb"
-    ) as file:
-        pickle.dump(keys, file)
+        # Save keys to temp file
+        with open(tmp_keys_path, "wb") as file:
+            pickle.dump(keys, file)
 
-    print("{} process {} ms/ms".format(storage_path, i))
+        # Atomic rename: only after both files are fully written
+        for f in (storage_path, keys_path):
+            try:
+                os.remove(f)
+            except OSError:
+                pass
+        os.rename(tmp_storage_path, storage_path)
+        os.rename(tmp_keys_path, keys_path)
+
+        print("{} process {} ms/ms".format(storage_path, i))
+
+    except (KeyboardInterrupt, Exception):
+        logger.warning("Preprocessing interrupted, cleaning up temp files...")
+        if writer is not None:
+            try:
+                writer.close()
+            except Exception:
+                pass
+        if pool is not None:
+            try:
+                pool.terminate()
+                pool.join()
+            except Exception:
+                pass
+        for tmp in (tmp_storage_path, tmp_keys_path):
+            try:
+                os.remove(tmp)
+            except OSError:
+                pass
+        raise
 
 
 def main(args):
@@ -102,6 +188,8 @@ def main(args):
 
     if use_cuda:
         torch.cuda.set_device(args.device_id)
+        # Enable cudnn benchmark for faster convolution kernel selection
+        torch.backends.cudnn.benchmark = True
     else:
         logger.warning("CUDA not available, using CPU. Performance will be slower.")
 
@@ -170,6 +258,9 @@ def main(args):
     # assert data_parallel_world_size == 1
     ret = {}
     count_res = 0
+    # Pending results from previous batch - process while GPU computes current batch
+    pending_cpu_work = None
+
     for i, sample in enumerate(progress):
         sample = utils.move_to_cuda(sample) if use_cuda else sample
         if len(sample) == 0:
@@ -179,30 +270,51 @@ def main(args):
         with torch.no_grad():
             return_dict = model.forward_score(**sample["net_input"])
 
-        joint_scores = return_dict["scores"]
-        best_rank = return_dict["top_indices"]
+        # Process PREVIOUS batch's results while GPU may still be finishing
+        # (overlaps CPU post-processing with GPU kernel launch/execution)
+        if pending_cpu_work is not None:
+            p_scores, p_best_rank, p_batch_idx, p_index, p_titles = pending_cpu_work
+            for s in range(len(p_titles)):
+                mask = p_batch_idx == s
+                sample_idx = int(p_index[s])
+                ret[sample_idx] = {
+                    "index": sample_idx,
+                    "title": p_titles[s],
+                    "best_rank": (
+                        int(p_best_rank[s]) if p_best_rank is not None else -1
+                    ),
+                    "joint_scores": p_scores[mask],
+                }
+                count_res += 1
 
-        mz_array = sample["net_input"]["mz_array"]
-        batch_index = sample["net_input"]["batch_index"].long()
-        index = sample["net_input"]["index"].long().cpu()
+        # GPU→CPU transfer (sync point, but previous batch already processed)
+        joint_scores_cpu = return_dict["scores"].cpu().numpy()
+        best_rank_val = return_dict["top_indices"]
+        best_rank_cpu = best_rank_val.cpu().numpy() if best_rank_val is not None else None
+        batch_index_cpu = sample["net_input"]["batch_index"].long().cpu().numpy()
+        index_cpu = sample["net_input"]["index"].long().cpu().numpy()
         titles = sample["net_input"]["title"]
-        fdr = sample["net_input"]["fdr"]
-        assert len(titles) == len(fdr) == len(mz_array)
-        for s in range(len(titles)):
-            joint_scores_ = joint_scores[batch_index == s].cpu().numpy()
-            ret[titles[s]] = gzip.compress(
-                pickle.dumps(
-                    {
-                        "index": index[s].item(),
-                        "best_rank": (
-                            best_rank[s].cpu().item() if best_rank is not None else -1
-                        ),
-                        "joint_scores": joint_scores_,
-                    }
-                )
-            )
-            count_res += 1
+
+        # Defer processing to next iteration (overlap with next forward pass)
+        pending_cpu_work = (joint_scores_cpu, best_rank_cpu, batch_index_cpu, index_cpu, titles)
         progress.log({}, step=i)
+
+    # Process last batch
+    if pending_cpu_work is not None:
+        p_scores, p_best_rank, p_batch_idx, p_index, p_titles = pending_cpu_work
+        for s in range(len(p_titles)):
+            mask = p_batch_idx == s
+            sample_idx = int(p_index[s])
+            ret[sample_idx] = {
+                "index": sample_idx,
+                "title": p_titles[s],
+                "best_rank": (
+                    int(p_best_rank[s]) if p_best_rank is not None else -1
+                ),
+                "joint_scores": p_scores[mask],
+            }
+            count_res += 1
+
     all_result.update(ret)
 
     print("Finished {} subset, rank {}".format(subset, data_parallel_rank))
@@ -284,6 +396,72 @@ def evaluate_database_search(args, all_result=None):
         )
 
 
+def check_inference_pkl_complete(results_path, subset, keys_path):
+    """
+    Check if inference pkl files already exist and contain complete results.
+
+    Validates:
+    1. pkl files exist and are loadable
+    2. Each pkl file is non-empty
+    3. Total key count matches the expected count from keys pkl
+
+    Returns:
+        True if pkl files exist and results are complete, False otherwise.
+    """
+    if not os.path.isdir(results_path):
+        return False
+
+    # Find all pkl files matching the inference output pattern: {subset}_{subset}_{rank}.pkl
+    pkl_files = [
+        f for f in os.listdir(results_path)
+        if f.startswith(f"{subset}_{subset}_") and f.endswith(".pkl")
+    ]
+    if not pkl_files:
+        return False
+
+    # Load expected key count from keys pkl
+    expected_keys = 0
+    if os.path.isfile(keys_path):
+        try:
+            with open(keys_path, "rb") as fp:
+                expected_keys = len(pickle.load(fp))
+        except Exception as e:
+            logger.info(f"Failed to load keys pkl {keys_path}: {e}, will re-run inference.")
+            return False
+    else:
+        logger.info(f"Keys pkl not found: {keys_path}, will re-run inference.")
+        return False
+
+    # Check that each pkl file is loadable and non-empty, count total keys
+    total_keys = 0
+    for f in pkl_files:
+        fpath = os.path.join(results_path, f)
+        try:
+            with open(fpath, "rb") as fp:
+                data = pickle.load(fp)
+            if not isinstance(data, dict) or len(data) == 0:
+                logger.info(f"Inference pkl {f} is empty or invalid, will re-run inference.")
+                return False
+            total_keys += len(data)
+        except Exception as e:
+            logger.info(f"Failed to load inference pkl {f}: {e}, will re-run inference.")
+            return False
+
+    # Verify completeness: total keys must match expected count
+    if total_keys != expected_keys:
+        logger.info(
+            f"Inference pkl incomplete: {total_keys} keys found, "
+            f"expected {expected_keys}. Will re-run inference."
+        )
+        return False
+
+    logger.info(
+        f"Found {len(pkl_files)} complete inference pkl files with {total_keys} total results. "
+        f"Skipping inference."
+    )
+    return True
+
+
 def cli_main():
     parser = options.get_validation_parser()
     parser.add_argument(
@@ -305,6 +483,13 @@ def cli_main():
     parser.add_argument(
         "--project-name",
         type=str,
+    )
+    parser.add_argument(
+        "--skip-inference",
+        action="store_true",
+        default=False,
+        help="Skip inference and run evaluation only. "
+             "Automatically enabled if inference pkl files already exist.",
     )
 
     options.add_model_args(parser)
@@ -334,19 +519,47 @@ def cli_main():
         logger.info(f"Process rank {global_rank}/{world_size}, using GPU {local_rank}")
 
     storage_path = get_storage_path(args.tmp_data_path)
-    if local_rank == 0:
-        logger.info("Start preprocessing data to parquet.")
-        preprocess_data(args)
-        logger.info("Finished preprocessing data.")
-    torch.distributed.barrier()
+    keys_path = join(os.path.dirname(storage_path), f"{args.project_name}_FDR0.1_keys.pkl")
 
-    logger.info("Start inferencing data from parquet.")
-    distributed_utils.call_main(args, main)
-    logger.info("Finished inferencing data.")
+    # Check if inference results already exist (checkpoint)
+    skip_inference = args.skip_inference
+    if not skip_inference and global_rank == 0:
+        skip_inference = check_inference_pkl_complete(
+            args.results_path, args.valid_subset, keys_path
+        )
 
-    logger.info("Start evaluating data from parquet.")
-    evaluate_database_search(args)
-    logger.info("Finished rescoring!")
+    if skip_inference:
+        if global_rank == 0:
+            logger.info("Inference pkl checkpoint found, skipping inference.")
+            # Still need preprocessing (parquet) for evaluation
+            preprocess_data(args)
+            logger.info("Start evaluating data from parquet.")
+            evaluate_database_search(args)
+            logger.info("Finished rescoring!")
+        # Other ranks just wait
+        torch.distributed.barrier()
+    else:
+        if global_rank == 0:
+            logger.info("Start preprocessing data to parquet.")
+            preprocess_data(args)
+            logger.info("Finished preprocessing data.")
+        torch.distributed.barrier()
+
+        logger.info("Start inferencing data from parquet.")
+        distributed_utils.call_main(args, main)
+        logger.info("Finished inferencing data.")
+
+        # Ensure all ranks have finished writing pkl files before evaluation
+        torch.distributed.barrier()
+
+        # Evaluation is CPU-only post-processing, only run on rank 0
+        if global_rank == 0:
+            logger.info("Start evaluating data from parquet.")
+            evaluate_database_search(args)
+            logger.info("Finished rescoring!")
+
+        # Wait for rank 0 to finish evaluation before all processes exit
+        torch.distributed.barrier()
 
 
 if __name__ == "__main__":

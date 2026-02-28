@@ -845,19 +845,14 @@ class MDProteinModel(BaseUnicoreModel):
         )
         spec_pred = self.spectrum_decoder(peptide_feat_all)
 
-        # to fix: pred modification -> embeding modification
-        #         batch index repeat num
-        #         residue_type_after_mod_all
-        repeat_num_ = []
-        sample_mask = []
-        for i in range(len(precursor)):
-            repeat_num_.append((batch_index_ == i).sum().cpu().item())
-            sample_mask.append(repeat_num_[-1] > 0)
-        sample_mask = torch.Tensor(sample_mask).bool()
-        assert sum(repeat_num_) == len(peptide_feat_all), sum(repeat_num_) == len(
-            peptide_feat_all
+        # Vectorized repeat_num computation (replaces per-sample GPU→CPU loop)
+        num_samples = len(precursor)
+        repeat_num_counts = torch.bincount(batch_index_, minlength=num_samples)[:num_samples]
+        sample_mask = (repeat_num_counts > 0).cpu()  # CPU for downstream indexing
+        assert repeat_num_counts.sum().item() == len(peptide_feat_all), (
+            repeat_num_counts.sum().item(), len(peptide_feat_all)
         )
-        repeat_num_ = torch.Tensor(repeat_num_).to(peptide_feat_all.device)
+        repeat_num_ = repeat_num_counts.float().to(peptide_feat_all.device)
         scores = (
             self.joint_encoder(
                 peptide_feat_all,
@@ -896,8 +891,7 @@ class MDProteinModel(BaseUnicoreModel):
             scores_all.unsqueeze(-1).reshape(-1, self.args.range_pred), dim=1
         )  #  B
 
-        for i in range(len(best_match_index)):
-            best_match_index[i] += i * range_pred
+        best_match_index += torch.arange(len(best_match_index), device=best_match_index.device) * range_pred
 
         best_match_index = best_match_index[sample_mask]  # sample * 5 -> return
         scores_max = scores_all[best_match_index]  # done
@@ -947,10 +941,10 @@ class MDProteinModel(BaseUnicoreModel):
         spec_pred = spec_pred[after_length_index]
 
         residue_type_after_mod = [
-            s for s, mask in zip(residue_type_after_mod, repeat_num_) if mask > 0
+            s for s, mask in zip(residue_type_after_mod, sample_mask) if mask
         ]
         residue_type_after_mod_all = [
-            s for s, mask in zip(residue_type_after_mod_all, repeat_num_) if mask > 0
+            s for s, mask in zip(residue_type_after_mod_all, sample_mask) if mask
         ]
         recall_info = self._cal_infer_recall(
             tokens,
@@ -968,16 +962,24 @@ class MDProteinModel(BaseUnicoreModel):
 
         peptides_pred = recall_info["peptides_pred"]
 
-        # for i in range(len(precursor)):
+        # Batch transfer mz_array and intensity to CPU once (instead of per-sample transfers)
+        mz_array_cpu = mz_array.cpu()
+        intensity_cpu = intensity.cpu()
+        precursor_charge_cpu = precursor_charge.cpu()
+
         j = 0
-        for i in range(len(mz_array)):
+        for i in range(len(mz_array_cpu)):
             if not sample_mask[i]:
                 continue
-            charge = precursor_charge[i]
+            charge = precursor_charge_cpu[i]
+            mz_i = mz_array_cpu[i]
+            int_i = intensity_cpu[i]
+
+            # Call with shift=True for cos_sim
             spec_exp, _, _, _, _, _, _ = get_spectrum_prediction_label(
                 peptides_pred[j][0],
-                mz_array[i].cpu(),
-                intensity[i].cpu(),
+                mz_i,
+                int_i,
                 mods_input[j],
                 self.ion_types,
                 self.args.max_charges,
@@ -990,7 +992,6 @@ class MDProteinModel(BaseUnicoreModel):
                 spec_exp = spec_exp[:, :, :charge].reshape(spec_exp.shape[0], -1)
             spec_pred_cal = spec_pred[j][1 : spec_exp.shape[0] + 1]
             if charge < 4:
-                # spec_pred_cal = spec_pred_cal[:, :8 * charge]
                 spec_pred_cal = spec_pred_cal.reshape(spec_pred_cal.shape[0], -1, 4)
                 spec_pred_cal = spec_pred_cal[:, :, :charge].reshape(
                     spec_pred_cal.shape[0], -1
@@ -1001,10 +1002,12 @@ class MDProteinModel(BaseUnicoreModel):
                     torch.Tensor(spec_exp).reshape(1, -1), spec_pred_cal
                 )
             )
+
+            # Call with shift=False for miss_cleav (reuse mz_i, int_i)
             spec_exp2, _, _, _, _, _, ions = get_spectrum_prediction_label(
                 peptides_pred[j][0],
-                mz_array[i].cpu(),
-                intensity[i].cpu(),
+                mz_i,
+                int_i,
                 mods_input[j],
                 self.ion_types,
                 self.args.max_charges,
@@ -1012,9 +1015,7 @@ class MDProteinModel(BaseUnicoreModel):
                 shift=False,
                 return_mz=True,
             )
-            # print(spec_exp2)
             if charge < 4:
-                # spec_exp2 = spec_exp2[:, :8 * charge]
                 spec_exp2 = spec_exp2.reshape(spec_exp2.shape[0], -1, 4)
                 spec_exp2 = spec_exp2[:, :, :charge].reshape(spec_exp2.shape[0], -1)
             missed = torch.Tensor(spec_exp2).sum(-1) < 1e-3

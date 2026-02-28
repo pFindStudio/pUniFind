@@ -19,6 +19,14 @@ from tqdm import tqdm
 from compat.parquet_storage import ParquetReader, get_storage_path
 from scripts.process_qryres_utils import *
 
+
+def safe_unpickle(data: bytes):
+    """Unpickle data, auto-detecting gzip vs plain pickle format."""
+    try:
+        return pickle.loads(data)
+    except Exception:
+        return pickle.loads(gzip.decompress(data))
+
 # add: ins
 # track: ins, nce, peptide with mod -> max pfind score
 # filter: 1.false Enzyme
@@ -51,7 +59,7 @@ def process_new(inputs):
     spec_key = inputs
     key = best_id[spec_key][0]
     data_ziped = _parquet_reader.get(key)
-    data = pickle.loads(gzip.decompress(data_ziped))
+    data = safe_unpickle(data_ziped)
     str_data = data_2_str(data, modification_meta_dict)
 
     return str_data, get_spec_label(data), data["small"]["1"]["pfind_score"]
@@ -61,7 +69,7 @@ def get_best_ids(inputs):
     global _parquet_reader
     key = inputs
     data_ziped = _parquet_reader.get(key)
-    data = pickle.loads(gzip.decompress(data_ziped))
+    data = safe_unpickle(data_ziped)
     if not data["small"]["1"]["is_target"] or (data["small"]["1"]["fdr_value"] > 0.001):
         return None, None, None, None
     str_data = data_2_str(data, modification_meta_dict)

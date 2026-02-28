@@ -2366,7 +2366,6 @@ class InferenceZipLMDB2Dataset:
     def __len__(self):
         return len(self._keys)
 
-    @lru_cache(maxsize=16)
     def __getitem__(self, idx):
         datapoint_pickled = self._reader.get(self._keys[idx])
         data = _fast_unpickle(datapoint_pickled)
@@ -2532,7 +2531,6 @@ class ScoreInferenceDataset(BaseWrapperDataset):
     def __getitem__(self, idx: int):
         return self.__getitem_cached__(self.epoch, idx)
 
-    @lru_cache(maxsize=16)
     def __getitem_cached__(self, epoch: int, idx):
         with data_utils.numpy_seed(self.args.seed, epoch, idx):
             spectrum = self.dataset[idx]
@@ -2661,6 +2659,75 @@ class ScoreInferenceDataset(BaseWrapperDataset):
 
             mz_array = torch.Tensor(mz_processed)
             intensity = torch.Tensor(int_processed)
+
+            # --- Inference fast path: skip training-only label computation ---
+            # get_spectrum_prediction_label is the most expensive per-sample
+            # operation (ion matching with double nested loop), but forward_score
+            # never uses its outputs. Skip it entirely for inference.
+            if not self.is_train:
+                n_peaks = mz_array.shape[0]
+                pep_len = len(spectrum["small"]["1"]["peptide"])
+
+                try:
+                    instrument = torch.Tensor([mgf["inst"]]).long()
+                    nce = torch.Tensor([mgf["HCD"]]).long()
+                except:
+                    instrument = torch.Tensor([0]).long()
+                    nce = torch.Tensor([0]).long()
+
+                if self.args.use_rope:
+                    rope_embeding = precompute_freqs_cis(
+                        self.args.node_dim,
+                        torch.cat(
+                            [
+                                torch.Tensor([mgf["precursor_mz"]]),
+                                torch.Tensor([spectrum["small"]["mgf"]["precursor_mz"]]),
+                                mz_array,
+                            ]
+                        ),
+                    )
+                else:
+                    rope_embeding = torch.Tensor([0])
+
+                precursor_charge = min(self.args.max_prec_charge, precursor_charge)
+                fdr = spectrum["small"]["1"]["fdr_value"]
+
+                return {
+                    "mz_array": mz_array,
+                    "intensity": intensity,
+                    "precursor_mz": torch.Tensor(
+                        [(precursor_mz - 1.007276) * precursor_charge]
+                    ),
+                    "precursor_charge": torch.Tensor([precursor_charge]).long(),
+                    "batch_index": torch.ones(len(residue_type)).long(),
+                    "residue_type": residue_type,
+                    "residue_type_after_mod": residue_type_after_mod,
+                    "residue_type_after_mod_all": residue_type_after_mod_all,
+                    "mod_label": torch.zeros(pep_len).long(),
+                    "mod_mass_label": torch.zeros(pep_len),
+                    "modification": modification,
+                    "instrument": instrument,
+                    "spec_label": torch.zeros(n_peaks),
+                    "nce": nce,
+                    "denoise_pred_mask": torch.zeros(n_peaks).bool(),
+                    "intensity_pred_mask": torch.zeros(n_peaks).bool(),
+                    "denoise_label": torch.zeros(n_peaks),
+                    "intensity_label": torch.zeros(n_peaks),
+                    "rope_embeding": rope_embeding,
+                    "noise_peak_label": torch.zeros(n_peaks).long(),
+                    "res_type_label": torch.Tensor([0]).long(),
+                    "noise_peak_mask": torch.ones(n_peaks).long(),
+                    "modification_cls_label": torch.zeros(2610).long(),
+                    "ion_res_num": torch.zeros(n_peaks).long(),
+                    "ion_comp_res_num": torch.zeros(n_peaks).long(),
+                    "seq_len_label": torch.Tensor([pep_len]).long(),
+                    "label_index": (torch.arange(len(residue_type)) == 0).bool(),
+                    "index": torch.Tensor([idx]).long(),
+                    "title": [title],
+                    "fdr": torch.Tensor([fdr]),
+                    "ion_mz": torch.zeros(n_peaks),
+                }
+            # --- End inference fast path ---
 
             (
                 spec_label,
@@ -3345,7 +3412,6 @@ class DeNovoIs2reDataset(BaseWrapperDataset):
     def __getitem__(self, idx: int):
         return self.__getitem_cached__(self.epoch, idx)
 
-    @lru_cache(maxsize=16)
     def __getitem_cached__(self, epoch: int, idx):
         with data_utils.numpy_seed(self.args.seed, epoch, idx):
 
@@ -3377,14 +3443,7 @@ class DeNovoIs2reDataset(BaseWrapperDataset):
                 title = mgf["title"]
             except:
                 title = spectrum["small"]["title"]
-            loss_residue = False
-            add_residue = False
-            # if self.args.fdr_thread > 1:
-            #     if "C" in spectrum["small"]["1"]["peptide"]:
-            #         if "C[" not in spectrum["small"]["1"]["peptide"]:
-            #             print("not fix mod", spectrum["small"]["1"]["peptide"])
-            #         else:
-            #             print("fix mod", spectrum["small"]["1"]["peptide"])
+
             spectrum["small"]["1"]["peptide"] = re.sub(
                 r"\[.*?\]", "", spectrum["small"]["1"]["peptide"]
             )
@@ -3402,32 +3461,18 @@ class DeNovoIs2reDataset(BaseWrapperDataset):
                 )
             ]
             modification = [[]]
-            mod_label = torch.zeros(len(spectrum["small"]["1"]["peptide"]))
-            mod_mass_label = torch.zeros(len(spectrum["small"]["1"]["peptide"]))
             assert len(spectrum["small"]["1"]["peptide"]) == len(residue_type[0]), (
                 len(spectrum["small"]["1"]["peptide"]),
                 len(residue_type[0]),
             )
 
-            # for mod in spectrum["small"]["1"]["mods"]:
-            #     if mod[0] == 0:
-            #         mod = (mod[0] + 1, mod[1])
-            #         # mod[0] += 1
-            #     if mod[0] > len(spectrum["small"]["1"]["peptide"]):
-            #         mod = (mod[0] - 1, mod[1])
-            #     if "->" not in mod[1] or mod[1].split("->")[1].split("[")[0] not in amino_acids_3to1_map.keys():
-            #         modification[0].append((mod[0], self.modification_meta_dict[mod[1]]))
-            #     token1 = get_token1(mod[1])
-            #     residue_type_after_mod_all[0] += f"_{mod[0]}_{token1}"
-
+            # Build modification list only (mod_label/mod_mass_label are not used in return dict)
             for i in range(len(spectrum["small"]["1"]["mods"])):
                 mod = spectrum["small"]["1"]["mods"][i]
                 if mod[0] == 0:
                     mod = (mod[0] + 1, mod[1])
-                    # mod[0] += 1
                 if mod[0] > len(spectrum["small"]["1"]["peptide"]):
                     mod = (mod[0] - 1, mod[1])
-                    # mod[0] -= 1
                 try:
                     modification[0].append(
                         (mod[0], self.modification_meta_dict[mod[1]])
@@ -3446,44 +3491,6 @@ class DeNovoIs2reDataset(BaseWrapperDataset):
                         else:
                             spectrum["small"]["1"]["mods"].pop(i)
                             continue
-                            # assert 0, (spectrum["small"]["1"]["mods"])
-
-                if mod[1] in loss_dict_loss_length.keys():
-                    loss_residue = True
-
-                if mod[1] in loss_dict_add_length.keys():
-                    add_residue = True
-
-                if (
-                    "->" not in mod[1]
-                    or mod[1].split("->")[1].split("[")[0]
-                    not in amino_acids_3to1_map.keys()
-                ):
-                    if mod[1] not in denovo_not_pred_set:
-                        if self.args.tokenize_mod == 0:
-                            mod_label[mod[0] - 1] = (
-                                self.modification_meta_dict[mod[1]][2].item() + 1
-                            )
-                        elif self.args.tokenize_mod == 1:
-                            mod_label[mod[0] - 1] = self.tokenize1_dict[
-                                self.modification_meta_dict[mod[1]][2].item()
-                            ]["token_idx"]
-
-                        mod_mass_label[mod[0] - 1] += self.modification_meta_dict[
-                            mod[1]
-                        ][1].item()
-            if loss_residue:
-                mod_label = mod_label[:-1]
-
-            if add_residue:
-                zero_tensor = torch.tensor([0.0])
-                mod_label = torch.cat((zero_tensor, mod_label))
-
-            assert len(modification) == len(residue_type), (
-                len(modification),
-                len(residue_type),
-                len(residue_type_after_mod),
-            )
 
             assert len(modification) == len(residue_type), (
                 len(modification),
@@ -4482,16 +4489,13 @@ class BatchIndexDataset(BaseWrapperDataset):
         return len(self.dataset)
 
     def collater(self, samples):
-        idx = 0
-        a = torch.cat(samples, dim=0)
-        if torch.all(a == 1):
+        # Check if all values are 1 without concatenating first
+        all_ones = all((s == 1).all() for s in samples)
+        if all_ones:
+            # Assign batch indices: each sample gets its index
             for i in range(len(samples)):
                 assert samples[i].shape[0] > 0
-                if (samples[i] == 1).all():
-                    b = samples[i]
-                    b = b * idx
-                    samples[i] = b
-                idx += 1
+                samples[i] = samples[i] * i
             return torch.cat(samples, dim=0)
 
         return torch.cat(samples, dim=0).long()

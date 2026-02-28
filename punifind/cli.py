@@ -109,6 +109,27 @@ def get_gpu_count():
     return 1  # Default to 1 if can't detect
 
 
+def find_free_port(start=10077, end=65535):
+    """Find a free TCP port by attempting to bind.
+
+    Args:
+        start: Port to try first (default: 10077)
+        end: Maximum port number to try
+
+    Returns:
+        An available port number
+    """
+    import socket
+    for port in range(start, end):
+        try:
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                s.bind(("", port))
+                return port
+        except OSError:
+            continue
+    raise RuntimeError(f"No free port found in range {start}-{end}")
+
+
 def build_torchrun_args(n_gpu, master_port, master_ip, world_size, world_rank):
     """Build torchrun command arguments.
 
@@ -250,6 +271,16 @@ def build_common_args(args, task_type):
     return cmd_args
 
 
+def _resolve_master_port(args):
+    """Resolve master port: use user-specified port or auto-find a free one."""
+    port = args.master_port
+    # Auto-find free port starting from the default
+    free_port = find_free_port(start=port)
+    if free_port != port:
+        print(f"Port {port} is in use, using port {free_port} instead.")
+    return free_port
+
+
 def run_denovo(args):
     """Run de novo peptide sequencing workflow."""
     print("=" * 40)
@@ -264,7 +295,7 @@ def run_denovo(args):
     # Build torchrun command
     torchrun_args = build_torchrun_args(
         n_gpu=n_gpu,
-        master_port=args.master_port,
+        master_port=_resolve_master_port(args),
         master_ip=args.master_ip,
         world_size=args.world_size,
         world_rank=args.world_rank,
@@ -303,7 +334,7 @@ def run_rescore(args):
     # Build torchrun command
     torchrun_args = build_torchrun_args(
         n_gpu=n_gpu,
-        master_port=args.master_port,
+        master_port=_resolve_master_port(args),
         master_ip=args.master_ip,
         world_size=args.world_size,
         world_rank=args.world_rank,

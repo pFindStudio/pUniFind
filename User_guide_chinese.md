@@ -61,13 +61,19 @@ pip install -e .
 
 Thermo仪器打分、从头测序用checkpoint_rank.pt，TIMS从头测序用checkpoint_tims.pt，默认使用checkpoint_rank.pt，可以在official_denovo_workflow.sh或者official_score_workflow.sh中设置
 
+#### 检查安装
+若要检查环境配置是否正确，可以尝试在命令行执行 pytest 来测试 projects 中的 Demo 数据。该过程可能需要几分钟时间。
+```
+pytest
+```
+
 #### 开放式重打分
 下面是一个重打分项目的文件结构```projects```：
 ```bash
 project_name/ # pFind任务文件夹
+├── ***.pac # 蛋白质ID文件（由pFind在fasta文件夹生成，需用户手动移动到项目根目录）
 ├── param/ # pFind搜索参数（由pFind生成）
 ├── result/ # pFind搜索结果（由pFind生成）
-│   └── ***.pac # 蛋白质ID文件（需用户手动移动到fasta文件夹）
 └── mgfs/ # mgf文件（由pFind生成后用户移动至此）
 ```
 执行重打分：
@@ -100,9 +106,9 @@ Bohrium的GPU资源可能存在波动，若任务无法启动通常由资源不�
 # 需上传的文件结构
 # 重打分
 pFind任务文件夹/ # 由pFind生成
+├── ***.pac # 蛋白质ID文件（放在项目根目录）
 ├── param/ # pFind搜索参数
 ├── result/ # pFind搜索结果
-│   └── ***.pac # 蛋白质ID文件
 └── mgfs/ # mgf文件
 # 从头测序
 项目文件夹/ 
@@ -221,7 +227,7 @@ pep1=0 LGLDVLVHGEAER 1
 - **安装路径**: 安装路径和数据/结果路径请勿包含空格/中文。  
 - **Windows卸载**: 如需重新安装Windows版，请使用```unins000.exe```卸载，否则可能无法更改安装路径。若已通过其他方式卸载，请重新安装后使用上述方法卸载。
 - **Linux部署**: 如遇```libstdc++.so.6: version `GLIBCXX_3.4.29' not found```错误，参考[此方案](https://github.com/pybind/pybind11/discussions/3453)。我的解决方法是```export LD_LIBRARY_PATH=/your_path/miniconda3/envs/pUniFind/lib:$LD_LIBRARY_PATH```。
-- **结果缺失**: 若未获得重打分结果，请检查.pac文件位置，同时查看```pUniFind_result```和```result```文件夹。
+- **结果缺失**: 若未获得重打分结果，请检查.pac文件是否放在项目根目录下（不是result/文件夹内），同时查看```pUniFind_result```和```result```文件夹。
 - **靶向方法**: 使用靶向采集方法（如AIMS、PRM、SRM）时性能不理想，请联系团队。我们可分析数据并推荐优化策略。
 - **软件内下载元件失败**: 如果下载checkpoint有报错，请尝试一个一个下载而不是同事下载多个，尽量使用网速比较快的网络下载，如果仍然失败请联系我们。
 ## 🤝 引用说明 <a name="-citation"></a>

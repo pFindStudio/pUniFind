@@ -29,16 +29,17 @@ class ParquetWriter:
 
     Replaces LMDB write operations with Parquet-based storage.
     Data is stored as pickled binary in a Parquet column.
-    Parquet's native compression (snappy/zstd) is used instead of gzip for better performance.
+    Uses PyArrow's streaming ParquetWriter to write row groups incrementally,
+    avoiding the O(n^2) read-concat-rewrite pattern.
     """
 
-    def __init__(self, path: str, batch_size: int = 1000, use_gzip: bool = False):
+    def __init__(self, path: str, batch_size: int = 5000, use_gzip: bool = False):
         """
         Initialize ParquetWriter.
 
         Args:
             path: Path to the Parquet file (should end with .parquet)
-            batch_size: Number of records to accumulate before writing to disk
+            batch_size: Number of records to accumulate before flushing as a row group
             use_gzip: Whether to use gzip compression (default: False for better performance)
         """
         self.path = path
@@ -46,14 +47,21 @@ class ParquetWriter:
             self.path = path.replace('.lmdb', '.parquet')
         self.batch_size = batch_size
         self.use_gzip = use_gzip
-        self._buffer: List[Dict[str, Any]] = []
+        self._buffer_keys: List[bytes] = []
+        self._buffer_data: List[bytes] = []
         self._keys: List[bytes] = []
-        self._written = False
         self._total_count = 0
+        self._writer: Optional[pq.ParquetWriter] = None
 
         # Remove existing file if present
         if os.path.exists(self.path):
             os.remove(self.path)
+
+        # Define schema once
+        self._schema = pa.schema([
+            ('key', pa.binary()),
+            ('data', pa.binary()),
+        ])
 
     def put(self, key: bytes, value: bytes) -> None:
         """
@@ -63,13 +71,11 @@ class ParquetWriter:
             key: Key as bytes (typically index encoded as ASCII)
             value: Value as bytes (pickled data, optionally gzip-compressed)
         """
-        self._buffer.append({
-            'key': key,
-            'data': value
-        })
+        self._buffer_keys.append(key)
+        self._buffer_data.append(value)
         self._keys.append(key)
 
-        if len(self._buffer) >= self.batch_size:
+        if len(self._buffer_keys) >= self.batch_size:
             self._flush()
 
     def put_object(self, key: bytes, obj: Any) -> None:
@@ -88,34 +94,37 @@ class ParquetWriter:
 
     def commit(self) -> None:
         """Commit any buffered data to disk."""
-        if self._buffer:
+        if self._buffer_keys:
             self._flush()
 
     def _flush(self) -> None:
-        """Flush the buffer to disk."""
-        if not self._buffer:
+        """Flush the buffer to disk as a new row group (O(1) per flush)."""
+        if not self._buffer_keys:
             return
 
-        df = pd.DataFrame(self._buffer)
-        table = pa.Table.from_pandas(df)
+        table = pa.table(
+            {'key': self._buffer_keys, 'data': self._buffer_data},
+            schema=self._schema,
+        )
 
-        # Use zstd for better compression ratio with good speed
-        # snappy is faster but larger, zstd is a good balance
-        if not self._written:
-            pq.write_table(table, self.path, compression='zstd', compression_level=3)
-            self._written = True
-        else:
-            # Append to existing file by reading, concatenating, and rewriting
-            existing_table = pq.read_table(self.path)
-            combined_table = pa.concat_tables([existing_table, table])
-            pq.write_table(combined_table, self.path, compression='zstd', compression_level=3)
+        if self._writer is None:
+            self._writer = pq.ParquetWriter(
+                self.path, self._schema,
+                compression='zstd', compression_level=3,
+            )
 
-        self._total_count += len(self._buffer)
-        self._buffer = []
+        self._writer.write_table(table)
+
+        self._total_count += len(self._buffer_keys)
+        self._buffer_keys = []
+        self._buffer_data = []
 
     def close(self) -> None:
         """Close the writer and ensure all data is written."""
         self.commit()
+        if self._writer is not None:
+            self._writer.close()
+            self._writer = None
 
     def get_keys(self) -> List[bytes]:
         """Return all keys that have been written."""
@@ -155,6 +164,9 @@ class ParquetReader:
         self._table = pq.read_table(self.path)
         self._df = self._table.to_pandas()
 
+        # Extract data column as numpy array for O(1) access without pandas iloc overhead
+        self._data_array = self._df['data'].values
+
         # Build key-to-index mapping for O(1) lookup
         self._key_to_idx = {
             key: idx for idx, key in enumerate(self._df['key'].values)
@@ -183,7 +195,7 @@ class ParquetReader:
         idx = self._key_to_idx.get(key)
         if idx is None:
             return None
-        return self._df.iloc[idx]['data']
+        return self._data_array[idx]
 
     def get_by_index(self, idx: int) -> bytes:
         """
@@ -195,7 +207,7 @@ class ParquetReader:
         Returns:
             Value as bytes
         """
-        return self._df.iloc[idx]['data']
+        return self._data_array[idx]
 
     def __getitem__(self, key_or_idx: Union[bytes, int]) -> bytes:
         """
@@ -215,6 +227,7 @@ class ParquetReader:
         """Close the reader and free resources."""
         self._df = None
         self._table = None
+        self._data_array = None
         self._key_to_idx = None
         self._keys = None
 
@@ -420,6 +433,87 @@ class MultiParquetDataset:
         """Close all readers."""
         for reader in self._readers.values():
             reader.close()
+
+
+def check_parquet_up_to_date(
+    parquet_path: str,
+    keys_path: str,
+    source_files: List[str],
+) -> bool:
+    """
+    Check if an existing parquet file is up-to-date and can be reused.
+
+    Validates:
+    1. Parquet file and keys pkl file both exist
+    2. Parquet row count matches keys count
+    3. All source files are older than the parquet file (no new data)
+
+    Args:
+        parquet_path: Path to the parquet file
+        keys_path: Path to the keys pkl file
+        source_files: List of source file paths (mgf, qry.res, etc.)
+
+    Returns:
+        True if parquet is up-to-date and can be reused
+    """
+    import logging
+    logger = logging.getLogger("pUniFind.parquet_check")
+
+    # 1. Check files exist
+    if not os.path.isfile(parquet_path):
+        logger.info(f"Parquet file not found: {parquet_path}")
+        return False
+    if not os.path.isfile(keys_path):
+        logger.info(f"Keys file not found: {keys_path}")
+        return False
+
+    try:
+        # 2. Read parquet metadata to get row count (without loading data)
+        parquet_meta = pq.read_metadata(parquet_path)
+        parquet_num_rows = parquet_meta.num_rows
+
+        # Load keys and check count
+        with open(keys_path, "rb") as f:
+            keys = pickle.load(f)
+
+        keys_count = len(keys)
+
+        if parquet_num_rows != keys_count:
+            logger.info(
+                f"Row count mismatch: parquet has {parquet_num_rows} rows, "
+                f"keys file has {keys_count} keys. Re-preprocessing."
+            )
+            return False
+
+        if parquet_num_rows == 0:
+            logger.info("Parquet file is empty. Re-preprocessing.")
+            return False
+
+        # 3. Check source files haven't been modified after parquet was created
+        parquet_mtime = os.path.getmtime(parquet_path)
+        source_count = 0
+        for src in source_files:
+            if os.path.isfile(src):
+                source_count += 1
+                if os.path.getmtime(src) > parquet_mtime:
+                    logger.info(
+                        f"Source file {src} is newer than parquet. Re-preprocessing."
+                    )
+                    return False
+
+        if source_count == 0:
+            logger.info("No source files found. Re-preprocessing.")
+            return False
+
+        logger.info(
+            f"Parquet is up-to-date: {parquet_num_rows} records from "
+            f"{source_count} source files."
+        )
+        return True
+
+    except Exception as e:
+        logger.warning(f"Error checking parquet: {e}. Re-preprocessing.")
+        return False
 
 
 def convert_lmdb_to_parquet(lmdb_path: str, parquet_path: Optional[str] = None) -> str:

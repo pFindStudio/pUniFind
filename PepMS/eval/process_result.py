@@ -15,6 +15,14 @@ from tqdm import tqdm
 from PepMS.data.mass_calculation import *
 from PepMS.eval.draw_pred_spec import plot_spectra
 
+
+def safe_unpickle(data: bytes):
+    """Unpickle data, auto-detecting gzip vs plain pickle format."""
+    try:
+        return pickle.loads(data)
+    except Exception:
+        return pickle.loads(gzip.decompress(data))
+
 mass_calculator = PeptideIonCalculator()
 
 # decoy_thread = -1
@@ -158,7 +166,7 @@ def process_qvalue(unsorted_results, pscore_results_detail):
 def get_pfind_result(input):
     key, data_ziped, large_flag = input
     # data_ziped = txn_read.get(key)
-    data = pickle.loads(gzip.decompress(data_ziped))
+    data = safe_unpickle(data_ziped)
     if large_flag:
         k = "large"
     else:
@@ -238,7 +246,7 @@ def get_pscore_result(input):
     # is_target_max = is_target[idx]
     # data_ziped = txn_read.get(key)
     # data_ziped = txn_read.get(keys[int(index)])
-    data_lmdb = pickle.loads(gzip.decompress(data_ziped))
+    data_lmdb = safe_unpickle(data_ziped)
     if large_flag:
         k = "large"
     else:
@@ -278,7 +286,7 @@ def get_pscore_feat_and_result(input):
         pass
 
     score_max = dist[idx]
-    data_lmdb = pickle.loads(gzip.decompress(data_ziped))
+    data_lmdb = safe_unpickle(data_ziped)
 
     if large_flag:
         k = "large"
@@ -501,7 +509,7 @@ def get_pscore_feat_and_result(input):
 
 
 def get_td(data):
-    data = pickle.loads(gzip.decompress(data))
+    data = safe_unpickle(data)
     if data["small"]["1"]["fdr_value"] < 0.1:
         return 0, 0
 

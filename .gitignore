@@ -4,4 +4,10 @@ __pycache__/
 ckpts/checkpoint_rank.pt
 *.egg-info/
 **/.DS_Store
-projects/
+
+# Projects: track existing input data and golden labels, ignore generated outputs
+projects/*/pUniFind_result/
+projects/*/pUniFind_data_tmp/
+projects/*/pkls/
+projects/user_data/
+.pytest_cache/
