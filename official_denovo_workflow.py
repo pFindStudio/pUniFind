@@ -45,12 +45,13 @@ _PICKLE_PROTOCOL = pickle.HIGHEST_PROTOCOL
 
 
 def _read_and_pickle_denovo(mgf_path):
-    """Read MGF and pre-pickle each spectrum in worker process."""
+    """Read MGF and pre-pickle each spectrum in worker process.
+    Returns list of (title, pickled_data) tuples for deduplication."""
     results = read_denovo_mgfs(mgf_path)
     pickled = []
     for spec_name in results:
         ret = {"small": results[spec_name]}
-        pickled.append(pickle.dumps(ret, protocol=_PICKLE_PROTOCOL))
+        pickled.append((spec_name, pickle.dumps(ret, protocol=_PICKLE_PROTOCOL)))
     return pickled
 
 logging.basicConfig(
@@ -120,15 +121,27 @@ def preprocess_data(args):
         keys = []
         pool = Pool(args.num_proc)
         i = 0
+        seen_titles = set()
+        dup_count = 0
         for pickled_list in tqdm(
             pool.imap_unordered(_read_and_pickle_denovo, mgf_paths, chunksize=1),
             total=len(mgf_paths),
         ):
-            for pickled_data in pickled_list:
+            for title, pickled_data in pickled_list:
+                if title in seen_titles:
+                    dup_count += 1
+                    continue
+                seen_titles.add(title)
                 i += 1
                 key = f"{i}".encode("ascii")
                 writer.put(key, pickled_data)
                 keys.append(key)
+        if dup_count > 0:
+            logger.warning(
+                f"Skipped {dup_count} duplicate spectra (same title in multiple mgf files). "
+                f"This is usually caused by bloated mgf files where file names like "
+                f"'raw_1' incorrectly include spectra from 'raw_10'-'raw_19'."
+            )
 
         pool.close()
         pool.join()
