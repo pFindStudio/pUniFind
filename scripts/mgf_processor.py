@@ -5,7 +5,7 @@ from multiprocessing import Pool
 
 
 def process_single_file(input_path, output_path):
-    """Process a single MGF file"""
+    """处理单个 MGF 文件 / Process a single MGF file"""
     try:
         with open(input_path, "r", encoding="utf-8") as infile, open(
             output_path, "w", encoding="utf-8"
@@ -36,13 +36,13 @@ def process_single_file(input_path, output_path):
                         scans_value = line.split("=")[1].strip()
 
     except Exception as e:
-        print(f"Error processing {input_path}: {str(e)}")
+        print(f"处理 {input_path} 时出错 / Error processing {input_path}: {str(e)}")
         return False
     return True
 
 
 def process_spectrum(spectrum_lines, scans_value):
-    """Apply processing rules to individual spectrum"""
+    """对单个谱图应用处理规则 / Apply processing rules to an individual spectrum"""
     processed = []
     remove_prefixes = {"NCE=", "HCD=", "FBR=", "TB=", "FB=", "MB="}
 
@@ -70,33 +70,41 @@ def main():
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
     parser.add_argument(
-        "-i", "--input", required=True, help="Input directory containing .mgf files"
+        "-i",
+        "--input",
+        required=True,
+        help="输入包含 .mgf 文件的目录 / Input directory containing .mgf files",
     )
     parser.add_argument(
-        "-o", "--output", required=True, help="Output directory for processed files"
+        "-o",
+        "--output",
+        required=True,
+        help="处理后文件的输出目录 / Output directory for processed files",
     )
     parser.add_argument(
         "-p",
         "--processes",
         type=int,
         default=8,
-        help="Number of parallel processes (default: 8)",
+        help="并行进程数（默认：8） / Number of parallel processes (default: 8)",
     )
 
     args = parser.parse_args()
 
     if not os.path.isdir(args.input):
-        raise SystemExit(f"Error: Input directory '{args.input}' does not exist")
+        raise SystemExit(
+            f"错误：输入目录 '{args.input}' 不存在 / Error: Input directory '{args.input}' does not exist"
+        )
 
     os.makedirs(args.output, exist_ok=True)
 
-    # Collect all mgf files
+    # 收集所有 mgf 文件 / Collect all MGF files
     files = [f for f in os.listdir(args.input) if f.lower().endswith(".mgf")]
     if not files:
-        print("No MGF files found in input directory")
+        print("输入目录中未找到 MGF 文件 / No MGF files found in input directory")
         return
 
-    # Prepare arguments for multiprocessing
+    # 为多进程准备参数 / Prepare arguments for multiprocessing
     process_func = partial(
         process_single_file, input_dir=args.input, output_dir=args.output
     )
@@ -110,15 +118,17 @@ def main():
                 pool.apply_async(process_single_file, (input_path, output_path))
             )
 
-        # Wait for all processes to complete
+        # 等待所有进程完成 / Wait for all processes to complete
         success = 0
         total = len(results)
         for result in results:
             if result.get():
                 success += 1
 
-        print(f"Processing completed: {success}/{total} files processed successfully")
-        print(f"Results saved to: {args.output}")
+        print(
+            f"处理完成：成功处理 {success}/{total} 个文件 / Processing completed: {success}/{total} files processed successfully"
+        )
+        print(f"结果保存至：{args.output} / Results saved to: {args.output}")
 
 
 if __name__ == "__main__":
