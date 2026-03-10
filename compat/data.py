@@ -189,6 +189,7 @@ class NestedDictionaryDataset(UnicoreDataset):
         Returns:
             Batched dictionary
         """
+        samples = [s for s in samples if s is not None]
         if len(samples) == 0:
             return {}
 

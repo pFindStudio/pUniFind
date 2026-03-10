@@ -345,7 +345,16 @@ def main(args):
             shard_id=data_parallel_rank,
             num_workers=args.num_workers,
             data_buffer_size=args.data_buffer_size,
+            skip_batches=args.skip_batches,
         ).next_epoch_itr(shuffle=False)
+
+        if args.skip_batches > 0:
+            logger.info(
+                "Skipping first %d batch(es) for subset '%s' on rank %d.",
+                args.skip_batches,
+                subset,
+                data_parallel_rank,
+            )
 
         progress = progress_bar_module(
             itr,
@@ -382,8 +391,7 @@ def main(args):
         for i, sample in enumerate(progress):
             sample = utils.move_to_cuda(sample) if use_cuda else sample
             with torch.no_grad():
-                if "net_input" not in sample.keys():
-                    print(sample)
+                if not sample or "net_input" not in sample.keys():
                     continue
                 ret_info, peptide_set, mod_stat = model.forward_faster_denovo(
                     **sample["net_input"],
@@ -511,6 +519,12 @@ def cli_main():
     parser.add_argument(
         "--min-length",
         type=int,
+    )
+    parser.add_argument(
+        "--skip-batches",
+        type=int,
+        default=0,
+        help="Skip the first N batches on each rank before running inference.",
     )
 
     options.add_model_args(parser)

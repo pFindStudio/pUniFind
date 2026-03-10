@@ -161,6 +161,7 @@ class UnicoreTask:
         shard_id: int = 0,
         num_workers: int = 0,
         data_buffer_size: int = 10,
+        skip_batches: int = 0,
         **kwargs,
     ) -> "EpochBatchIterator":
         """
@@ -198,6 +199,7 @@ class UnicoreTask:
             num_workers=num_workers,
             seed=seed,
             collate_fn=collate_fn,
+            skip_batches=skip_batches,
         )
 
 
@@ -226,6 +228,7 @@ class EpochBatchIterator:
         num_workers: int = 0,
         seed: int = 1,
         collate_fn: Optional[Callable] = None,
+        skip_batches: int = 0,
     ):
         self.dataset = dataset
         self.batch_size = batch_size
@@ -234,6 +237,7 @@ class EpochBatchIterator:
         self.num_workers = num_workers
         self.seed = seed
         self.collate_fn = collate_fn
+        self.skip_batches = max(0, skip_batches)
         self._current_epoch = 1
 
     def __len__(self) -> int:
@@ -276,6 +280,12 @@ class EpochBatchIterator:
 
         self._current_epoch += 1
 
+        if self.skip_batches > 0:
+            sampler = SkipSamplesSampler(
+                sampler=sampler,
+                skip_samples=self.skip_batches * self.batch_size,
+            )
+
         # Optimize DataLoader for better GPU utilization
         loader_kwargs = {
             "dataset": self.dataset,
@@ -293,3 +303,22 @@ class EpochBatchIterator:
             loader_kwargs["persistent_workers"] = True  # Keep workers alive between epochs
 
         return DataLoader(**loader_kwargs)
+
+
+class SkipSamplesSampler(torch.utils.data.Sampler[int]):
+    """Skip the first N sampled items without materializing skipped batches."""
+
+    def __init__(self, sampler, skip_samples: int):
+        self.sampler = sampler
+        self.skip_samples = max(0, skip_samples)
+
+    def __iter__(self):
+        skipped = 0
+        for index in self.sampler:
+            if skipped < self.skip_samples:
+                skipped += 1
+                continue
+            yield index
+
+    def __len__(self) -> int:
+        return max(0, len(self.sampler) - self.skip_samples)

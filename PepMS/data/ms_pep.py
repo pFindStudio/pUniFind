@@ -2147,7 +2147,7 @@ class pFindIs2reDataset(BaseWrapperDataset):
                 remove_precursor_tol_ppm=20.0,
             )
             if mz_processed is None or len(mz_processed) == 0:
-                raise ValueError("Empty spectrum after preprocessing")
+                return None
 
             mz_array = torch.Tensor(mz_processed)
             intensity = torch.Tensor(int_processed)
@@ -2655,7 +2655,7 @@ class ScoreInferenceDataset(BaseWrapperDataset):
                 remove_precursor_tol_da=2.0,  # Use Da tolerance
             )
             if mz_processed is None or len(mz_processed) == 0:
-                raise ValueError("Empty spectrum after preprocessing")
+                return None
 
             mz_array = torch.Tensor(mz_processed)
             intensity = torch.Tensor(int_processed)
@@ -3217,7 +3217,7 @@ class SpecPredDataset(BaseWrapperDataset):
                 remove_precursor_tol_da=2.0,  # Use Da tolerance
             )
             if mz_processed is None or len(mz_processed) == 0:
-                raise ValueError("Empty spectrum after preprocessing")
+                return None
 
             mz_array = torch.Tensor(mz_processed)
             intensity = torch.Tensor(int_processed)
@@ -3511,7 +3511,7 @@ class DeNovoIs2reDataset(BaseWrapperDataset):
                 remove_precursor_tol_ppm=20.0,
             )
             if mz_processed is None or len(mz_processed) == 0:
-                raise ValueError("Empty spectrum after preprocessing")
+                return None
 
             mz_array = torch.Tensor(mz_processed)
             intensity = torch.Tensor(int_processed)
@@ -3794,7 +3794,7 @@ class ContrastIs2reDataset(BaseWrapperDataset):
                 remove_precursor_tol_ppm=20.0,
             )
             if mz_processed is None or len(mz_processed) == 0:
-                raise ValueError("Empty spectrum after preprocessing")
+                return None
 
             mz_array = torch.Tensor(mz_processed)
             intensity = torch.Tensor(int_processed)
@@ -4394,12 +4394,18 @@ class SeqStrDataset(BaseWrapperDataset):
 
     @lru_cache(maxsize=16)
     def __getitem_cached__(self, epoch: int, index: int):
-        return self.dataset[index][self.key]
+        sample = self.dataset[index]
+        if sample is None:
+            return None
+        return sample[self.key]
 
     def __len__(self):
         return len(self.dataset)
 
     def collater(self, samples):
+        samples = [s for s in samples if s is not None]
+        if not samples:
+            return []
         list_samples = [x for sublist in samples for x in sublist]
         return list_samples
 
@@ -4425,12 +4431,18 @@ class SeqDataset(BaseWrapperDataset):
 
     @lru_cache(maxsize=16)
     def __getitem_cached__(self, epoch: int, index: int):
-        return self.dataset[index][self.key]
+        sample = self.dataset[index]
+        if sample is None:
+            return None
+        return sample[self.key]
 
     def __len__(self):
         return len(self.dataset)
 
     def collater(self, samples):
+        samples = [s for s in samples if s is not None]
+        if not samples:
+            return torch.empty((0, 0), dtype=torch.long)
         return torch.nn.utils.rnn.pad_sequence(
             samples, batch_first=True, padding_value=self.padding_value
         )
@@ -4455,12 +4467,18 @@ class ScalerDataset(BaseWrapperDataset):
 
     @lru_cache(maxsize=16)
     def __getitem_cached__(self, epoch: int, index: int):
-        return self.dataset[index][self.key]
+        sample = self.dataset[index]
+        if sample is None:
+            return None
+        return sample[self.key]
 
     def __len__(self):
         return len(self.dataset)
 
     def collater(self, samples):
+        samples = [s for s in samples if s is not None]
+        if not samples:
+            return torch.empty((0,), dtype=torch.float32)
         return torch.cat(samples, dim=0)
 
 
@@ -4483,12 +4501,18 @@ class BatchIndexDataset(BaseWrapperDataset):
 
     @lru_cache(maxsize=16)
     def __getitem_cached__(self, epoch: int, index: int):
-        return self.dataset[index][self.key]
+        sample = self.dataset[index]
+        if sample is None:
+            return None
+        return sample[self.key]
 
     def __len__(self):
         return len(self.dataset)
 
     def collater(self, samples):
+        samples = [s for s in samples if s is not None]
+        if not samples:
+            return torch.empty((0,), dtype=torch.long)
         # Check if all values are 1 without concatenating first
         all_ones = all((s == 1).all() for s in samples)
         if all_ones:
