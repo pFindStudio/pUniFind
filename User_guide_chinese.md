@@ -12,7 +12,7 @@
 - [🤝 引用说明](#-citation)
 ## 🚀 快速开始 <a name="-quick-start"></a>
 演示数据可从[Google Drive](https://drive.google.com/drive/folders/1CQzNypmOscCpvyK3MnCj4AhEWGlx9mbn?usp=sharing)下载。
-### Windows本地部署
+### Windows本地部署（推荐使用Linux版本）
 请先下载```.exe```[安装包](https://github.com/pFindStudio/pUniFind/releases)，然后按照指引安装。在Windows上运行需要GPU支持。普通用户需注册免费Bohrium账号。
 
 关于```GPU batch size```设置：
@@ -33,7 +33,7 @@
 
 注：安装路径默认在 C:\Users\[你的用户名]\AppData\Local\Programs\piUniMS，可能安装的时候修改了路径，可以返回桌面后鼠标悬停在快捷方式上查看。
 
-### Linux本地部署（preview版本）
+### Linux本地部署（推荐使用）
 我们会在后续优化用户使用体验，目前是尝鲜版本。
 #### 环境配置
 pUniFind支持多GPU加速处理。
