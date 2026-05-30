@@ -3,7 +3,7 @@
 <!-- [![arXiv](https://img.shields.io/badge/arXiv-2308.12345-B31B1B)](https://arxiv.org/abs/1234.56789)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0) -->
 
-[![arXiv](https://img.shields.io/badge/arXiv-2507.00087-B31B1B)](https://arxiv.org/abs/2507.00087) [![Windows Executable](https://img.shields.io/badge/Windows-GUI-green)](https://github.com/pFindStudio/pUniFind/releases) [![Bohrium](https://img.shields.io/badge/Web%20server-Bohrium%20App-00BFFF)](https://bohrium.dp.tech/apps/punifind)
+[![Nature Machine Intelligence](https://img.shields.io/badge/arXiv-2507.00087-B31B1B)]([https://arxiv.org/abs/2507.00087](https://www.nature.com/articles/s42256-026-01234-8)) [![Windows Executable](https://img.shields.io/badge/Windows-GUI-green)](https://github.com/pFindStudio/pUniFind/releases) [![Bohrium](https://img.shields.io/badge/Web%20server-Bohrium%20App-00BFFF)](https://bohrium.dp.tech/apps/punifind)
 <!-- [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/your-repo/pUniFind) -->
 <div style="text-align: center; line-height: 1.8; margin-bottom: 25px;">
   <a href="User_guide_chinese.md" style="margin-right: 15px;">中文用户手册</a> | 
@@ -73,14 +73,13 @@ If you encounter any issues running pUniFind, please first refer to the FAQ sect
 ## 🤝 Citation <a name="-citation"></a>
 If you find our software is useful and helped your research,  **please cite** us 🙏 through:
 ```bash
-@misc{zhao2025punifindunifiedlargepretrained,
-      title={pUniFind: a unified large pre-trained deep learning model pushing the limit of mass spectra interpretation}, 
-      author={Jiale Zhao and Pengzhi Mao and Kaifei Wang and Yiming Li and Yaping Peng and Ranfei Chen and Shuqi Lu and Xiaohong Ji and Jiaxiang Ding and Xin Zhang and Yucheng Liao and Weinan E and Weijie Zhang and Han Wen and Hao Chi},
-      year={2025},
-      eprint={2507.00087},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2507.00087}, 
+@article{zhao2026large,
+  title={A large-scale unified deep learning model for peptide mass spectrum interpretation trained on multimodal data},
+  author={Zhao, Jiale and Mao, Pengzhi and Wang, Kaifei and Li, Yiming and Peng, Yaping and Chen, Ranfei and Lu, Shuqi and Ji, Xiaohong and Ding, Jiaxiang and Zhang, Xin and others},
+  journal={Nature Machine Intelligence},
+  pages={1--15},
+  year={2026},
+  publisher={Nature Publishing Group UK London}
 }
 ```
 Your every citation will motivate the main author to make pUniFind more user-friendly and powerful. The main author needs your valuable citations and stars to find a job after graduation 😫.
